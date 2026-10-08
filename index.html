@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FieldLink – مكتب الإرسال</title>
+<script>
+try{
+  var _th = localStorage.getItem('fl_theme') || (window.matchMedia && matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+  var _lg = localStorage.getItem('fl_lang') === 'en' ? 'en' : 'ar';
+  var _de = document.documentElement;
+  _de.setAttribute('data-theme', _th); _de.lang = _lg; _de.dir = _lg === 'ar' ? 'rtl' : 'ltr';
+}catch(e){}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#f4f6f9; --panel:#ffffff; --ink:#111a24; --mute:#4a5868; --line:#c9d2dc;
+  --accent:#1a56b8; --accent-ink:#ffffff;
+  --new:#a8650a; --acc:#1a56b8; --ret:#b42318; --done:#1b7a45;
+  --danger:#b42318;
+  --eg-ink:#0b4a8f; --eg-bg:#e3effd; --eg-line:#9cc2f2;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#11161c; --panel:#1a212a; --ink:#e6ebf0; --mute:#93a1af; --line:#2c3642;
+  --accent:#5b97ee; --accent-ink:#0b1626; --new:#e0a64a; --acc:#5b97ee; --ret:#ef7d73; --done:#5cc487; --danger:#ef7d73;
+  --eg-ink:#a9cdfa; --eg-bg:#1b2d45; --eg-line:#2f4f7a;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Arabic",Tahoma,"Segoe UI",sans-serif;font-size:15px;line-height:1.6}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hidden{display:none!important}
+
+/* login */
+#login{min-height:100%;display:grid;place-items:center;padding:24px}
+.login-prefs{position:fixed;top:12px;inset-inline-end:12px}
+.login-box{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:28px;width:100%;max-width:380px}
+.login-box h1{margin:0 0 4px;font-size:22px;font-weight:600}
+.login-box p{margin:0 0 18px;color:var(--mute)}
+
+/* shell */
+.prefs{display:flex;gap:6px}
+header.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+header.top h1{margin:0;font-size:18px;font-weight:600}
+header.top .sp{flex:1}
+header.top .who{color:var(--mute);font-size:13px}
+main{display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:20px;padding:20px;align-items:start;max-width:1400px;margin:0 auto}
+@media (max-width:900px){main{grid-template-columns:1fr}}
+
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.form{padding:18px;position:sticky;top:70px}
+@media (max-width:900px){.form{position:static}}
+.form h2,.board h2{margin:0 0 14px;font-size:16px;font-weight:600}
+label{display:block;font-size:13px;color:var(--mute);margin:12px 0 4px}
+input,select,textarea{width:100%;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:9px 11px}
+textarea{min-height:84px;resize:vertical}
+.hint{font-size:13px;margin-top:6px;min-height:20px}
+.hint.ok{color:var(--done)} .hint.bad{color:var(--danger)}
+.row-btns{display:flex;gap:8px;margin-top:18px}
+.btn{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:9px 16px;cursor:pointer}
+.btn:hover{border-color:var(--mute)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600;flex:1}
+.btn.small{padding:4px 10px;font-size:13px}
+.btn.danger{color:var(--danger)}
+.btn:disabled{opacity:.55;cursor:default}
+.editing{background:color-mix(in srgb,var(--new) 14%,transparent);border:1px solid var(--new);border-radius:6px;padding:8px 11px;font-size:13px;margin-bottom:4px}
+
+/* board */
+.board{padding:18px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.tab{border:1px solid var(--line);background:transparent;border-radius:999px;padding:5px 14px;cursor:pointer;font-size:14px}
+.tab[aria-pressed=true]{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.tab b{font-weight:600;margin-inline-start:4px}
+.search{max-width:200px}
+.list{border-top:1px solid var(--line)}
+.case{border-bottom:1px solid var(--line);border-inline-start:4px solid var(--c,var(--line));padding:11px 14px;cursor:pointer}
+.case{background:color-mix(in srgb,var(--c,transparent) 5%,var(--panel))}
+.case:hover{background:color-mix(in srgb,var(--c,var(--ink)) 11%,var(--panel))}
+:root[data-theme="light"] .panel{box-shadow:0 1px 2px rgba(17,26,36,.06)}
+:root[data-theme="light"] input,:root[data-theme="light"] select,:root[data-theme="light"] textarea{background:#fff;border-color:#b9c4d0}
+:root[data-theme="light"] .badge{background:color-mix(in srgb,var(--c) 10%,#fff)}
+.case .main{display:grid;grid-template-columns:minmax(150px,auto) 1fr auto;gap:6px 14px;align-items:center}
+.case .tk{font-weight:600}
+.case .gv{color:var(--mute);font-size:13px}
+.case .ds{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case .who2{font-size:13px;color:var(--mute)}
+.badge{font-size:12px;font-weight:600;color:var(--c);border:1px solid var(--c);border-radius:4px;padding:1px 8px;white-space:nowrap}
+.case .extra{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.case.open .extra{display:block}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:3px 10px;font-size:14px}
+.kv dt{color:var(--mute)} .kv dd{margin:0;overflow-wrap:anywhere}
+.reason{color:var(--ret);margin-top:6px;font-size:14px}
+.acts{display:flex;gap:8px;margin-top:12px}
+.empty{padding:36px 10px;text-align:center;color:var(--mute)}
+.s-new{--c:var(--new)} .s-acc{--c:var(--acc)} .s-ret{--c:var(--ret)} .s-done{--c:var(--done)}
+@media (max-width:600px){.case .main{grid-template-columns:1fr auto}.case .ds{grid-column:1/-1}}
+
+.form-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+.form-head h2{margin:0}
+dialog{border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);padding:0;width:min(860px,94vw);max-height:92vh;overflow:hidden}
+dialog[open]{display:flex}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.dlg{display:flex;flex-direction:column;width:100%;max-height:92vh}
+.dlg-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:17px;font-weight:600}
+.dlg-body{flex:1;overflow:auto;padding:16px 18px;display:flex;flex-direction:column;gap:18px}
+.step-t{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px}
+.step-t .n,.foot-n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:12px;font-weight:600;flex:none}
+.step-t .sum{margin-inline-start:auto;font-weight:400;font-size:13px;color:var(--mute)}
+.step-d{color:var(--mute);font-size:13px;margin:2px 0 8px}
+.dlg textarea{min-height:96px;font-family:Consolas,monospace;font-size:13px;direction:ltr;text-align:left;white-space:pre}
+.pv-tools{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.pv-list{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.pv-empty{border:1px dashed var(--line);border-radius:8px;padding:26px 10px;text-align:center;color:var(--mute);font-size:14px}
+.pc{border:1px solid var(--line);border-inline-start:4px solid var(--c,var(--line));border-radius:8px;padding:10px 12px;display:grid;gap:10px}
+.pc.off{opacity:.55}
+.pc.r-ok{--c:var(--done)} .pc.r-none{--c:var(--new)} .pc.r-dup{--c:var(--danger)}
+.pc-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pc-top input[type=checkbox]{width:18px;height:18px;flex:none;padding:0}
+.pc-tk{font-weight:600;direction:ltr;unicode-bidi:plaintext}
+.pc-sp{flex:1}
+.eg{display:inline-block;font-size:12px;font-weight:600;line-height:1.6;padding:0 9px;margin-inline-start:6px;border-radius:999px;color:var(--eg-ink);background:var(--eg-bg);border:1px solid var(--eg-line);vertical-align:middle;white-space:nowrap}
+.chip{font-size:12px;border-radius:999px;padding:1px 10px;border:1px solid var(--line);color:var(--mute);white-space:nowrap}
+.chip.ok{color:var(--done);border-color:var(--done)} .chip.bad{color:var(--danger);border-color:var(--danger)} .chip.warn{color:var(--new);border-color:var(--new)}
+.pc-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pc-fields .pc-addr{grid-column:1/-1}
+.pc-fields label{margin:0 0 3px;font-size:12px}
+.pc-fields input{padding:6px 9px}
+.pc-fields select{padding:6px 9px}
+.pc-fields input.miss,.pc-fields select.miss{border-color:var(--danger)}
+.pv-tools select{width:auto;max-width:240px;padding:4px 8px;font-size:13px}
+.pc-nums{display:flex;flex-wrap:wrap;gap:4px 20px;font-size:13px;padding-top:8px;border-top:1px dashed var(--line)}
+.pc-nums b{color:var(--mute);font-weight:500;margin-inline-end:5px}
+@media (max-width:600px){.pc-fields{grid-template-columns:1fr}}
+.dlg-foot{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 18px;border-top:1px solid var(--line);background:var(--panel)}
+.dlg-foot label{margin:0;color:var(--ink);font-size:14px}
+.dlg-foot select{width:auto;flex:1;min-width:160px;max-width:300px}
+.kv dd{white-space:pre-line}
+#toast{position:fixed;bottom:20px;inset-inline-start:20px;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:8px;font-size:14px;max-width:80vw;z-index:20}
+footer{text-align:center;color:var(--mute);font-size:12px;padding:18px}
+</style>
+</head>
+<body>
+
+<section id="login">
+  <div class="prefs login-prefs">
+    <button class="btn small theme-btn" type="button"></button>
+    <button class="btn small lang-btn" type="button"></button>
+  </div>
+  <form class="login-box" id="loginForm" autocomplete="off">
+    <h1 data-i="login_h"></h1>
+    <p data-i="login_p"></p>
+    <label for="code" data-i="code_l"></label>
+    <input id="code" type="password" required dir="ltr">
+    <div class="hint bad" id="loginErr"></div>
+    <div class="row-btns"><button class="btn primary" id="loginBtn" type="submit" data-i="login_btn"></button></div>
+  </form>
+</section>
+
+<div id="app" class="hidden">
+  <header class="top">
+    <h1 data-i="top_h"></h1>
+    <span class="sp"></span>
+    <span class="who" id="who"></span>
+    <span class="prefs">
+      <button class="btn small theme-btn" type="button"></button>
+      <button class="btn small lang-btn" type="button"></button>
+    </span>
+    <button class="btn small hidden" id="notifBtn" type="button"></button>
+    <button class="btn small" id="refreshBtn" type="button" data-i="refresh"></button>
+    <button class="btn small" id="logoutBtn" type="button" data-i="logout"></button>
+  </header>
+
+  <main>
+    <section class="panel form">
+      <div class="form-head"><h2 id="formTitle"></h2><button class="btn small" id="pasteBtn" type="button" data-i="paste_btn"></button></div>
+      <div id="editBanner" class="editing hidden"></div>
+      <form id="caseForm" autocomplete="off">
+        <label for="f_t" data-i="f_t"></label>
+        <input id="f_t" required>
+        <label for="f_gov" data-i="f_gov"></label>
+        <select id="f_gov" required></select>
+        <label for="f_addr" data-i="f_addr"></label>
+        <input id="f_addr">
+        <label for="f_ms">Primary MSISDN</label>
+        <input id="f_ms" type="tel" inputmode="tel" dir="ltr" placeholder="07XXXXXXXXX">
+        <label for="f_cb">Call Back</label>
+        <input id="f_cb" type="tel" inputmode="tel" dir="ltr" placeholder="07XXXXXXXXX">
+        <label for="f_issue" data-i="f_issue"></label>
+        <textarea id="f_issue"></textarea>
+        <label for="f_asg" data-i="f_asg"></label>
+        <select id="f_asg"></select>
+        <div class="hint" id="route"></div>
+        <div class="row-btns">
+          <button class="btn primary" id="sendBtn" type="submit"></button>
+          <button class="btn hidden" id="cancelEdit" type="button" data-i="cancel"></button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel board">
+      <h2 data-i="board_h"></h2>
+      <div class="tools">
+        <div class="tabs" id="tabs"></div>
+        <input class="search" id="q" type="search" data-ph="search">
+      </div>
+      <div class="list" id="list"></div>
+    </section>
+  </main>
+  <footer data-i="footer"></footer>
+</div>
+
+<dialog id="pasteDlg">
+  <div class="dlg">
+    <div class="dlg-head">
+      <h2 data-i="pd_title"></h2>
+      <button class="btn small" id="pasteX" type="button" data-al="close">✕</button>
+    </div>
+    <div class="dlg-body">
+      <section>
+        <div class="step-t"><span class="n">1</span><span data-i="pd_s1"></span></div>
+        <div class="step-d" data-i="pd_s1d"></div>
+        <textarea id="pasteTxt" data-ph="pd_ph"></textarea>
+        <div class="hint" id="pasteMsg"></div>
+      </section>
+      <section>
+        <div class="step-t"><span class="n">2</span><span data-i="pd_s2"></span><span class="sum" id="pvSum"></span></div>
+        <div class="pv-tools hidden" id="pvTools">
+          <button class="btn small" id="pvAll" type="button" data-i="sel_all"></button>
+          <button class="btn small" id="pvNone" type="button" data-i="sel_none"></button>
+          <select id="pasteGov" data-al="bulk_gov"></select>
+          <select id="pasteAsg" data-al="bulk_eng"></select>
+        </div>
+        <div class="pv-list" id="pvList"></div>
+      </section>
+    </div>
+    <div class="dlg-foot">
+      <span class="foot-n">3</span>
+      <span class="hint bad" id="pvWarn" style="margin:0;min-height:0;flex:1"></span>
+      <button class="btn primary" id="pasteSend" type="button" disabled></button>
+      <button class="btn" id="pasteClose" type="button" data-i="close"></button>
+    </div>
+  </div>
+</dialog>
+
+<div id="toast" class="hidden" role="status"></div>
+
+<script>
+const URL_API = 'https://script.google.com/macros/s/AKfycbw1BvuJzVGdVInLA0_uBDrHWW71ukPmcUzUawzHJr_8pEwBW3DfD2uTBwpApSBmlHix/exec';
+
+function store(k, v){ try{ if(v===undefined) return localStorage.getItem(k); if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v); }catch(e){ return null; } }
+
+const S = { code:'', dev:'', me:null, users:[], cases:[], filter:'new', q:'', editing:null, busy:false, lerr:null,
+  lang: store('fl_lang')==='en' ? 'en' : 'ar',
+  theme: document.documentElement.getAttribute('data-theme') || 'light' };
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.remove('hidden'); clearTimeout(toast.h); toast.h=setTimeout(()=>t.classList.add('hidden'),3500); }
+
+/* ---- اللغات / Languages ---- */
+const I18N = {
+ar:{
+  doc_title:'FieldLink – مكتب الإرسال', lang_btn:'English', th_light:'فاتح', th_dark:'داكن', sep:'، ',
+  login_h:'مكتب FieldLink', login_p:'ادخل بكود حساب الأدمن لإرسال الكيسات للمهندسين.', code_l:'كود الدخول', login_btn:'دخول',
+  top_h:'مكتب الإرسال', refresh:'تحديث', logout:'خروج', paste_btn:'لصق من الإيميل',
+  f_t:'رقم التذكرة', f_gov:'المحافظة', f_eng:'المهندس', f_addr:'العنوان', f_issue:'المشكلة', f_asg:'المهندس المسؤول',
+  sel_gov:'— اختر المحافظة —', all_eng:'كل مهندسي المحافظة',
+  send_eng:'إرسال للمهندسين', cancel:'إلغاء', new_case:'كيس جديد', edit_case:'تعديل كيس',
+  save_resend:'حفظ وإعادة إرسال', save_edit:'حفظ التعديل',
+  banner_ret:'أرجعه المهندس: {0}', banner_edit:'يمكن التعديل لأن الكيس ما انقبل بعد.',
+  board_h:'الكيسات المرسلة', search:'بحث', footer:'تطوير: ايسر ماجد',
+  pd_title:'لصق كيسات من الإيميل', close:'إغلاق', pd_s1:'الصق الجدول',
+  pd_s1d:'انسخ الصفوف من الإيميل (بعناوين أو بدونها) والصقها هنا. المحافظة والمهندس تحددهم أنت لكل كيس من الخطوة 2، وليست من الإيميل.',
+  pd_ph:'الصق الجدول هنا', pd_s2:'راجع الكيسات وأسند كل كيس', sel_all:'تحديد الكل', sel_none:'إلغاء التحديد',
+  bulk_gov:'المحافظة للمحدد…', bulk_eng:'المهندس للمحدد…', send:'إرسال',
+  e_notadmin:'هذا الحساب ليس أدمن', e_bound:'هذا الحساب مربوط بجهاز ثاني. استعمل حساب أدمن مخصص للمكتب (انظر الملاحظة).',
+  e_invalid:'الكود غير صحيح', e_disabled:'الحساب معطّل', e_conn:'تعذّر الاتصال بالسيرفر. تأكد من الإنترنت.', err:'خطأ',
+  refresh_fail:'تعذّر التحديث: {0}',
+  route_only:'يوصل لـ {0} فقط', route_to:'يوصل لـ {0}', route_first:' (أول واحد يقبل يستلمه)',
+  route_none:'ماكو مهندس مربوط بهذه المحافظة حالياً. الكيس ينقبل وينرسل عادي، وتربط المهندسين لاحقاً.',
+  k_new:'بانتظار القبول', k_acc:'مقبول', k_ret:'مُرجَع للمكتب', k_done:'مكتمل',
+  tab_new:'جديد', tab_acc:'مقبول', tab_ret:'مُرجَع', tab_done:'مكتمل', tab_all:'الكل',
+  empty_f:'ماكو كيسات بهذه الحالة.', empty_all:'ماكو كيسات مرسلة بعد. عبّي النموذج وارسل أول كيس.',
+  w_to:'إلى: {0}', w_engof:'مهندسو {0}', w_at:'عند: {0}', w_done:'أنجزه: {0}',
+  eg_title:'المحافظة كما في الإيميل', d_gov:'المحافظة', d_addr:'العنوان', d_issue:'المشكلة', d_gps:'الإحداثيات', d_link:'الرابط', d_date:'تاريخ الفحص', d_notes:'ملاحظات', d_pub:'أرسله',
+  reason:'سبب الإرجاع: {0}', edit_resend:'تعديل وإعادة إرسال', edit:'تعديل', del:'حذف',
+  locked:'الكيس عند المهندس، معلوماته الأولية مقفلة.',
+  accepted_while:'المهندس قبل الكيس قبل ما تحفظ. التعديل ما انحفظ.',
+  dupe_confirm:'يوجد كيس بنفس رقم التذكرة. تكمل الإرسال؟',
+  saved:'انحفظ الكيس', sent:'انرسل الكيس للمهندسين', send_fail:'فشل الإرسال: {0}',
+  del_confirm:'حذف الكيس {0} نهائياً؟', del_locked:'الكيس انقبل من مهندس. ما ينحذف.', deleted:'انحذف الكيس', del_fail:'فشل الحذف: {0}',
+  c_dupe:'موجود مسبقاً', c_noasg:'بدون إسناد', c_toeng:'إلى مهندس: {0}', c_goveng:'مهندسو المحافظة: {0}', c_noeng:'بدون مهندس حالياً',
+  n_dept:'القسم', cp_id:'نسخ رقم التكت', cp_tbl:'نسخ المعلومات (جدول)', cp_done_id:'تم نسخ رقم التكت', cp_done_tbl:'تم نسخ معلومات الكيس كجدول', cp_fail:'تعذّر النسخ', done_title:'كيس مكتمل ✅', done_n:'اكتمل {0} كيس: {1}', nf_on:'🔔 الإشعارات شغّالة', nf_off:'🔔 تفعيل الإشعارات', nf_block:'🔕 الإشعارات محظورة من المتصفح', n_tech:'التقنية', n_cell:'الخلية', n_start:'وقت البدء',
+  pv_check:'تحديد الكيس', pv_empty:'الكيسات تظهر هنا بعد لصق الجدول.',
+  pv_sum:'{0} كيس · {1} محدد', pv_dup:' · {0} مكرر', pv_warn:'{0} كيس بدون إسناد', pv_send:'إرسال {0} كيس',
+  p_fail:'ما قدرت أقرأ الجدول. انسخه من الإيميل مباشرة.', p_found:'لقيت {0} كيس. راجعهم تحت وأسند كل كيس لمحافظة و/أو مهندس.',
+  p_unassigned:'في كيس بدون إسناد. اختر محافظة أو مهندس لكل كيس.', p_sent:'انرسل {0} كيس للمهندسين'
+},
+en:{
+  doc_title:'FieldLink – Dispatch Office', lang_btn:'عربي', th_light:'Light', th_dark:'Dark', sep:', ',
+  login_h:'FieldLink Office', login_p:'Enter the admin account code to dispatch cases to engineers.', code_l:'Login code', login_btn:'Log in',
+  top_h:'Dispatch Office', refresh:'Refresh', logout:'Log out', paste_btn:'Paste from email',
+  f_t:'Ticket number', f_gov:'Governorate', f_eng:'Engineer', f_addr:'Address', f_issue:'Issue', f_asg:'Assigned engineer',
+  sel_gov:'— Select governorate —', all_eng:'All engineers in the governorate',
+  send_eng:'Send to engineers', cancel:'Cancel', new_case:'New case', edit_case:'Edit case',
+  save_resend:'Save and resend', save_edit:'Save changes',
+  banner_ret:'Returned by the engineer: {0}', banner_edit:'You can edit because the case has not been accepted yet.',
+  board_h:'Dispatched cases', search:'Search', footer:'Developed by: ايسر ماجد',
+  pd_title:'Paste cases from email', close:'Close', pd_s1:'Paste the table',
+  pd_s1d:'Copy the rows from the email (with or without headers) and paste them here. You choose the governorate and engineer for each case in step 2; they are not taken from the email.',
+  pd_ph:'Paste the table here', pd_s2:'Review the cases and assign each one', sel_all:'Select all', sel_none:'Clear selection',
+  bulk_gov:'Governorate for selected…', bulk_eng:'Engineer for selected…', send:'Send',
+  e_notadmin:'This account is not an admin', e_bound:'This account is bound to another device. Use a dedicated admin account for the office (see note).',
+  e_invalid:'Invalid code', e_disabled:'Account disabled', e_conn:'Could not reach the server. Check your internet connection.', err:'Error',
+  refresh_fail:'Refresh failed: {0}',
+  route_only:'Goes to {0} only', route_to:'Goes to {0}', route_first:' (the first to accept takes it)',
+  route_none:'No engineer is linked to this governorate yet. The case will still be sent normally; you can link engineers later.',
+  k_new:'Awaiting acceptance', k_acc:'Accepted', k_ret:'Returned to office', k_done:'Completed',
+  tab_new:'New', tab_acc:'Accepted', tab_ret:'Returned', tab_done:'Completed', tab_all:'All',
+  empty_f:'No cases in this status.', empty_all:'No cases dispatched yet. Fill in the form and send the first case.',
+  w_to:'To: {0}', w_engof:'{0} engineers', w_at:'With: {0}', w_done:'Completed by: {0}',
+  eg_title:'Governorate as written in the email', d_gov:'Governorate', d_addr:'Address', d_issue:'Issue', d_gps:'Coordinates', d_link:'Link', d_date:'Inspection date', d_notes:'Notes', d_pub:'Sent by',
+  reason:'Return reason: {0}', edit_resend:'Edit and resend', edit:'Edit', del:'Delete',
+  locked:'The case is with the engineer; its basic details are locked.',
+  accepted_while:'The engineer accepted the case before you saved. Your changes were not saved.',
+  dupe_confirm:'A case with the same ticket number already exists. Send anyway?',
+  saved:'Case saved', sent:'Case sent to engineers', send_fail:'Send failed: {0}',
+  del_confirm:'Permanently delete case {0}?', del_locked:'The case was accepted by an engineer. It cannot be deleted.', deleted:'Case deleted', del_fail:'Delete failed: {0}',
+  c_dupe:'Already exists', c_noasg:'Not assigned', c_toeng:'To engineer: {0}', c_goveng:'Governorate engineers: {0}', c_noeng:'No engineer yet',
+  n_dept:'Department', cp_id:'Copy ticket ID', cp_tbl:'Copy info (table)', cp_done_id:'Ticket ID copied', cp_done_tbl:'Case info copied as a table', cp_fail:'Copy failed', done_title:'Case completed ✅', done_n:'{0} case(s) completed: {1}', nf_on:'🔔 Notifications on', nf_off:'🔔 Enable notifications', nf_block:'🔕 Notifications blocked in browser', n_tech:'Technology', n_cell:'Cell', n_start:'Start time',
+  pv_check:'Select case', pv_empty:'Cases will appear here after you paste the table.',
+  pv_sum:'{0} cases · {1} selected', pv_dup:' · {0} duplicate', pv_warn:'{0} case(s) not assigned', pv_send:'Send {0} case(s)',
+  p_fail:'Could not read the table. Copy it directly from the email.', p_found:'Found {0} case(s). Review them below and assign each to a governorate and/or engineer.',
+  p_unassigned:'Some cases are not assigned. Choose a governorate or engineer for each case.', p_sent:'{0} case(s) sent to engineers'
+}};
+function t(k, ...a){
+  let s = I18N[S.lang][k]; if(s == null) s = I18N.ar[k]; if(s == null) return k;
+  return s.replace(/\{(\d)\}/g, (m,i) => a[i] == null ? '' : a[i]);
+}
+
+const GOV_AR = {baghdad:'بغداد',mosul:'نينوى',kirkuk:'كركوك',basra:'البصرة',erbil:'أربيل',sulaymaniyah:'السليمانية',duhok:'دهوك',anbar:'الأنبار',babylon:'بابل',karbala:'كربلاء',najaf:'النجف',diwaniyah:'الديوانية',wasit:'واسط',maysan:'ميسان','dhi qar':'ذي قار',muthanna:'المثنى','salah al-din':'صلاح الدين',diyala:'ديالى'};
+function govLabel(g){ if(S.lang==='ar'){ const a = GOV_AR[normGov(g)]; if(a) return a; } return g; }
+function govsLabel(s){ return String(s||'').split(',').map(x=>x.trim()).filter(Boolean).map(govLabel).join(t('sep')); }
+
+function applyThemeBtn(){ document.querySelectorAll('.theme-btn').forEach(b => b.textContent = S.theme==='dark' ? '☀ '+t('th_light') : '☾ '+t('th_dark')); }
+function setTheme(th){ S.theme = th; document.documentElement.setAttribute('data-theme', th); store('fl_theme', th); applyThemeBtn(); }
+function setLang(l){ S.lang = l; store('fl_lang', l); applyLang(); }
+function applyLang(){
+  const de = document.documentElement; de.lang = S.lang; de.dir = S.lang==='ar' ? 'rtl' : 'ltr';
+  document.title = (S.unseen ? '('+S.unseen+') ' : '') + t('doc_title'); updateNotifBtn();
+  document.querySelectorAll('[data-i]').forEach(el => el.textContent = t(el.dataset.i));
+  document.querySelectorAll('[data-ph]').forEach(el => el.placeholder = t(el.dataset.ph));
+  document.querySelectorAll('[data-al]').forEach(el => el.setAttribute('aria-label', t(el.dataset.al)));
+  document.querySelectorAll('.lang-btn').forEach(b => b.textContent = t('lang_btn'));
+  applyThemeBtn(); showLoginErr(); formTexts(); render(); showPasteMsg(); renderPv();
+}
+document.addEventListener('click', e => {
+  if(e.target.closest('.theme-btn')) setTheme(S.theme==='dark' ? 'light' : 'dark');
+  else if(e.target.closest('.lang-btn')) setLang(S.lang==='ar' ? 'en' : 'ar');
+});
+
+/* ---- إشعار عند اكتمال كيس ---- */
+S.unseen = 0;
+function updateNotifBtn(){
+  const b = $('notifBtn'); if(!b) return;
+  if(!('Notification' in window)){ b.classList.add('hidden'); return; }
+  b.classList.remove('hidden');
+  const p = Notification.permission;
+  b.textContent = t(p==='granted' ? 'nf_on' : p==='denied' ? 'nf_block' : 'nf_off');
+  b.disabled = p !== 'default';
+}
+$('notifBtn').onclick = () => { try{ Notification.requestPermission().then(updateNotifBtn); }catch(e){} };
+function clearUnseen(){ if(S.unseen){ S.unseen = 0; document.title = t('doc_title'); } }
+window.addEventListener('focus', clearUnseen);
+document.addEventListener('visibilitychange', () => { if(!document.hidden){ clearUnseen(); if(S.me) refresh(true); } });
+function beep(){
+  try{
+    const ac = new (window.AudioContext || window.webkitAudioContext)();
+    [880, 1175].forEach((f,i) => {
+      const o = ac.createOscillator(), g = ac.createGain(), st = ac.currentTime + i*0.18;
+      o.frequency.value = f; o.connect(g); g.connect(ac.destination);
+      g.gain.setValueAtTime(0.15, st); g.gain.exponentialRampToValueAtTime(0.001, st + 0.16);
+      o.start(st); o.stop(st + 0.17);
+    });
+  }catch(e){}
+}
+// الكيسات المكتملة التي نبّهنا عنها (محفوظة بالمتصفح). أول تشغيل: نسجّل الموجود حالياً بدون إشعار.
+function checkDone(cases){
+  const done = cases.filter(c => !c.del && c.pub && kind(c)==='done');
+  const ids = done.map(c => String(c.id));
+  let seen = null; try{ seen = JSON.parse(store('fl_seen_done') || 'null'); }catch(e){}
+  if(!Array.isArray(seen)){ store('fl_seen_done', JSON.stringify(ids)); return; }
+  const set = new Set(seen);
+  const fresh = done.filter(c => !set.has(String(c.id)));
+  if(!fresh.length) return;
+  store('fl_seen_done', JSON.stringify(Array.from(new Set(seen.concat(ids)))));
+  notifyDone(fresh);
+}
+function notifyDone(list){
+  const names = list.map(c => c.t + (c.by ? ' – ' + c.by : '')).join(t('sep'));
+  toast(t('done_n', list.length, names));
+  beep();
+  if(document.hidden || !document.hasFocus()){
+    S.unseen += list.length; document.title = '(' + S.unseen + ') ' + t('doc_title');
+  }
+  try{
+    if('Notification' in window && Notification.permission === 'granted'){
+      const n = new Notification(t('done_title'), { body: names, tag: 'fl-done', icon: '' });
+      n.onclick = () => { window.focus(); S.filter = 'done'; render(); n.close(); };
+    }
+  }catch(e){}
+}
+
+/* ---- الاتصال بالسيرفر ---- */
+async function api(body){
+  const r = await fetch(URL_API, { method:'POST', body: JSON.stringify(Object.assign({code:S.code, dev:S.dev}, body)) });
+  const res = await r.json();
+  if(!res.ok){ const e = new Error(res.msg || t('err')); e.auth = res.auth === false; throw e; }
+  return res;
+}
+function absorb(res){
+  if(res.cases){ try{ checkDone(res.cases); }catch(e){} }
+  if(res.cases) S.cases = res.cases;
+  if(res.users) S.users = res.users;
+  render();
+}
+async function refresh(quiet){
+  if(S.busy) return;
+  try{ absorb(await api({action:'sync', cases:[]})); }
+  catch(e){ if(e.auth) return logout(); if(!quiet) toast(t('refresh_fail', e.message)); }
+}
+async function push(extra){
+  S.busy = true;
+  try{ const res = await api(Object.assign({action:'sync', cases:[]}, extra)); S.busy=false; absorb(res); return res; }
+  finally{ S.busy = false; }
+}
+
+/* ---- الدخول ---- */
+function showLoginErr(){ $('loginErr').textContent = S.lerr ? (S.lerr.k ? t(S.lerr.k) : S.lerr.raw) : ''; }
+async function login(code){
+  S.code = code.trim();
+  const res = await api({action:'login'});
+  if(res.user.role !== 'admin'){ const e = new Error('not admin'); e.k = 'e_notadmin'; throw e; }
+  S.me = res.user; S.users = res.users || [];
+  store('fl_code', S.code);
+  $('login').classList.add('hidden'); $('app').classList.remove('hidden');
+  $('who').textContent = res.user.name;
+  await refresh();
+  clearInterval(login.timer);
+  login.timer = setInterval(()=>refresh(true), 30000);       // حتى لو التبويب بالخلفية حتى توصل الإشعارات
+}
+function logout(){
+  clearInterval(login.timer); store('fl_code', null);
+  S.code=''; S.me=null; S.cases=[];
+  $('app').classList.add('hidden'); $('login').classList.remove('hidden');
+}
+$('loginForm').addEventListener('submit', async ev=>{
+  ev.preventDefault(); S.lerr = null; showLoginErr(); $('loginBtn').disabled=true;
+  try{ await login($('code').value); }
+  catch(e){
+    const m = e.message || '';
+    if(e.k) S.lerr = {k:e.k};
+    else if(/bound to another device/i.test(m)) S.lerr = {k:'e_bound'};
+    else if(/Invalid code/i.test(m)) S.lerr = {k:'e_invalid'};
+    else if(/disabled/i.test(m)) S.lerr = {k:'e_disabled'};
+    else if(e instanceof TypeError) S.lerr = {k:'e_conn'};
+    else S.lerr = {raw:m};
+    showLoginErr();
+  }
+  $('loginBtn').disabled=false;
+});
+$('logoutBtn').onclick = logout;
+$('refreshBtn').onclick = () => refresh(false);
+
+/* ---- المحافظات والمهندسون ---- */
+function normGov(g){ g = String(g||'').trim().toLowerCase(); return /^(nineveh|ninawa|نينوى)$/.test(g) ? 'mosul' : g; }
+function engineers(){ return S.users.filter(u => u.role === 'engineer' && u.on); }
+function covering(gov){
+  const g = normGov(gov); if(!g) return [];
+  return engineers().filter(u => String(u.govs||'').split(',').some(x => normGov(x) === g));
+}
+function userName(id){ const u = S.users.find(x => String(x.id) === String(id)); return u ? u.name : '';}
+function firstGov(id){ const u = S.users.find(x => String(x.id) === String(id)); return String((u && u.govs) || '').split(',').map(x => x.trim()).filter(Boolean)[0] || ''; }
+
+function govSet(){
+  const gs = new Set(['Baghdad','Mosul','Kirkuk','Basra','Erbil','Sulaymaniyah','Duhok','Anbar','Babylon','Karbala','Najaf','Diwaniyah','Wasit','Maysan','Dhi Qar','Muthanna','Salah al-Din','Diyala']);
+  engineers().forEach(u => String(u.govs||'').split(',').map(x=>x.trim()).filter(Boolean).forEach(g=>gs.add(g)));
+  return [...gs];
+}
+function govOptions(cur, blank){
+  const gs = govSet(); if(cur && !gs.includes(cur)) gs.push(cur);
+  return (blank === false ? '' : `<option value="">${esc(t('sel_gov'))}</option>`) +
+    gs.map(g => `<option value="${esc(g)}">${esc(govLabel(g))}</option>`).join('');
+}
+function engOptionsRaw(){
+  return engineers().map(u => `<option value="${esc(u.id)}">${esc(u.name)}${u.govs ? ' — '+esc(govsLabel(u.govs)) : ''}</option>`).join('');
+}
+function fillEngControls(){
+  const gsel = $('f_gov'), asel = $('f_asg'), cg = gsel.value, ca = asel.value;
+  gsel.innerHTML = govOptions(cg); gsel.value = cg;
+  asel.innerHTML = `<option value="">${esc(t('all_eng'))}</option>` + engOptionsRaw(); asel.value = ca;
+  $('pasteGov').innerHTML = `<option value="">${esc(t('bulk_gov'))}</option>` + govOptions('', false);
+  $('pasteAsg').innerHTML = `<option value="">${esc(t('bulk_eng'))}</option>` + engOptionsRaw();
+}
+function updateRoute(){
+  const el = $('route'), asg = $('f_asg').value, gov = $('f_gov').value;
+  if(asg){ el.className='hint ok'; el.textContent = t('route_only', userName(asg)); return; }
+  if(!gov.trim()){ el.className='hint'; el.textContent=''; return; }
+  const c = covering(gov);
+  if(c.length){ el.className='hint ok'; el.textContent = t('route_to', c.map(u=>u.name).join(t('sep'))) + (c.length>1 ? t('route_first') : ''); }
+  else { el.className='hint'; el.textContent = t('route_none'); }
+}
+$('f_gov').addEventListener('change', updateRoute);
+$('f_asg').addEventListener('change', () => {
+  const a = $('f_asg').value;
+  if(a && !$('f_gov').value){ const g = firstGov(a); if(g){ $('f_gov').innerHTML = govOptions(g); $('f_gov').value = g; } }
+  updateRoute();
+});
+
+/* ---- رقم التذكرة: إذا موجود كود CMC ينحذف كود CS ---- */
+function cleanTicket(v){
+  const parts = String(v||'').split(/[\s,;|\/]+/).filter(Boolean);
+  const cmc = parts.find(x => /^CMC/i.test(x));
+  if(cmc) return cmc;
+  return String(v||'').trim();
+}
+$('f_t').addEventListener('input', () => {
+  const v = $('f_t').value;
+  if(/CMC/i.test(v) && /CS/i.test(v.replace(/CMC/gi,''))) $('f_t').value = cleanTicket(v);
+});
+$('f_t').addEventListener('blur', () => { $('f_t').value = cleanTicket($('f_t').value); });
+
+/* ---- الأرقام داخل نص المشكلة (نصوص مخزّنة، تبقى عربية دائماً لأن تطبيق المهندس يقرأها) ---- */
+const MS_RE = /^رقم المشترك:\s*(.*)$/m, CB_RE = /^رقم الاتصال:\s*(.*)$/m;
+function splitIssue(c){
+  const iss = c.issue || '';
+  const ms = c.ms || (iss.match(MS_RE)||[])[1] || '';
+  const cb = c.cb || (iss.match(CB_RE)||[])[1] || '';
+  const rest = iss.split('\n').filter(l => !MS_RE.test(l) && !CB_RE.test(l)).join('\n');
+  return { ms: ms.trim(), cb: cb.trim(), rest };
+}
+
+const EG_RE = /^المحافظة \(الإيميل\):\s*(.*)$/m;
+function emailGov(c){ return c.egov || ((c.issue||'').match(EG_RE)||[])[1] || ''; }
+function issueNoEg(c){ return (c.issue||'').split('\n').filter(l => !EG_RE.test(l)).join('\n'); }
+
+/* ---- الكيسات ---- */
+const FIELDS = ['t','gov','addr'];
+function kind(c){
+  if(c.st === 'new') return 'new';
+  if(c.st === 'acc') return 'acc';
+  if(c.st === 'ret') return 'ret';
+  return 'done';
+}
+function dispatched(){ return S.cases.filter(c => !c.del && c.pub); }
+function fmt(ts){ if(!ts) return ''; const d=new Date(Number(ts)); const p=n=>String(n).padStart(2,'0'); return `${p(d.getDate())}/${p(d.getMonth()+1)} ${p(d.getHours())}:${p(d.getMinutes())}`; }
+
+function render(){
+  fillEngControls(); updateRoute();
+  const all = dispatched();
+  const counts = { all:all.length, new:0, acc:0, ret:0, done:0 };
+  all.forEach(c => counts[kind(c)]++);
+  const tabs = ['new','acc','ret','done','all'];
+  $('tabs').innerHTML = tabs.map(k => `<button class="tab" type="button" data-k="${k}" aria-pressed="${S.filter===k}">${esc(t('tab_'+k))}<b>${counts[k]}</b></button>`).join('');
+  const q = S.q.trim().toLowerCase();
+  const rows = all.filter(c => (S.filter==='all' || kind(c)===S.filter) &&
+      (!q || [c.t,c.gov,govLabel(c.gov),c.ms,c.cb,c.addr,c.issue].join(' ').toLowerCase().includes(q)))
+    .sort((a,b) => (b.updated||0) - (a.updated||0));
+  $('list').innerHTML = rows.length ? rows.map(rowHtml).join('') :
+    `<div class="empty">${esc(all.length ? t('empty_f') : t('empty_all'))}</div>`;
+}
+function rowHtml(c){
+  const k = kind(c);
+  let who = '';
+  if(k==='new') who = c.asg ? t('w_to', userName(c.asg)) : t('w_engof', govLabel(c.gov));
+  else if(k==='acc') who = t('w_at', userName(c.asg) || c.by);
+  else if(k==='done') who = c.by ? t('w_done', c.by) : '';
+  const det = [['gov','d_gov'],['egov','eg_title'],['dept','n_dept'],['addr','d_addr'],['ms',null],['cb',null],['tech','n_tech'],['cell','n_cell'],['start','n_start'],['issue','d_issue'],['gps','d_gps'],['link','d_link'],['date','d_date'],['notes','d_notes'],['pub','d_pub']]
+    .filter(([f]) => c[f]).map(([f,l]) => `<dt>${esc(l ? t(l) : (f==='ms' ? 'Primary MSISDN' : 'Call Back'))}</dt><dd>${esc(f==='gov' ? govLabel(c[f]) : c[f])}</dd>`).join('');
+  const editable = k==='new' || k==='ret';
+  return `<article class="case s-${k}" data-id="${esc(c.id)}">
+    <div class="main">
+      <div><div class="tk">${esc(c.t)}${emailGov(c) ? ` <span class="eg" dir="ltr" title="${esc(t('eg_title'))}">${esc(emailGov(c))}</span>` : ''}</div><div class="gv">${esc(govLabel(c.gov))}</div></div>
+      <div><div class="ds">${esc(issueNoEg(c) || c.name || '—')}</div><div class="who2">${esc(who)} ${c.updated?'· '+fmt(c.updated):''}</div></div>
+      <span class="badge">${esc(t('k_'+k))}</span>
+    </div>
+    ${k==='done' ? `<div class="acts" style="margin-top:10px"><button class="btn small" data-act="cpid">${esc(t('cp_id'))}</button><button class="btn small" data-act="cptbl">${esc(t('cp_tbl'))}</button></div>` : ''}
+    <div class="extra">
+      <dl class="kv">${det}</dl>
+      ${k==='ret' && c.rn ? `<div class="reason">${esc(t('reason', c.rn))}</div>`:''}
+      ${editable ? `<div class="acts"><button class="btn small" data-act="edit">${esc(k==='ret' ? t('edit_resend') : t('edit'))}</button><button class="btn small danger" data-act="del">${esc(t('del'))}</button></div>`
+        : `<div class="who2" style="margin-top:10px">${k==='acc' ? esc(t('locked')) : ''}</div>`}
+    </div>
+  </article>`;
+}
+$('tabs').addEventListener('click', e => { const b=e.target.closest('.tab'); if(b){ S.filter=b.dataset.k; render(); }});
+$('q').addEventListener('input', e => { S.q = e.target.value; render(); });
+$('list').addEventListener('click', e => {
+  const art = e.target.closest('.case'); if(!art) return;
+  const act = e.target.closest('[data-act]');
+  const c = S.cases.find(x => String(x.id) === art.dataset.id);
+  if(!act){ art.classList.toggle('open'); return; }
+  if(act.dataset.act==='edit') startEdit(c);
+  if(act.dataset.act==='del') removeCase(c);
+  if(act.dataset.act==='cpid') copyTicket(c);
+  if(act.dataset.act==='cptbl') copyTable(c);
+});
+
+/* ---- نسخ الكيس المكتمل ---- */
+function issueText(c){ return splitIssue(c).rest.split('\n').filter(l => !EG_RE.test(l)).join('\n').trim(); }
+async function copyToClipboard(text, html){
+  try{
+    if(html && window.ClipboardItem && navigator.clipboard && navigator.clipboard.write){
+      await navigator.clipboard.write([new ClipboardItem({
+        'text/plain': new Blob([text], {type:'text/plain'}),
+        'text/html': new Blob([html], {type:'text/html'})
+      })]);
+      return true;
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){ await navigator.clipboard.writeText(text); return true; }
+  }catch(e){}
+  try{                                         // احتياط للمتصفحات/الصفحات غير الآمنة
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+    document.body.appendChild(ta); ta.select();
+    const ok = document.execCommand('copy'); ta.remove(); return ok;
+  }catch(e){ return false; }
+}
+async function copyTicket(c){
+  toast(t(await copyToClipboard(c.t || '') ? 'cp_done_id' : 'cp_fail'));
+}
+async function copyTable(c){
+  const cell = v => /[\t\n"]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;   // يبقى النص بخلية وحدة بالإكسل
+  const head = ['IssueID', 'Complainer issue', 'Link'];
+  const row = [c.t || '', issueText(c), c.link || ''];
+  const text = head.join('\t') + '\n' + row.map(cell).join('\t');
+  const B = 'border:1px solid #000;padding:1px 6px;text-align:center;font-family:Calibri,Arial,sans-serif;font-size:11pt;line-height:1.2;white-space:nowrap';
+  const th = v => `<td style="${B};background-color:#A9A4D8;color:#000;font-weight:bold">${v}</td>`;
+  const td = (v, link) => `<td style="${B}">${link && v ? `<a href="${esc(v)}" style="color:#0563C1;text-decoration:underline">${esc(v)}</a>` : esc(v).replace(/\n/g, '<br>')}</td>`;
+  const html = '<table style="border-collapse:collapse" border="1" cellspacing="0" cellpadding="0"><tr>' + head.map(th).join('') + '</tr><tr>' +
+    td(row[0]) + td(row[1]) + td(row[2], true) + '</tr></table>';
+  toast(t(await copyToClipboard(text, html) ? 'cp_done_tbl' : 'cp_fail'));
+}
+
+/* ---- إرسال / تعديل ---- */
+function formTexts(){
+  const c = S.editing ? S.cases.find(x => String(x.id) === String(S.editing)) : null;
+  $('formTitle').textContent = S.editing ? t('edit_case') : t('new_case');
+  $('sendBtn').textContent = S.editing ? (c && c.st==='ret' ? t('save_resend') : t('save_edit')) : t('send_eng');
+  if(S.editing && c) $('editBanner').innerHTML = c.st==='ret' && c.rn ? esc(t('banner_ret', c.rn)) : esc(t('banner_edit'));
+}
+function resetForm(){
+  S.editing = null; $('caseForm').reset();
+  $('editBanner').classList.add('hidden'); $('cancelEdit').classList.add('hidden');
+  formTexts(); updateRoute();
+}
+function startEdit(c){
+  S.editing = c.id;
+  FIELDS.forEach(f => { if(f==='gov') $('f_gov').innerHTML = govOptions(c.gov); $('f_'+f).value = c[f] || ''; });
+  const sp = splitIssue(c); $('f_ms').value = sp.ms; $('f_cb').value = sp.cb; $('f_issue').value = sp.rest;
+  $('f_asg').value = c.asg || '';
+  formTexts();
+  $('editBanner').classList.remove('hidden'); $('cancelEdit').classList.remove('hidden');
+  updateRoute(); $('f_t').focus(); window.scrollTo({top:0,behavior:'smooth'});
+}
+$('cancelEdit').onclick = resetForm;
+
+$('caseForm').addEventListener('submit', async ev => {
+  ev.preventDefault();
+  const btn = $('sendBtn'); btn.disabled = true;
+  try{
+    const now = Date.now();
+    let c;
+    if(S.editing){
+      await refresh(true);                                   // تأكد إن المهندس ما قبله بهالأثناء
+      const ex = S.cases.find(x => String(x.id) === String(S.editing));
+      if(!ex || (ex.st!=='new' && ex.st!=='ret')){ toast(t('accepted_while')); resetForm(); return; }
+      c = Object.assign({}, ex);
+    } else {
+      c = { id:'w'+now.toString(36)+Math.random().toString(36).slice(2,6), ts:now };
+      ['gps','date','link','cs','ce','ls','le','notes','by'].forEach(k => c[k] = '');
+    }
+    FIELDS.forEach(f => c[f] = $('f_'+f).value.trim());
+    c.t = cleanTicket(c.t);
+    c.ms = $('f_ms').value.trim(); c.cb = $('f_cb').value.trim();
+    c.issue = $('f_issue').value.trim();
+    c.st = 'new'; c.rn = ''; c.asg = $('f_asg').value; c.updated = now;
+    if(!c.pub) c.pub = S.me.name;
+    const dupe = !S.editing && S.cases.some(x => !x.del && x.t === c.t);
+    if(dupe && !confirm(t('dupe_confirm'))) return;
+    const wasEditing = !!S.editing;
+    await push({cases:[c]});
+    toast(wasEditing ? t('saved') : t('sent'));
+    S.filter = 'new'; resetForm(); render();
+  }catch(e){
+    if(e.auth) return logout();
+    toast(t('send_fail', e.message));
+  }finally{ btn.disabled = false; }
+});
+
+async function removeCase(c){
+  if(!confirm(t('del_confirm', c.t))) return;
+  try{
+    await refresh(true);
+    const ex = S.cases.find(x => String(x.id) === String(c.id));
+    if(!ex || (ex.st!=='new' && ex.st!=='ret')){ toast(t('del_locked')); return; }
+    await push({purge:[c.id]});
+    if(S.editing === c.id) resetForm();
+    toast(t('deleted'));
+  }catch(e){ toast(t('del_fail', e.message)); }
+}
+
+/* ---- لصق من الإيميل ---- */
+const PV = { items: [], msg: null };
+// المشكلة تبقى فارغة (المكتب يكتبها بنفسه)؛ المحافظة والقسم والتقنية والخلية ووقت البدء لها أعمدة خاصة
+function pvIssue(i){ return ''; }
+/* ---- رقم موبايل صالح: 10 أو 11 خانة فقط (يرفض IMSI وأي رقم آخر) ---- */
+function cleanPhone(v){
+  const d = String(v||'')
+    .replace(/[\u0660-\u0669]/g, c => c.charCodeAt(0) - 0x0660)
+    .replace(/[\u06F0-\u06F9]/g, c => c.charCodeAt(0) - 0x06F0)
+    .replace(/[\s\-().+]/g, '')
+    .replace(/^(00)?964(?=\d{10}$)/, '');
+  if(!/^\d{10,11}$/.test(d)) return '';
+  return d.length === 10 ? '0' + d : d;      // نضيف 0 في البداية إذا الرقم 10 خانات
+}
+/* ---- أسماء المحافظات المعروفة (للتمييز بينها وبين القسم عند لصق بدون عنوان) ---- */
+const govKey = x => String(x||'').toLowerCase().replace(/[^a-z]/g,'');
+const KNOWN_GOV = new Set(['baghdad','mosul','nineveh','ninawa','kirkuk','tamim','taamim','tameem','tamin','basra','basrah','erbil','arbil','sulaymaniyah','sulaimaniyah','slemani','duhok','dohuk','anbar','babylon','babil','karbala','najaf','diwaniyah','qadisiyah','wasit','maysan','missan','dhiqar','thiqar','muthanna','salahaldin','salahuddin','saladin','diyala']);
+function parseEmail(text){
+  const rows = text.replace(/\r/g,'').split('\n').map(l => l.split('\t').map(x => x.trim().replace(/^"|"$/g,''))).filter(r => r.some(x => x));
+  if(!rows.length) return [];
+  const low = rows[0].map(h => h.toLowerCase());
+  const hasHead = low.some(h => /governorate|msisdn|address|remedy/.test(h)) && !rows[0].some(x => /^CS\d{6,}$/i.test(x));
+  const col = re => hasHead ? low.findIndex(h => re.test(h)) : -1;
+  const ix = { ref:col(/remedy|^ref/), gov:col(/governorate/), addr:col(/address/), ms:col(/msisdn/), cb:col(/call ?back/),
+               tech:col(/technology/), cell:col(/cell/), dept:col(/department/), start:col(/start/) };
+  const body = hasHead ? rows.slice(1) : rows;
+  return body.map(r => {
+    const get = i => i >= 0 ? (r[i] || '') : '';
+    let tk = r.find(x => /^CMC\w+$/i.test(x)) || r.find(x => /^CS\d{6,}$/i.test(x)) || get(ix.ref);
+    tk = cleanTicket(tk);
+    let gov = get(ix.gov), addr = get(ix.addr), ms = cleanPhone(get(ix.ms)), cb = cleanPhone(get(ix.cb));
+    if(!hasHead){
+      const DEPT_RE = /direct|indirect|sales|marketing|b2b|enterprise|retail|consumer|corporate|care|wholesale/i;
+      gov = r.find(x => KNOWN_GOV.has(govKey(x))) ||
+            r.find(x => /^[A-Za-z][A-Za-z .\-]{2,20}$/.test(x) && !DEPT_RE.test(x) && !/south|north|middle|data|voice|ref|^\d/i.test(x)) || '';
+      const ar = r.filter(x => /[\u0600-\u06FF]/.test(x)); addr = (ar.length ? ar : r.filter(x => !/^CS\d/i.test(x) && x !== gov)).sort((a,b) => b.length - a.length)[0] || '';
+      const ph = r.map(cleanPhone).filter(Boolean); ms = ph[0] || ''; cb = ph[1] || '';
+    }
+    const dupe = S.cases.some(c => !c.del && c.t === tk);
+    return { t:tk, gov:'', egov:gov, asg:'', addr, name:'', ms, cb, dept:hasHead ? get(ix.dept) : (r.find(x => /^(direct|indirect|marketing|b2b|enterprise|retail|consumer|corporate|care|wholesale)/i.test(x)) || ''), tech:get(ix.tech), cell:get(ix.cell), start:get(ix.start), dupe, sel: !dupe && !!tk };
+  }).filter(i => i.t || i.addr);
+}
+function pvRoute(i){
+  if(i.dupe) return ['bad', t('c_dupe'), 'r-dup'];
+  if(!i.gov && !i.asg) return ['bad', t('c_noasg'), 'r-dup'];
+  if(i.asg) return ['ok', t('c_toeng', userName(i.asg)), 'r-ok'];
+  const c = covering(i.gov);
+  return c.length ? ['ok', t('c_goveng', c.map(u=>u.name).join(t('sep'))), 'r-ok'] : ['warn', t('c_noeng'), 'r-none'];
+}
+function renderPv(){
+  const it = PV.items, box = $('pvList');
+  if(!it.length){
+    box.innerHTML = `<div class="pv-empty">${esc(t('pv_empty'))}</div>`;
+    $('pvTools').classList.add('hidden'); $('pvSum').textContent = ''; $('pvWarn').textContent = '';
+    $('pasteSend').disabled = true; $('pasteSend').textContent = t('send'); return;
+  }
+  const engOpts = `<option value="">${esc(t('all_eng'))}</option>` + engOptionsRaw();
+  box.innerHTML = it.map((i,n) => {
+    const [cls,txt,rc] = pvRoute(i);
+    const nums = [['Primary MSISDN',i.ms,1],['Call Back',i.cb,1],[t('n_dept'),i.dept],[t('n_tech'),i.tech],[t('n_cell'),i.cell],[t('n_start'),i.start]]
+      .filter(x => x[1]).map(([l,v,ltr]) => `<span><b>${esc(l)}</b><bdi${ltr?' dir="ltr"':''}>${esc(v)}</bdi></span>`).join('');
+    return `<article class="pc ${rc} ${i.sel?'':'off'}">
+      <div class="pc-top">
+        <input type="checkbox" data-n="${n}" ${i.sel?'checked':''} aria-label="${esc(t('pv_check'))}">
+        <span class="pc-tk">${esc(i.t) || '—'}</span>${i.egov ? `<span class="eg" dir="ltr" title="${esc(t('eg_title'))}">${esc(i.egov)}</span>` : ''}
+        <span class="chip ${cls}">${esc(txt)}</span>
+      </div>
+      <div class="pc-fields">
+        <div><label>${esc(t('f_gov'))}</label><select data-g="${n}" class="${i.sel && !i.gov && !i.asg ? 'miss' : ''}">${govOptions(i.gov)}</select></div>
+        <div><label>${esc(t('f_eng'))}</label><select data-s="${n}">${engOpts}</select></div>
+        <div class="pc-addr"><label>${esc(t('f_addr'))}</label><input type="text" data-a="${n}" value="${esc(i.addr)}"></div>
+      </div>
+      ${nums ? `<div class="pc-nums">${nums}</div>` : ''}
+    </article>`;
+  }).join('');
+  box.querySelectorAll('select[data-g]').forEach(el => { el.value = PV.items[el.dataset.g].gov; });
+  box.querySelectorAll('select[data-s]').forEach(el => { el.value = PV.items[el.dataset.s].asg; });
+  const n = it.filter(i => i.sel).length, d = it.filter(i => i.dupe).length, u = it.filter(i => i.sel && !i.gov && !i.asg).length;
+  $('pvSum').textContent = t('pv_sum', it.length, n) + (d ? t('pv_dup', d) : '');
+  $('pvWarn').textContent = u ? t('pv_warn', u) : '';
+  $('pvTools').classList.remove('hidden');
+  $('pasteSend').disabled = !n; $('pasteSend').textContent = n ? t('pv_send', n) : t('send');
+}
+function setPasteMsg(cls, key, arg){ PV.msg = key ? {cls, key, arg} : null; showPasteMsg(); }
+function showPasteMsg(){ const m = $('pasteMsg'); m.className = 'hint' + (PV.msg && PV.msg.cls ? ' '+PV.msg.cls : ''); m.textContent = PV.msg ? t(PV.msg.key, PV.msg.arg) : ''; }
+function analyze(){
+  PV.items = parseEmail($('pasteTxt').value);
+  if($('pasteTxt').value.trim() && !PV.items.length) setPasteMsg('bad', 'p_fail');
+  else setPasteMsg('', PV.items.length ? 'p_found' : '', PV.items.length);
+  renderPv();
+}
+$('pasteBtn').onclick = () => { $('pasteTxt').value=''; PV.items=[]; setPasteMsg('', ''); renderPv(); $('pasteDlg').showModal(); $('pasteTxt').focus(); };
+$('pasteClose').onclick = () => $('pasteDlg').close();
+$('pasteTxt').addEventListener('input', analyze);
+$('pasteGov').addEventListener('change', e => { const v = e.target.value; if(!v) return; PV.items.forEach(i => { if(i.sel) i.gov = v; }); e.target.value = ''; renderPv(); });
+$('pasteAsg').addEventListener('change', e => { const v = e.target.value; if(!v) return; PV.items.forEach(i => { if(i.sel){ i.asg = v; if(!i.gov) i.gov = firstGov(v); } }); e.target.value = ''; renderPv(); });
+$('pvList').addEventListener('change', e => {
+  const d = e.target.dataset;
+  if(d.n != null){ PV.items[d.n].sel = e.target.checked; renderPv(); }
+  else if(d.g != null){ PV.items[d.g].gov = e.target.value; renderPv(); }
+  else if(d.s != null){ const i = PV.items[d.s]; i.asg = e.target.value; if(i.asg && !i.gov) i.gov = firstGov(i.asg); renderPv(); }
+  else if(d.a != null){ PV.items[d.a].addr = e.target.value.trim(); }
+});
+$('pvAll').onclick = () => { PV.items.forEach(i => i.sel = !i.dupe && !!i.t); renderPv(); };
+$('pvNone').onclick = () => { PV.items.forEach(i => i.sel = false); renderPv(); };
+$('pasteX').onclick = () => $('pasteDlg').close();
+$('pasteSend').onclick = async () => {
+  const sel = PV.items.filter(i => i.sel);
+  if(sel.some(i => !i.gov && !i.asg)){ toast(t('p_unassigned')); return; }
+  const now = Date.now(), btn = $('pasteSend'); btn.disabled = true;
+  try{
+    const cases = sel.map((i,n) => {
+      const c = { id:'w'+now.toString(36)+n+Math.random().toString(36).slice(2,5), ts:now, t:i.t, gov:i.gov || firstGov(i.asg), addr:i.addr, name:'', ms:i.ms||'', cb:i.cb||'', issue:pvIssue(i),
+        egov:i.egov||'', dept:i.dept||'', tech:i.tech||'', cell:i.cell||'', start:i.start||'',
+        st:'new', asg:i.asg || '', rn:'', pub:S.me.name, updated:now };
+      ['gps','date','link','cs','ce','ls','le','notes','by'].forEach(k => c[k] = '');
+      return c;
+    });
+    await push({cases});
+    toast(t('p_sent', cases.length));
+    S.filter='new'; render(); $('pasteDlg').close();
+  }catch(e){ if(e.auth) return logout(); toast(t('send_fail', e.message)); btn.disabled = false; }
+};
+
+/* ---- بدء التشغيل ---- */
+(function init(){
+  applyLang();
+  let d = store('fl_dev');
+  if(!d){ d = 'web-'+Math.random().toString(36).slice(2,10)+Date.now().toString(36); store('fl_dev', d); }
+  S.dev = d;
+  const saved = store('fl_code');
+  if(saved){ $('code').value = saved; login(saved).catch(()=>{ logout(); }); }
+})();
+</script>
+</body>
+</html>

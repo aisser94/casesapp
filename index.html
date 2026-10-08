@@ -210,6 +210,7 @@ footer{text-align:center;color:var(--mute);font-size:12px;padding:18px}
         <div class="tabs" id="tabs"></div>
         <input class="search" id="q" type="search" data-ph="search">
       </div>
+      <div class="tabs hidden" id="dfil" style="margin-bottom:12px"></div>
       <div class="list" id="list"></div>
     </section>
   </main>
@@ -296,7 +297,7 @@ ar:{
   saved:'انحفظ الكيس', sent:'انرسل الكيس للمهندسين', send_fail:'فشل الإرسال: {0}',
   del_confirm:'حذف الكيس {0} نهائياً؟', del_locked:'الكيس انقبل من مهندس. ما ينحذف.', deleted:'انحذف الكيس', del_fail:'فشل الحذف: {0}',
   c_dupe:'موجود مسبقاً', c_noasg:'بدون إسناد', c_toeng:'إلى مهندس: {0}', c_goveng:'مهندسو المحافظة: {0}', c_noeng:'بدون مهندس حالياً',
-  n_dept:'القسم', cp_id:'نسخ رقم التكت', cp_tbl:'نسخ المعلومات (جدول)', cp_done_id:'تم نسخ رقم التكت', cp_done_tbl:'تم نسخ معلومات الكيس كجدول', cp_fail:'تعذّر النسخ', done_title:'كيس مكتمل ✅', done_n:'اكتمل {0} كيس: {1}', nf_on:'🔔 الإشعارات شغّالة', nf_off:'🔔 تفعيل الإشعارات', nf_block:'🔕 الإشعارات محظورة من المتصفح', n_tech:'التقنية', n_cell:'الخلية', n_start:'وقت البدء',
+  n_dept:'القسم', cp_id:'نسخ رقم التكت', cp_tbl:'نسخ المعلومات (جدول)', cp_done_id:'تم نسخ رقم التكت', cp_done_tbl:'تم نسخ معلومات الكيس كجدول', cp_fail:'تعذّر النسخ', df_today:'اليوم', df_week:'آخر أسبوع', df_all:'الكل', done_title:'كيس مكتمل ✅', done_n:'اكتمل {0} كيس: {1}', nf_on:'🔔 الإشعارات شغّالة', nf_off:'🔔 تفعيل الإشعارات', nf_block:'🔕 الإشعارات محظورة من المتصفح', n_tech:'التقنية', n_cell:'الخلية', n_start:'وقت البدء',
   pv_check:'تحديد الكيس', pv_empty:'الكيسات تظهر هنا بعد لصق الجدول.',
   pv_sum:'{0} كيس · {1} محدد', pv_dup:' · {0} مكرر', pv_warn:'{0} كيس بدون إسناد', pv_send:'إرسال {0} كيس',
   p_fail:'ما قدرت أقرأ الجدول. انسخه من الإيميل مباشرة.', p_found:'لقيت {0} كيس. راجعهم تحت وأسند كل كيس لمحافظة و/أو مهندس.',
@@ -333,7 +334,7 @@ en:{
   saved:'Case saved', sent:'Case sent to engineers', send_fail:'Send failed: {0}',
   del_confirm:'Permanently delete case {0}?', del_locked:'The case was accepted by an engineer. It cannot be deleted.', deleted:'Case deleted', del_fail:'Delete failed: {0}',
   c_dupe:'Already exists', c_noasg:'Not assigned', c_toeng:'To engineer: {0}', c_goveng:'Governorate engineers: {0}', c_noeng:'No engineer yet',
-  n_dept:'Department', cp_id:'Copy ticket ID', cp_tbl:'Copy info (table)', cp_done_id:'Ticket ID copied', cp_done_tbl:'Case info copied as a table', cp_fail:'Copy failed', done_title:'Case completed ✅', done_n:'{0} case(s) completed: {1}', nf_on:'🔔 Notifications on', nf_off:'🔔 Enable notifications', nf_block:'🔕 Notifications blocked in browser', n_tech:'Technology', n_cell:'Cell', n_start:'Start time',
+  n_dept:'Department', cp_id:'Copy ticket ID', cp_tbl:'Copy info (table)', cp_done_id:'Ticket ID copied', cp_done_tbl:'Case info copied as a table', cp_fail:'Copy failed', df_today:'Today', df_week:'Last 7 days', df_all:'All', done_title:'Case completed ✅', done_n:'{0} case(s) completed: {1}', nf_on:'🔔 Notifications on', nf_off:'🔔 Enable notifications', nf_block:'🔕 Notifications blocked in browser', n_tech:'Technology', n_cell:'Cell', n_start:'Start time',
   pv_check:'Select case', pv_empty:'Cases will appear here after you paste the table.',
   pv_sum:'{0} cases · {1} selected', pv_dup:' · {0} duplicate', pv_warn:'{0} case(s) not assigned', pv_send:'Send {0} case(s)',
   p_fail:'Could not read the table. Copy it directly from the email.', p_found:'Found {0} case(s). Review them below and assign each to a governorate and/or engineer.',
@@ -366,7 +367,7 @@ document.addEventListener('click', e => {
 });
 
 /* ---- إشعار عند اكتمال كيس ---- */
-S.unseen = 0;
+S.unseen = 0; S.dfilter = 'all';
 function updateNotifBtn(){
   const b = $('notifBtn'); if(!b) return;
   if(!('Notification' in window)){ b.classList.add('hidden'); return; }
@@ -569,9 +570,21 @@ function render(){
   const tabs = ['new','acc','ret','done','all'];
   $('tabs').innerHTML = tabs.map(k => `<button class="tab" type="button" data-k="${k}" aria-pressed="${S.filter===k}">${esc(t('tab_'+k))}<b>${counts[k]}</b></button>`).join('');
   const q = S.q.trim().toLowerCase();
-  const rows = all.filter(c => (S.filter==='all' || kind(c)===S.filter) &&
+  let rows = all.filter(c => (S.filter==='all' || kind(c)===S.filter) &&
       (!q || [c.t,c.gov,govLabel(c.gov),c.ms,c.cb,c.addr,c.issue].join(' ').toLowerCase().includes(q)))
     .sort((a,b) => (b.updated||0) - (a.updated||0));
+  // فلتر التاريخ لتبويب المكتمل (حسب وقت الإكمال)
+  const d0 = new Date(); d0.setHours(0,0,0,0);
+  const since = { today: d0.getTime(), week: Date.now() - 7*24*3600*1000, all: 0 };
+  const inRange = (c, k) => (c.updated || 0) >= since[k];
+  const dfil = $('dfil');
+  if(S.filter === 'done'){
+    const base = all.filter(c => kind(c)==='done' &&
+      (!q || [c.t,c.gov,govLabel(c.gov),c.ms,c.cb,c.addr,c.issue].join(' ').toLowerCase().includes(q)));
+    dfil.classList.remove('hidden');
+    dfil.innerHTML = ['today','week','all'].map(k => `<button class="tab" type="button" data-d="${k}" aria-pressed="${S.dfilter===k}">${esc(t('df_'+k))}<b>${base.filter(c => inRange(c,k)).length}</b></button>`).join('');
+    rows = rows.filter(c => inRange(c, S.dfilter));
+  } else dfil.classList.add('hidden');
   $('list').innerHTML = rows.length ? rows.map(rowHtml).join('') :
     `<div class="empty">${esc(all.length ? t('empty_f') : t('empty_all'))}</div>`;
 }
@@ -600,6 +613,7 @@ function rowHtml(c){
   </article>`;
 }
 $('tabs').addEventListener('click', e => { const b=e.target.closest('.tab'); if(b){ S.filter=b.dataset.k; render(); }});
+$('dfil').addEventListener('click', e => { const b=e.target.closest('.tab'); if(b){ S.dfilter=b.dataset.d; render(); }});
 $('q').addEventListener('input', e => { S.q = e.target.value; render(); });
 $('list').addEventListener('click', e => {
   const art = e.target.closest('.case'); if(!art) return;

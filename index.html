@@ -573,13 +573,13 @@ function render(){
   let rows = all.filter(c => (S.filter==='all' || kind(c)===S.filter) &&
       (!q || [c.t,c.gov,govLabel(c.gov),c.ms,c.cb,c.addr,c.issue].join(' ').toLowerCase().includes(q)))
     .sort((a,b) => (b.updated||0) - (a.updated||0));
-  // فلتر التاريخ لتبويب المكتمل (حسب وقت الإكمال)
+  // فلتر التاريخ لتبويبي المكتمل والمُرجَع (حسب وقت آخر تحديث للكيس)
   const d0 = new Date(); d0.setHours(0,0,0,0);
   const since = { today: d0.getTime(), week: Date.now() - 7*24*3600*1000, all: 0 };
   const inRange = (c, k) => (c.updated || 0) >= since[k];
   const dfil = $('dfil');
-  if(S.filter === 'done'){
-    const base = all.filter(c => kind(c)==='done' &&
+  if(S.filter === 'done' || S.filter === 'ret'){
+    const base = all.filter(c => kind(c)===S.filter &&
       (!q || [c.t,c.gov,govLabel(c.gov),c.ms,c.cb,c.addr,c.issue].join(' ').toLowerCase().includes(q)));
     dfil.classList.remove('hidden');
     dfil.innerHTML = ['today','week','all'].map(k => `<button class="tab" type="button" data-d="${k}" aria-pressed="${S.dfilter===k}">${esc(t('df_'+k))}<b>${base.filter(c => inRange(c,k)).length}</b></button>`).join('');

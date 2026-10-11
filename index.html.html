@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FieldLink – مكتب الإرسال</title>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src https://script.google.com https://*.googleusercontent.com; base-uri 'none'; form-action 'none'">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzBCMjU0NSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzBFN0M4NiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0idXJsKCNnKSIvPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNTYsMjU2KSBzY2FsZSgyLjQpIj48ZyBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxjaXJjbGUgcj0iODQiIHBhdGhMZW5ndGg9IjEwMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1kYXNoYXJyYXk9Ijc2IDYiIHRyYW5zZm9ybT0icm90YXRlKDIwKSIvPjxjaXJjbGUgcj0iNjgiIHBhdGhMZW5ndGg9IjEwMCIgc3Ryb2tlPSIjNUZENkNCIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1kYXNoYXJyYXk9IjgwIDUiIHRyYW5zZm9ybT0icm90YXRlKDExMCkiLz48Y2lyY2xlIHI9IjUyIiBwYXRoTGVuZ3RoPSIxMDAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtZGFzaGFycmF5PSI3MiA3IiB0cmFuc2Zvcm09InJvdGF0ZSgyMDApIi8+PGNpcmNsZSByPSIzNiIgcGF0aExlbmd0aD0iMTAwIiBzdHJva2U9IiM1RkQ2Q0IiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWRhc2hhcnJheT0iNzggNiIgdHJhbnNmb3JtPSJyb3RhdGUoMjkwKSIvPjxjaXJjbGUgcj0iMjAiIHBhdGhMZW5ndGg9IjEwMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1kYXNoYXJyYXk9IjcwIDgiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPjwvZz48cGF0aCBkPSJNMCAtMTMgQy02IC0xMyAtMTAgLTkgLTEwIC00IEMtMTAgMyAwIDEyIDAgMTIgQzAgMTIgMTAgMyAxMCAtNCBDMTAgLTkgNiAtMTMgMCAtMTNaIiBmaWxsPSIjRjI4QzI4Ii8+PGNpcmNsZSBjeD0iMCIgY3k9Ii00IiByPSIzLjUiIGZpbGw9IiNmZmYiLz48L2c+PC9zdmc+">
+<script>
+if(top!==self){try{top.location=self.location}catch(e){document.documentElement.style.display='none'}}
+try{
+  var _th = localStorage.getItem('fl_theme') || (window.matchMedia && matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+  var _lg = localStorage.getItem('fl_lang') === 'en' ? 'en' : 'ar';
+  var _de = document.documentElement;
+  _de.setAttribute('data-theme', _th); _de.lang = _lg; _de.dir = _lg === 'ar' ? 'rtl' : 'ltr';
+}catch(e){}
+</script>
+<style>
+:root{
+  color-scheme:light;
+  --paper:#f4f6f9; --panel:#ffffff; --ink:#111a24; --mute:#4a5868; --line:#c9d2dc;
+  --accent:#1a56b8; --accent-ink:#ffffff;
+  --new:#a8650a; --acc:#1a56b8; --ret:#b42318; --done:#1b7a45;
+  --danger:#b42318; --urg:#d9480f; --org:#e8710a; --org-ink:#fff;
+  --eg-ink:#0b4a8f; --eg-bg:#e3effd; --eg-line:#9cc2f2;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#11161c; --panel:#1a212a; --ink:#e6ebf0; --mute:#93a1af; --line:#2c3642;
+  --accent:#5b97ee; --accent-ink:#0b1626; --new:#e0a64a; --acc:#5b97ee; --ret:#ef7d73; --done:#5cc487; --danger:#ef7d73; --urg:#ff9a62; --org:#f59e42; --org-ink:#1f1303;
+  --eg-ink:#a9cdfa; --eg-bg:#1b2d45; --eg-line:#2f4f7a;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Arabic",Tahoma,"Segoe UI",sans-serif;font-size:15px;line-height:1.6}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hidden{display:none!important}
+
+/* login */
+#login{min-height:100%;display:grid;place-items:center;padding:24px}
+.login-prefs{position:fixed;top:12px;inset-inline-end:12px}
+.login-box{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:28px;width:100%;max-width:380px}
+.login-box h1{margin:0 0 4px;font-size:22px;font-weight:600}
+.login-box p{margin:0 0 18px;color:var(--mute)}
+
+/* shell */
+.prefs{display:flex;gap:6px}
+header.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+header.top h1{margin:0;font-size:18px;font-weight:600}
+header.top .sp{flex:1}
+header.top .who{color:var(--mute);font-size:13px}
+main{display:flex;flex-direction:column;gap:16px;padding:20px;max-width:1400px;margin:0 auto}
+
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.form{padding:18px}
+#formDlg{width:min(520px,94vw)}#formDlg .form{border:0;border-radius:0;width:100%;overflow:auto}
+.actions{display:flex;gap:10px;flex-wrap:wrap}.actions .btn{flex:none}
+.kpis{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.kpi.s-all{--c:var(--mute)}
+.kpi{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--c,var(--line));border-radius:10px;padding:12px;text-align:start;cursor:pointer}
+.kpi:hover{border-color:var(--c)}.kpi.on{background:color-mix(in srgb,var(--c) 10%,var(--panel))}
+.kpi b{display:block;font-size:28px;line-height:1.1;font-weight:600;color:var(--c,var(--ink))}.kpi span{font-size:13px;color:var(--mute)}
+.kpi.k-od{--c:var(--ret)}
+.kpi.s-urg{--c:var(--urg)}
+.case.urgent{border-color:var(--urg);box-shadow:0 0 0 1px var(--urg)}
+.ub{display:inline-block;font-size:12px;font-weight:700;line-height:1.6;padding:0 9px;border-radius:999px;color:#fff;background:var(--urg);white-space:nowrap}
+.chk{display:flex;align-items:center;gap:8px;margin:14px 0 0;color:var(--ink);font-size:14px;font-weight:600;cursor:pointer}
+.chk input{width:18px;height:18px;padding:0;flex:none;accent-color:var(--urg)}
+.pc-urg{display:inline-flex;align-items:center;gap:6px;margin:0;font-size:13px;color:var(--urg);font-weight:600;cursor:pointer}
+.pc-urg input{width:16px;height:16px;padding:0;accent-color:var(--urg)}
+.screen{display:flex;flex-direction:column;gap:16px}
+.nav{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.nav button{border:0;background:transparent;padding:10px 18px;cursor:pointer;font-weight:600;color:var(--mute);border-bottom:3px solid transparent;margin-bottom:-1px}
+.nav button:hover{color:var(--ink)}
+.nav button[aria-pressed=true]{color:var(--accent);border-bottom-color:var(--accent)}
+#actBody{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+.act-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.act-tools input{width:auto}.btn.green{background:var(--done);border-color:var(--done);color:var(--accent-ink);font-weight:600}
+.btn.blue{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.btn.orange{background:var(--org);border-color:var(--org);color:var(--org-ink);font-weight:600}
+.btn.green:hover,.btn.blue:hover,.btn.orange:hover{filter:brightness(1.08)}
+.mailbox{display:inline-flex;align-items:stretch;border:2px solid var(--accent);border-radius:8px;overflow:hidden}
+.act-tools .mailbox input{width:240px;border:0;border-radius:0;margin:0;background:var(--panel)}
+.act-tools .mailbox input:focus-visible{outline-offset:-2px}
+.mailbox .btn{border:0;border-radius:0}.act-tools .sp{flex:1}
+.act-govs{color:var(--mute);font-size:13px}
+.act-sec{border:1px solid var(--line);border-radius:8px;padding:12px}
+.act-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.act-head .sp{flex:1}
+.act-wrap{overflow-x:auto;direction:ltr}
+.act-t{direction:ltr;border-collapse:collapse;font-size:13px;min-width:1250px;width:100%}
+.act-t th,.act-t td{border:1px solid var(--line);padding:4px 8px;text-align:center;white-space:nowrap}
+.act-t th{color:#000;font-weight:700;white-space:normal;min-width:80px}
+.act-t th.b{background:#8EA9DB}.act-t th.y{background:#FFFF00}.act-t th.r{background:#FF0000;color:#fff}
+.act-t td.nt{color:var(--mute)}
+@media (max-width:900px){.kpis{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:600px){.kpis{grid-template-columns:repeat(3,1fr)}}
+.odb{grid-column:1/-1;color:var(--ret);border:1px solid var(--ret);border-radius:8px;padding:8px 12px;font-weight:600;font-size:14px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ret);margin-inline-end:6px}
+.case.od{border-color:var(--ret)}
+#refreshBtn{min-width:130px}
+.btn.loading{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);pointer-events:none}
+.dots{display:inline-flex;gap:3px;margin-inline-start:6px;vertical-align:middle}.dots i{width:5px;height:5px;border-radius:50%;background:currentColor;animation:dt 1s infinite ease-in-out}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dt{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.dots i{animation:none}}
+.form h2,.board h2{margin:0 0 14px;font-size:16px;font-weight:600}
+label{display:block;font-size:13px;color:var(--mute);margin:12px 0 4px}
+input,select,textarea{width:100%;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:9px 11px}
+textarea{min-height:84px;resize:vertical}
+.hint{font-size:13px;margin-top:6px;min-height:20px}
+.hint.ok{color:var(--done)} .hint.bad{color:var(--danger)}
+.row-btns{display:flex;gap:8px;margin-top:18px}
+.btn{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:9px 16px;cursor:pointer}
+.btn:hover{border-color:var(--mute)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600;flex:1}
+.btn.small{padding:4px 10px;font-size:13px}
+.btn.danger{color:var(--danger)}
+.btn:disabled{opacity:.55;cursor:default}
+.editing{background:color-mix(in srgb,var(--new) 14%,transparent);border:1px solid var(--new);border-radius:6px;padding:8px 11px;font-size:13px;margin-bottom:4px}
+
+/* board */
+.board{padding:18px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.tab{border:1px solid var(--line);background:transparent;border-radius:999px;padding:5px 14px;cursor:pointer;font-size:14px}
+.tab[aria-pressed=true]{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.tab b{font-weight:600;margin-inline-start:4px}
+.search{max-width:200px}
+.tools .search{flex:1 1 160px;max-width:260px}
+.tools select{width:auto;min-width:140px;padding:7px 10px;font-size:14px}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:10px}
+@media (max-width:520px){.list{grid-template-columns:1fr}}
+.case{border:1px solid var(--line);border-radius:8px;border-inline-start:4px solid var(--c,var(--line));padding:11px 14px;cursor:pointer;align-self:start}
+.case.open{grid-column:1/-1}
+.case{background:color-mix(in srgb,var(--c,transparent) 5%,var(--panel))}
+.case:hover{background:color-mix(in srgb,var(--c,var(--ink)) 11%,var(--panel))}
+:root[data-theme="light"] .panel{box-shadow:0 1px 2px rgba(17,26,36,.06)}
+:root[data-theme="light"] input,:root[data-theme="light"] select,:root[data-theme="light"] textarea{background:#fff;border-color:#b9c4d0}
+:root[data-theme="light"] .badge{background:color-mix(in srgb,var(--c) 10%,#fff)}
+.case .hd{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.case .hd .sp{flex:1}
+.case .tk{font-weight:600;font-size:16px;direction:ltr;unicode-bidi:isolate}
+.case .hd .eg,.case .hd .dp{margin:0}
+.case .sub{display:flex;align-items:baseline;gap:8px;margin-top:4px;font-size:13px;color:var(--mute);min-width:0}
+.case .gv{color:var(--mute);font-size:13px;flex:none}
+.case .ds{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;color:var(--ink)}
+.case .meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-size:13px;color:var(--mute)}
+.case .mi{white-space:nowrap}
+.case .who2{font-size:13px;color:var(--mute)}
+.badge{font-size:12px;font-weight:600;color:var(--c);border:1px solid var(--c);border-radius:4px;padding:1px 8px;white-space:nowrap}
+.age{padding:1px 10px;border-radius:999px;color:var(--c,var(--ink));background:color-mix(in srgb,var(--c,var(--ink)) 12%,transparent)}
+.age .age-v{font-weight:600;font-variant-numeric:tabular-nums}
+.age.late{color:var(--ret);background:color-mix(in srgb,var(--ret) 12%,transparent)}
+.fbar{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.fbar .tabs{flex:none}
+.fsel{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.fsel select{width:auto;min-width:150px;padding:5px 9px;font-size:13px}
+.case .extra{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.case.open .extra{display:block}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:3px 10px;font-size:14px}
+.kv dt{color:var(--mute)} .kv dd{margin:0;overflow-wrap:anywhere}
+.reason{color:var(--ret);margin-top:6px;font-size:14px}
+.acts{display:flex;gap:8px;margin-top:12px}
+.empty{grid-column:1/-1;padding:36px 10px;text-align:center;color:var(--mute)}
+.s-new{--c:var(--new)} .s-acc{--c:var(--acc)} .s-ret{--c:var(--ret)} .s-done{--c:var(--done)}
+@media (max-width:600px){.case .meta{gap:6px 12px}}
+
+.form-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+.form-head h2{margin:0}
+dialog{border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);padding:0;width:min(860px,94vw);max-height:92vh;overflow:hidden}
+dialog[open]{display:flex}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.dlg{display:flex;flex-direction:column;width:100%;max-height:92vh}
+.dlg-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:17px;font-weight:600}
+.dlg-body{flex:1;overflow:auto;padding:16px 18px;display:flex;flex-direction:column;gap:18px}
+.step-t{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px}
+.step-t .n,.foot-n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:12px;font-weight:600;flex:none}
+.step-t .sum{margin-inline-start:auto;font-weight:400;font-size:13px;color:var(--mute)}
+.step-d{color:var(--mute);font-size:13px;margin:2px 0 8px}
+.dlg textarea{min-height:96px;font-family:Consolas,monospace;font-size:13px;direction:ltr;text-align:left;white-space:pre}
+.pv-tools{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.pv-list{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.pv-empty{border:1px dashed var(--line);border-radius:8px;padding:26px 10px;text-align:center;color:var(--mute);font-size:14px}
+.pc{border:1px solid var(--line);border-inline-start:4px solid var(--c,var(--line));border-radius:8px;padding:10px 12px;display:grid;gap:10px}
+.pc.off{opacity:.55}
+.pc.r-ok{--c:var(--done)} .pc.r-none{--c:var(--new)} .pc.r-dup{--c:var(--danger)}
+.pc-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pc-top input[type=checkbox]{width:18px;height:18px;flex:none;padding:0}
+.pc-tk{font-weight:600;direction:ltr;unicode-bidi:plaintext}
+.pc-sp{flex:1}
+.eg{display:inline-block;font-size:12px;font-weight:600;line-height:1.6;padding:0 9px;margin-inline-start:6px;border-radius:999px;color:var(--eg-ink);background:var(--eg-bg);border:1px solid var(--eg-line);vertical-align:middle;white-space:nowrap}
+.dp{display:inline-block;font-size:12px;font-weight:600;line-height:1.6;padding:0 9px;margin-inline-start:6px;border-radius:999px;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid var(--accent);vertical-align:middle;white-space:nowrap}
+.chip{font-size:12px;border-radius:999px;padding:1px 10px;border:1px solid var(--line);color:var(--mute);white-space:nowrap}
+.chip.ok{color:var(--done);border-color:var(--done)} .chip.bad{color:var(--danger);border-color:var(--danger)} .chip.warn{color:var(--new);border-color:var(--new)}
+.pc-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pc-fields .pc-addr{grid-column:1/-1}
+.pc-fields label{margin:0 0 3px;font-size:12px}
+.pc-fields input{padding:6px 9px}
+.pc-fields select{padding:6px 9px}
+.pc-fields input.miss,.pc-fields select.miss{border-color:var(--danger)}
+.pv-tools select{width:auto;max-width:240px;padding:4px 8px;font-size:13px}
+.pc-nums{display:flex;flex-wrap:wrap;gap:4px 20px;font-size:13px;padding-top:8px;border-top:1px dashed var(--line)}
+.pc-nums b{color:var(--mute);font-weight:500;margin-inline-end:5px}
+@media (max-width:600px){.pc-fields{grid-template-columns:1fr}}
+.dlg-foot{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 18px;border-top:1px solid var(--line);background:var(--panel)}
+.dlg-foot label{margin:0;color:var(--ink);font-size:14px}
+.dlg-foot select{width:auto;flex:1;min-width:160px;max-width:300px}
+.kv dd{white-space:pre-line}
+#toast{position:fixed;bottom:20px;inset-inline-start:20px;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:8px;font-size:14px;max-width:80vw;z-index:20}
+footer{text-align:center;color:var(--mute);font-size:12px;padding:18px}
+#offBar{background:var(--danger);color:#fff;padding:8px 14px;border-radius:8px;font-size:14px}
+.rp-t{width:100%;border-collapse:collapse;font-size:14px}.rp-t th,.rp-t td{border:1px solid var(--line);padding:6px 10px;text-align:center}
+.rp-t th{background:color-mix(in srgb,var(--accent) 10%,var(--panel));font-weight:600}.rp-t td:first-child{text-align:start;font-weight:600}
+.rp-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}.rp-h3{margin:16px 0 8px;font-size:15px;font-weight:600}
+/* ===== تصميم v2: انسيابية وترابط ===== */
+:root{--r:14px;--sh:0 1px 2px rgba(10,20,35,.06),0 8px 22px -10px rgba(10,20,35,.16)}
+:root[data-theme="dark"]{--sh:0 1px 2px rgba(0,0,0,.3),0 10px 26px -12px rgba(0,0,0,.6)}
+body{background:radial-gradient(1100px 480px at 85% -8%,color-mix(in srgb,var(--accent) 9%,transparent),transparent 60%),var(--paper);background-attachment:fixed}
+header.top{backdrop-filter:blur(10px);background:color-mix(in srgb,var(--panel) 86%,transparent);box-shadow:var(--sh)}
+main{gap:18px}
+.panel{border-radius:var(--r);box-shadow:var(--sh)}
+.board{padding:22px}
+.board h2.bhd{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:18px}
+.cnt{font-size:13px;font-weight:600;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);border-radius:999px;padding:1px 12px}
+.cnt:empty{display:none}
+.nav{border:0;gap:4px;background:color-mix(in srgb,var(--line) 45%,transparent);padding:4px;border-radius:12px;width:max-content;max-width:100%}
+.nav button{border:0;margin:0;border-radius:9px;padding:8px 20px;transition:background .15s,color .15s}
+.nav button[aria-pressed=true]{background:var(--panel);color:var(--accent);box-shadow:var(--sh)}
+.btn,input,select,textarea{border-radius:10px}
+.btn{transition:transform .12s,border-color .15s,box-shadow .15s}.btn:active{transform:scale(.97)}
+.btn.primary{flex:none;padding:9px 22px;box-shadow:0 6px 16px -8px var(--accent)}
+.kpis{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.kpi{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border:1px solid var(--line);border-inline-start:4px solid var(--c,var(--line));border-radius:12px;background:color-mix(in srgb,var(--c,var(--ink)) 4%,var(--panel));transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
+.kpi b{font-size:24px;display:inline}.kpi span{font-size:13px}
+.kpi:hover{transform:translateY(-2px);box-shadow:var(--sh)}
+.kpi.on{border-color:var(--c);box-shadow:0 0 0 2px color-mix(in srgb,var(--c) 35%,transparent);background:color-mix(in srgb,var(--c) 12%,var(--panel))}
+.rp-kpis .kpi{display:block;border-top:1px solid var(--line)}.rp-kpis .kpi:hover{transform:none;box-shadow:none}
+.tools{padding:10px;background:color-mix(in srgb,var(--line) 28%,transparent);border-radius:12px;margin-bottom:16px}
+.tools .search{flex:2 1 220px;max-width:none}
+.tools select{flex:1 1 130px;background:var(--panel)}
+.act-tools select{width:auto;min-width:150px}
+.list{gap:12px}
+.case{border-radius:12px;transition:transform .15s,box-shadow .15s}
+.case:hover{transform:translateY(-2px);box-shadow:var(--sh)}.case.open,.case.open:hover{transform:none}
+.rp-t{border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden}
+@media (max-width:900px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:600px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.board{padding:14px}.nav{width:100%}.nav button{flex:1;padding:8px 10px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.logo{width:34px;height:34px;border-radius:9px;flex:none;box-shadow:0 2px 8px -2px rgba(11,37,69,.45)}
+.logo.big{width:68px;height:68px;border-radius:18px;display:block;margin:0 auto 14px}
+.login-box{text-align:center}.login-box form,.login-box label,.login-box input{text-align:start}
+.qrbox svg{width:210px;height:210px;border-radius:14px;box-shadow:var(--sh);display:block;margin:0 auto}
+.qrcode{font:600 22px/1.2 ui-monospace,Consolas,monospace;letter-spacing:.18em;margin:12px 0 4px;text-align:center}
+#qrSt{text-align:center;min-height:1.4em}
+</style>
+</head>
+<body>
+
+<section id="login">
+  <div class="prefs login-prefs">
+    <button class="btn small theme-btn" type="button"></button>
+    <button class="btn small lang-btn" type="button"></button>
+  </div>
+  <div class="login-box" id="loginForm">
+    <img class="logo big" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzBCMjU0NSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzBFN0M4NiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0idXJsKCNnKSIvPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNTYsMjU2KSBzY2FsZSgyLjQpIj48ZyBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxjaXJjbGUgcj0iODQiIHBhdGhMZW5ndGg9IjEwMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1kYXNoYXJyYXk9Ijc2IDYiIHRyYW5zZm9ybT0icm90YXRlKDIwKSIvPjxjaXJjbGUgcj0iNjgiIHBhdGhMZW5ndGg9IjEwMCIgc3Ryb2tlPSIjNUZENkNCIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1kYXNoYXJyYXk9IjgwIDUiIHRyYW5zZm9ybT0icm90YXRlKDExMCkiLz48Y2lyY2xlIHI9IjUyIiBwYXRoTGVuZ3RoPSIxMDAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtZGFzaGFycmF5PSI3MiA3IiB0cmFuc2Zvcm09InJvdGF0ZSgyMDApIi8+PGNpcmNsZSByPSIzNiIgcGF0aExlbmd0aD0iMTAwIiBzdHJva2U9IiM1RkQ2Q0IiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWRhc2hhcnJheT0iNzggNiIgdHJhbnNmb3JtPSJyb3RhdGUoMjkwKSIvPjxjaXJjbGUgcj0iMjAiIHBhdGhMZW5ndGg9IjEwMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1kYXNoYXJyYXk9IjcwIDgiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPjwvZz48cGF0aCBkPSJNMCAtMTMgQy02IC0xMyAtMTAgLTkgLTEwIC00IEMtMTAgMyAwIDEyIDAgMTIgQzAgMTIgMTAgMyAxMCAtNCBDMTAgLTkgNiAtMTMgMCAtMTNaIiBmaWxsPSIjRjI4QzI4Ii8+PGNpcmNsZSBjeD0iMCIgY3k9Ii00IiByPSIzLjUiIGZpbGw9IiNmZmYiLz48L2c+PC9zdmc+">
+    <h1 data-i="login_h"></h1>
+    <p data-i="qr_p"></p>
+    <div class="qrbox" id="qrBox"></div>
+    <div class="qrcode" id="qrCode" dir="ltr"></div>
+    <div class="hint" id="qrSt"></div>
+    <div class="hint bad" id="loginErr"></div>
+    <div class="row-btns"><button class="btn" id="qrNew" type="button" data-i="qr_new"></button></div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <header class="top">
+    <img class="logo" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzBCMjU0NSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzBFN0M4NiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0idXJsKCNnKSIvPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNTYsMjU2KSBzY2FsZSgyLjQpIj48ZyBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxjaXJjbGUgcj0iODQiIHBhdGhMZW5ndGg9IjEwMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1kYXNoYXJyYXk9Ijc2IDYiIHRyYW5zZm9ybT0icm90YXRlKDIwKSIvPjxjaXJjbGUgcj0iNjgiIHBhdGhMZW5ndGg9IjEwMCIgc3Ryb2tlPSIjNUZENkNCIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1kYXNoYXJyYXk9IjgwIDUiIHRyYW5zZm9ybT0icm90YXRlKDExMCkiLz48Y2lyY2xlIHI9IjUyIiBwYXRoTGVuZ3RoPSIxMDAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtZGFzaGFycmF5PSI3MiA3IiB0cmFuc2Zvcm09InJvdGF0ZSgyMDApIi8+PGNpcmNsZSByPSIzNiIgcGF0aExlbmd0aD0iMTAwIiBzdHJva2U9IiM1RkQ2Q0IiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWRhc2hhcnJheT0iNzggNiIgdHJhbnNmb3JtPSJyb3RhdGUoMjkwKSIvPjxjaXJjbGUgcj0iMjAiIHBhdGhMZW5ndGg9IjEwMCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjciIHN0cm9rZS1kYXNoYXJyYXk9IjcwIDgiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPjwvZz48cGF0aCBkPSJNMCAtMTMgQy02IC0xMyAtMTAgLTkgLTEwIC00IEMtMTAgMyAwIDEyIDAgMTIgQzAgMTIgMTAgMyAxMCAtNCBDMTAgLTkgNiAtMTMgMCAtMTNaIiBmaWxsPSIjRjI4QzI4Ii8+PGNpcmNsZSBjeD0iMCIgY3k9Ii00IiByPSIzLjUiIGZpbGw9IiNmZmYiLz48L2c+PC9zdmc+">
+    <h1 data-i="top_h"></h1>
+    <span class="sp"></span>
+    <span class="who" id="who"></span>
+    <span class="prefs">
+      <button class="btn small theme-btn" type="button"></button>
+      <button class="btn small lang-btn" type="button"></button>
+    </span>
+    <button class="btn small hidden" id="notifBtn" type="button"></button>
+        <button class="btn small" id="logoutBtn" type="button" data-i="logout"></button>
+  </header>
+
+  <main>
+    <div id="offBar" class="hidden" role="alert" data-i="offline"></div>
+    <nav class="nav" id="nav"></nav>
+    <section class="screen" id="screen-cases">
+    <div class="actions"><button class="btn primary" id="newBtn" type="button" data-i="new_case"></button><button class="btn" id="pasteBtn" type="button" data-i="paste_btn"></button><span class="sp" style="flex:1"></span><button class="btn" id="refreshBtn" type="button" data-i="refresh"></button><button class="btn" id="csvBtn" type="button" data-i="csv"></button></div>
+    <section class="panel board">
+      <h2 class="bhd"><span data-i="board_h"></span><span class="cnt" id="boardN"></span></h2>
+      <div class="kpis" id="kpis"></div>
+      <div class="tools">
+        <input class="search" id="q" type="search" data-ph="search">
+        <select id="dfil" data-al="f_date"></select>
+        <select id="gfil" data-al="f_gov"></select>
+        <select id="efil" data-al="f_eng"></select>
+        <select id="sfil" data-al="sort_l"></select>
+        <button class="btn small" id="fclr" type="button" data-i="f_clear"></button>
+      </div>
+      <div class="list" id="list"></div>
+    </section>
+    </section>
+
+    <!-- شاشة الاكتفتي -->
+    <section class="screen hidden" id="screen-activity">
+      <section class="panel board">
+        <h2 data-i="act_h"></h2>
+        <div class="act-tools">
+          <span data-i="act_date"></span><input type="date" id="actDate">
+          <span class="act-govs" id="actGovs"></span>
+          <span class="sp"></span>
+          <button class="btn green" id="actXlsAll" type="button" data-i="act_xls_all"></button>
+          <span class="mailbox">
+            <input type="email" id="actEmail" dir="ltr" data-ph="act_email_ph">
+            <button class="btn blue" id="actMail" type="button" data-i="act_mail"></button>
+          </span>
+          <button class="btn orange" id="actAll" type="button" data-i="act_copy_all"></button>
+        </div>
+        <div id="actBody"></div>
+      </section>
+    </section>
+    <section class="screen hidden" id="screen-reports">
+      <section class="panel board">
+        <h2 data-i="rp_h"></h2>
+        <div class="act-tools"><span data-i="rp_period"></span><select id="rpDays" style="width:auto"><option value="7">7</option><option value="30" selected>30</option><option value="90">90</option><option value="365">365</option></select><span data-i="rp_days_u"></span><select id="rpGov" data-al="f_gov"></select><select id="rpEng" data-al="f_eng"></select></div>
+        <div id="rpBody"></div>
+      </section>
+    </section>
+  </main>
+  <footer data-i="footer"></footer>
+</div>
+
+<dialog id="formDlg">
+<section class="panel form">
+      <div class="form-head"><h2 id="formTitle"></h2><button class="btn small" id="formX" type="button" data-al="close">✕</button></div>
+      <div id="editBanner" class="editing hidden"></div>
+      <form id="caseForm" autocomplete="off">
+        <label for="f_t" data-i="f_t"></label>
+        <input id="f_t" required>
+        <label for="f_gov" data-i="f_gov"></label>
+        <select id="f_gov" required></select>
+        <label for="f_dept" data-i="n_dept"></label>
+        <select id="f_dept"></select>
+        <label for="f_addr" data-i="f_addr"></label>
+        <input id="f_addr">
+        <label for="f_ms">Primary MSISDN</label>
+        <input id="f_ms" type="tel" inputmode="tel" dir="ltr" placeholder="07XXXXXXXXX">
+        <label for="f_cb">Call Back</label>
+        <input id="f_cb" type="tel" inputmode="tel" dir="ltr" placeholder="07XXXXXXXXX">
+        <label for="f_issue" data-i="f_issue"></label>
+        <textarea id="f_issue"></textarea>
+        <label for="f_asg" data-i="f_asg"></label>
+        <select id="f_asg"></select>
+        <div class="hint" id="route"></div>
+        <div class="row-btns">
+          <button class="btn primary" id="sendBtn" type="submit"></button>
+          <button class="btn hidden" id="cancelEdit" type="button" data-i="cancel"></button>
+        </div>
+      </form>
+    </section>
+</dialog>
+
+<dialog id="pasteDlg">
+  <div class="dlg">
+    <div class="dlg-head">
+      <h2 data-i="pd_title"></h2>
+      <button class="btn small" id="pasteX" type="button" data-al="close">✕</button>
+    </div>
+    <div class="dlg-body">
+      <section>
+        <div class="step-t"><span class="n">1</span><span data-i="pd_s1"></span></div>
+        <div class="step-d" data-i="pd_s1d"></div>
+        <textarea id="pasteTxt" data-ph="pd_ph"></textarea>
+        <div class="hint" id="pasteMsg"></div>
+      </section>
+      <section>
+        <div class="step-t"><span class="n">2</span><span data-i="pd_s2"></span><span class="sum" id="pvSum"></span></div>
+        <div class="pv-tools hidden" id="pvTools">
+          <button class="btn small" id="pvAll" type="button" data-i="sel_all"></button>
+          <button class="btn small" id="pvNone" type="button" data-i="sel_none"></button>
+          <select id="pasteGov" data-al="bulk_gov"></select>
+          <select id="pasteAsg" data-al="bulk_eng"></select>
+        </div>
+        <div class="pv-list" id="pvList"></div>
+      </section>
+    </div>
+    <div class="dlg-foot">
+      <span class="foot-n">3</span>
+      <span class="hint bad" id="pvWarn" style="margin:0;min-height:0;flex:1"></span>
+      <button class="btn primary" id="pasteSend" type="button" disabled></button>
+      <button class="btn" id="pasteClose" type="button" data-i="close"></button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="rcDlg" style="width:min(420px,94vw)"><div class="dlg">
+  <div class="dlg-head"><h2 data-i="rc_title"></h2><button class="btn small" id="rcX" type="button" data-al="close">✕</button></div>
+  <div class="dlg-body"><div id="rcInfo" class="step-d"></div><label for="rcAsg" data-i="rc_to"></label><select id="rcAsg"></select><div class="step-d" data-i="rc_note"></div></div>
+  <div class="dlg-foot"><button class="btn primary" id="rcOk" type="button" data-i="rc_ok"></button><button class="btn" id="rcCancel" type="button" data-i="cancel"></button></div>
+</div></dialog>
+
+<div id="toast" class="hidden" role="status"></div>
+
+<script>
+const URL_API = 'https://script.google.com/macros/s/AKfycbw1BvuJzVGdVInLA0_uBDrHWW71ukPmcUzUawzHJr_8pEwBW3DfD2uTBwpApSBmlHix/exec';
+
+function store(k, v){ try{ if(v===undefined) return localStorage.getItem(k); if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v); }catch(e){ return null; } }
+
+const S = { code:'', dev:'', me:null, users:[], cases:[], filter:'new', q:'', editing:null, busy:false, lerr:null,
+  lang: store('fl_lang')==='en' ? 'en' : 'ar',
+  theme: document.documentElement.getAttribute('data-theme') || 'light' };
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(msg, act){ const el=$('toast'); el.textContent=msg; if(act){ const b=document.createElement('button'); b.type='button'; b.className='btn small'; b.style.cssText='margin-inline-start:12px;color:var(--ink)'; b.textContent=act.label; b.onclick=()=>{ clearTimeout(toast.h); el.classList.add('hidden'); act.fn(); }; el.appendChild(b); } el.classList.remove('hidden'); clearTimeout(toast.h); toast.h=setTimeout(()=>el.classList.add('hidden'), act ? 8000 : 3500); }
+
+/* ---- اللغات / Languages ---- */
+const I18N = {
+ar:{
+  doc_title:'FieldLink – مكتب الإرسال', lang_btn:'English', th_light:'فاتح', th_dark:'داكن', sep:'، ',
+  login_h:'مكتب FieldLink', login_p:'ادخل بكود حساب الأدمن لإرسال الكيسات للمهندسين.', code_l:'كود الدخول', login_btn:'دخول',
+  top_h:'مكتب الإرسال', refresh:'تحديث',refreshing:'جاري التحديث', logout:'خروج', paste_btn:'لصق من الإيميل',
+  f_t:'رقم التذكرة', f_gov:'المحافظة', f_eng:'المهندس', f_addr:'العنوان', f_issue:'المشكلة', f_asg:'المهندس المسؤول',
+  sel_gov:'— اختر المحافظة —', all_eng:'كل مهندسي المحافظة',
+  send_eng:'إرسال للمهندسين', cancel:'إلغاء', new_case:'كيس جديد', edit_case:'تعديل كيس',
+  save_resend:'حفظ وإعادة إرسال', save_edit:'حفظ التعديل',
+  banner_ret:'أرجعه المهندس: {0}', banner_edit:'يمكن التعديل لأن الكيس ما انقبل بعد.',
+  board_h:'الكيسات المرسلة', search:'بحث', footer:'تطوير: ايسر ماجد',
+  pd_title:'لصق كيسات من الإيميل', close:'إغلاق', pd_s1:'الصق الجدول',
+  pd_s1d:'انسخ الصفوف من الإيميل (بعناوين أو بدونها) والصقها هنا. المحافظة والمهندس تحددهم أنت لكل كيس من الخطوة 2، وليست من الإيميل.',
+  pd_ph:'الصق الجدول هنا', pd_s2:'راجع الكيسات وأسند كل كيس', sel_all:'تحديد الكل', sel_none:'إلغاء التحديد',
+  bulk_gov:'المحافظة للمحدد…', bulk_eng:'المهندس للمحدد…', send:'إرسال',
+  e_notadmin:'هذا الحساب ليس أدمن', e_bound:'هذا الحساب مربوط بجهاز ثاني. استعمل حساب أدمن مخصص للمكتب (انظر الملاحظة).',
+  e_invalid:'الكود غير صحيح', e_disabled:'الحساب معطّل', e_conn:'تعذّر الاتصال بالسيرفر. تأكد من الإنترنت.', err:'خطأ',
+  undo:'تراجع', del_pending:'راح ينحذف الكيس {0}', offline:'ماكو اتصال بالسيرفر. راح نعيد المحاولة تلقائياً.', phone_bad:'رقم الموبايل غير مألوف (المتوقع 07XXXXXXXXX). تكمل الإرسال؟', e_generic:'تعذّر الدخول. تأكد من الكود، أو ممكن الحساب مربوط بجهاز ثاني.', e_busy:'محاولات كثيرة. حاول بعد شوية.', purge_blocked:'السيرفر رفض الحذف (الكيس عند مهندس أو خارج محافظاتك).', reclaim:'سحب / إعادة إسناد', rc_title:'سحب الكيس من المهندس', rc_to:'أسنده إلى', rc_gov:'كل مهندسي المحافظة', rc_note:'الكيس يرجع بحالة "جديد" ويختفي من عند المهندس الحالي.', rc_ok:'سحب وإعادة إرسال', rc_done:'انسحب الكيس وانرسل من جديد', rc_fail:'ما انسحب الكيس (ممكن المهندس أنهاه أو الإسناد غير صالح)', rc_gone:'الكيس ما عاد عند المهندس بحالة مقبول.',
+  nav_reports:'التقارير', rp_h:'تقارير الأداء', rp_period:'الفترة', rp_days_u:'يوم', rp_sent:'أُرسلت', rp_done:'مكتملة', rp_open:'مفتوحة', rp_ret:'مُرجَعة', rp_od:'متأخرة', rp_avg:'متوسط الإنجاز', rp_eng:'المهندسون', rp_gov:'المحافظات', rp_none:'ماكو كيسات بهذه الفترة.', rp_name:'الاسم', rp_note:'متوسط الإنجاز = من وقت الإرسال حتى آخر تحديث للكيس المكتمل.',
+  rp_allgov:'كل المحافظات', rp_alleng:'كل المهندسين', qr_p:'افتح تطبيق الموبايل ← الأجهزة المرتبطة ← امسح الرمز أو اكتب الكود', qr_wait:'بانتظار الموافقة من الموبايل…', qr_new:'رمز جديد', refresh_fail:'تعذّر التحديث: {0}',
+  route_only:'يوصل لـ {0} فقط', route_to:'يوصل لـ {0}', route_first:' (أول واحد يقبل يستلمه)',
+  route_none:'ماكو مهندس مربوط بهذه المحافظة حالياً. الكيس ينقبل وينرسل عادي، وتربط المهندسين لاحقاً.',
+  k_new:'بانتظار القبول', k_acc:'مقبول', k_ret:'مُرجَع للمكتب', k_done:'مكتمل',
+  tab_new:'جديد', tab_acc:'مقبول', tab_ret:'مُرجَع', tab_done:'مكتمل', tab_all:'الكل',
+  empty_f:'ماكو كيسات بهذه الحالة.', empty_all:'ماكو كيسات مرسلة بعد. عبّي النموذج وارسل أول كيس.',
+  w_to:'إلى: {0}', w_engof:'مهندسو {0}', w_at:'عند: {0}', w_done:'أنجزه: {0}',
+  eg_title:'المحافظة كما في الإيميل', d_gov:'المحافظة', d_addr:'العنوان', d_issue:'المشكلة', d_gps:'الإحداثيات', d_link:'الرابط', d_date:'تاريخ الفحص', d_notes:'ملاحظات', d_pub:'أرسله',
+  reason:'سبب الإرجاع: {0}', edit_resend:'تعديل وإعادة إرسال', edit:'تعديل', del:'حذف',
+  locked:'الكيس عند المهندس، معلوماته الأولية مقفلة.',
+  accepted_while:'المهندس قبل الكيس قبل ما تحفظ. التعديل ما انحفظ.',
+  dupe_confirm:'يوجد كيس بنفس رقم التذكرة. تكمل الإرسال؟',
+  saved:'انحفظ الكيس', sent:'انرسل الكيس للمهندسين', send_fail:'فشل الإرسال: {0}',
+  del_confirm:'حذف الكيس {0} نهائياً؟', del_locked:'الكيس انقبل من مهندس. ما ينحذف.', deleted:'انحذف الكيس', del_fail:'فشل الحذف: {0}',
+  c_dupe:'موجود مسبقاً', c_noasg:'بدون إسناد', c_toeng:'إلى مهندس: {0}', c_goveng:'مهندسو المحافظة: {0}', c_noeng:'بدون مهندس حالياً',
+  n_dept:'القسم', urg_l:'🚨 كيس طارئ (أولوية عالية)', k_urg:'Urgent', nav_cases:'الكيسات', nav_activity:'الاكتفتي', act_h:'اكتفتي المهندسين', act_date:'التاريخ', act_govs:'محافظاتك: {0}', act_all_govs:'كل المحافظات', act_copy_all:'نسخ اكتفتي الكل', act_xls_all:'تصدير Excel للكل', act_xls_one:'تصدير Excel', act_name_btn:'اسم المهندس', act_name_prompt:'اسم المهندس {0} بالاكتفتي (اتركه فارغ للاسم الأصلي)', act_name_saved:'انحفظ اسم المهندس', act_email_ph:'إيميل المستلم', act_mail:'إرسال بالإيميل', act_email_need:'اكتب إيميل المستلم صحيح أول', act_mail_hint:'نزل ملف الإيميل. افتحه (ضغطتين) حتى يفتح Outlook بمسودة جاهزة والإكسل مرفق.', act_name_nosave:'السيرفر ما حفظ الاسم. تأكد إنك حدّثت كود السيرفر ونشرت نسخة جديدة.', act_one:'نسخ اكتفتي المهندس', act_none:'ماكو مهندسين بمحافظاتك.', act_n:'{0} كيس', act_notask:'بدون مهمة', act_copied_all:'تم نسخ اكتفتي كل المهندسين', act_copied_one:'تم نسخ اكتفتي {0}', cp_id:'نسخ رقم التكت', cp_tbl:'نسخ المعلومات (جدول)', cp_done_id:'تم نسخ رقم التكت', cp_done_tbl:'تم نسخ معلومات الكيس كجدول', cp_fail:'تعذّر النسخ', df_today:'اليوم', df_week:'آخر أسبوع', df_all:'الكل', done_title:'كيس مكتمل ✅', done_n:'اكتمل {0} كيس: {1}', nf_on:'🔔 الإشعارات شغّالة', nf_off:'🔔 تفعيل الإشعارات', nf_block:'🔕 الإشعارات محظورة من المتصفح', n_tech:'التقنية', n_cell:'الخلية', n_start:'وقت البدء',
+  k_od:'متأخر',od_n:'{0} كيس لم ينقبل منذ أكثر من يومين',od_ago:'قبل {0} يوم',csv:'تصدير Excel',all_eng_f:'كل المهندسين',df_yday:'أمس',wa:'واتساب',map:'خرائط',pv_check:'تحديد الكيس', pv_empty:'الكيسات تظهر هنا بعد لصق الجدول.',
+  pv_sum:'{0} كيس · {1} محدد', pv_dup:' · {0} مكرر', pv_warn:'{0} كيس بدون إسناد', pv_send:'إرسال {0} كيس',
+  p_fail:'ما قدرت أقرأ الجدول. انسخه من الإيميل مباشرة.', p_found:'لقيت {0} كيس. راجعهم تحت وأسند كل كيس لمحافظة و/أو مهندس.',
+  p_unassigned:'في كيس بدون إسناد. اختر محافظة أو مهندس لكل كيس.', p_sent:'انرسل {0} كيس للمهندسين',
+  age_since:'⏱ منذ {0}', age_took:'⏱ استغرق {0}', sent_at:'أُرسل {0}', all_gov:'كل المحافظات', f_clear:'مسح الفلاتر', sort_l:'الترتيب',
+  sort_def:'الترتيب: الافتراضي', sort_new:'الترتيب: الأحدث إرسالاً', sort_old:'الترتيب: الأقدم إرسالاً', sort_upd:'الترتيب: آخر تحديث', dept_auto:'تلقائي (حسب رقم التذكرة)', upd_at:'آخر تحديث {0}', all_dates:'كل التواريخ', f_date:'التاريخ'
+},
+en:{
+  doc_title:'FieldLink – Dispatch Office', lang_btn:'عربي', th_light:'Light', th_dark:'Dark', sep:', ',
+  login_h:'FieldLink Office', login_p:'Enter the admin account code to dispatch cases to engineers.', code_l:'Login code', login_btn:'Log in',
+  top_h:'Dispatch Office', refresh:'Refresh',refreshing:'Refreshing', logout:'Log out', paste_btn:'Paste from email',
+  f_t:'Ticket number', f_gov:'Governorate', f_eng:'Engineer', f_addr:'Address', f_issue:'Issue', f_asg:'Assigned engineer',
+  sel_gov:'— Select governorate —', all_eng:'All engineers in the governorate',
+  send_eng:'Send to engineers', cancel:'Cancel', new_case:'New case', edit_case:'Edit case',
+  save_resend:'Save and resend', save_edit:'Save changes',
+  banner_ret:'Returned by the engineer: {0}', banner_edit:'You can edit because the case has not been accepted yet.',
+  board_h:'Dispatched cases', search:'Search', footer:'Developed by: ايسر ماجد',
+  pd_title:'Paste cases from email', close:'Close', pd_s1:'Paste the table',
+  pd_s1d:'Copy the rows from the email (with or without headers) and paste them here. You choose the governorate and engineer for each case in step 2; they are not taken from the email.',
+  pd_ph:'Paste the table here', pd_s2:'Review the cases and assign each one', sel_all:'Select all', sel_none:'Clear selection',
+  bulk_gov:'Governorate for selected…', bulk_eng:'Engineer for selected…', send:'Send',
+  e_notadmin:'This account is not an admin', e_bound:'This account is bound to another device. Use a dedicated admin account for the office (see note).',
+  e_invalid:'Invalid code', e_disabled:'Account disabled', e_conn:'Could not reach the server. Check your internet connection.', err:'Error',
+  undo:'Undo', del_pending:'Case {0} will be deleted', offline:'No connection to the server. Retrying automatically.', phone_bad:'The phone number looks unusual (expected 07XXXXXXXXX). Send anyway?', e_generic:'Login failed. Check the code, or the account may be bound to another device.', e_busy:'Too many attempts. Try again later.', purge_blocked:'The server refused the deletion (case is with an engineer or outside your governorates).', reclaim:'Reclaim / reassign', rc_title:'Reclaim case from engineer', rc_to:'Assign to', rc_gov:'All engineers in the governorate', rc_note:'The case goes back to "New" and disappears from the current engineer.', rc_ok:'Reclaim and resend', rc_done:'Case reclaimed and resent', rc_fail:'Could not reclaim (the engineer may have finished it, or the assignment is invalid)', rc_gone:'The case is no longer accepted by an engineer.',
+  nav_reports:'Reports', rp_h:'Performance reports', rp_period:'Period', rp_days_u:'days', rp_sent:'Sent', rp_done:'Completed', rp_open:'Open', rp_ret:'Returned', rp_od:'Overdue', rp_avg:'Avg completion', rp_eng:'Engineers', rp_gov:'Governorates', rp_none:'No cases in this period.', rp_name:'Name', rp_note:'Avg completion = from sent time to the last update of a completed case.',
+  rp_allgov:'All governorates', rp_alleng:'All engineers', qr_p:'Open the mobile app → Linked device → scan the code, or type it.', qr_wait:'Waiting for approval on your phone…', qr_new:'New code', refresh_fail:'Refresh failed: {0}',
+  route_only:'Goes to {0} only', route_to:'Goes to {0}', route_first:' (the first to accept takes it)',
+  route_none:'No engineer is linked to this governorate yet. The case will still be sent normally; you can link engineers later.',
+  k_new:'Awaiting acceptance', k_acc:'Accepted', k_ret:'Returned to office', k_done:'Completed',
+  tab_new:'New', tab_acc:'Accepted', tab_ret:'Returned', tab_done:'Completed', tab_all:'All',
+  empty_f:'No cases in this status.', empty_all:'No cases dispatched yet. Fill in the form and send the first case.',
+  w_to:'To: {0}', w_engof:'{0} engineers', w_at:'With: {0}', w_done:'Completed by: {0}',
+  eg_title:'Governorate as written in the email', d_gov:'Governorate', d_addr:'Address', d_issue:'Issue', d_gps:'Coordinates', d_link:'Link', d_date:'Inspection date', d_notes:'Notes', d_pub:'Sent by',
+  reason:'Return reason: {0}', edit_resend:'Edit and resend', edit:'Edit', del:'Delete',
+  locked:'The case is with the engineer; its basic details are locked.',
+  accepted_while:'The engineer accepted the case before you saved. Your changes were not saved.',
+  dupe_confirm:'A case with the same ticket number already exists. Send anyway?',
+  saved:'Case saved', sent:'Case sent to engineers', send_fail:'Send failed: {0}',
+  del_confirm:'Permanently delete case {0}?', del_locked:'The case was accepted by an engineer. It cannot be deleted.', deleted:'Case deleted', del_fail:'Delete failed: {0}',
+  c_dupe:'Already exists', c_noasg:'Not assigned', c_toeng:'To engineer: {0}', c_goveng:'Governorate engineers: {0}', c_noeng:'No engineer yet',
+  n_dept:'Department', urg_l:'🚨 Urgent case (high priority)', k_urg:'Urgent', nav_cases:'Cases', nav_activity:'Activity', act_h:'Engineers activity', act_date:'Date', act_govs:'Your governorates: {0}', act_all_govs:'All governorates', act_copy_all:'Copy all activity', act_xls_all:'Export all to Excel', act_xls_one:'Export Excel', act_name_btn:'Engineer name', act_name_prompt:'Activity sheet name for engineer {0} (leave empty to use the original name)', act_name_saved:'Engineer name saved', act_email_ph:'Recipient email', act_mail:'Send by email', act_email_need:'Enter a valid recipient email first', act_mail_hint:'The email file was downloaded. Open it to get an Outlook draft with the Excel attached.', act_name_nosave:'The server did not save the name. Make sure the server code is updated and a new version is deployed.', act_one:'Copy engineer activity', act_none:'No engineers in your governorates.', act_n:'{0} case(s)', act_notask:'No task', act_copied_all:'All engineers activity copied', act_copied_one:'{0} activity copied', cp_id:'Copy ticket ID', cp_tbl:'Copy info (table)', cp_done_id:'Ticket ID copied', cp_done_tbl:'Case info copied as a table', cp_fail:'Copy failed', df_today:'Today', df_week:'Last 7 days', df_all:'All', done_title:'Case completed ✅', done_n:'{0} case(s) completed: {1}', nf_on:'🔔 Notifications on', nf_off:'🔔 Enable notifications', nf_block:'🔕 Notifications blocked in browser', n_tech:'Technology', n_cell:'Cell', n_start:'Start time',
+  k_od:'Overdue',od_n:'{0} case(s) not accepted for over 2 days',od_ago:'{0} day(s) ago',csv:'Export Excel',all_eng_f:'All engineers',df_yday:'Yesterday',wa:'WhatsApp',map:'Maps',pv_check:'Select case', pv_empty:'Cases will appear here after you paste the table.',
+  pv_sum:'{0} cases · {1} selected', pv_dup:' · {0} duplicate', pv_warn:'{0} case(s) not assigned', pv_send:'Send {0} case(s)',
+  p_fail:'Could not read the table. Copy it directly from the email.', p_found:'Found {0} case(s). Review them below and assign each to a governorate and/or engineer.',
+  p_unassigned:'Some cases are not assigned. Choose a governorate or engineer for each case.', p_sent:'{0} case(s) sent to engineers',
+  age_since:'⏱ Open for {0}', age_took:'⏱ Took {0}', sent_at:'Sent {0}', all_gov:'All governorates', f_clear:'Clear filters', sort_l:'Sort',
+  sort_def:'Sort: Default', sort_new:'Sort: Newest sent', sort_old:'Sort: Oldest sent', sort_upd:'Sort: Last updated', dept_auto:'Auto (from ticket)', upd_at:'Updated {0}', all_dates:'All dates', f_date:'Date'
+}};
+function t(k, ...a){
+  let s = I18N[S.lang][k]; if(s == null) s = I18N.ar[k]; if(s == null) return k;
+  return s.replace(/\{(\d)\}/g, (m,i) => a[i] == null ? '' : a[i]);
+}
+
+const GOV_AR = {baghdad:'بغداد',mosul:'نينوى',kirkuk:'كركوك',basra:'البصرة',erbil:'أربيل',sulaymaniyah:'السليمانية',duhok:'دهوك',anbar:'الأنبار',babylon:'بابل',karbala:'كربلاء',najaf:'النجف',diwaniyah:'الديوانية',wasit:'واسط',maysan:'ميسان','dhi qar':'ذي قار',muthanna:'المثنى','salah al-din':'صلاح الدين',diyala:'ديالى'};
+function govLabel(g){ if(S.lang==='ar'){ const a = GOV_AR[normGov(g)]; if(a) return a; } return g; }
+function govsLabel(s){ return String(s||'').split(',').map(x=>x.trim()).filter(Boolean).map(govLabel).join(t('sep')); }
+
+function applyThemeBtn(){ document.querySelectorAll('.theme-btn').forEach(b => b.textContent = S.theme==='dark' ? '☀ '+t('th_light') : '☾ '+t('th_dark')); }
+function setTheme(th){ S.theme = th; document.documentElement.setAttribute('data-theme', th); store('fl_theme', th); applyThemeBtn(); }
+function setLang(l){ S.lang = l; store('fl_lang', l); applyLang(); }
+function applyLang(){
+  const de = document.documentElement; de.lang = S.lang; de.dir = S.lang==='ar' ? 'rtl' : 'ltr';
+  document.title = (S.unseen ? '('+S.unseen+') ' : '') + t('doc_title'); updateNotifBtn();
+  document.querySelectorAll('[data-i]').forEach(el => el.textContent = t(el.dataset.i));
+  document.querySelectorAll('[data-ph]').forEach(el => el.placeholder = t(el.dataset.ph));
+  document.querySelectorAll('[data-al]').forEach(el => el.setAttribute('aria-label', t(el.dataset.al)));
+  document.querySelectorAll('.lang-btn').forEach(b => b.textContent = t('lang_btn'));
+  applyThemeBtn(); showLoginErr(); formTexts(); render(); showPasteMsg(); renderPv(); renderNav(); if(S.screen==='activity') renderAct(); renderReports();
+}
+document.addEventListener('click', e => {
+  if(e.target.closest('.theme-btn')) setTheme(S.theme==='dark' ? 'light' : 'dark');
+  else if(e.target.closest('.lang-btn')) setLang(S.lang==='ar' ? 'en' : 'ar');
+});
+
+/* ---- إشعار عند اكتمال كيس ---- */
+S.open = new Set(); S.pend = new Set(); S.wt = store('fl_wt') || ''; S.since = 0; S.vk = ''; S.unseen = 0; S.dfilter = 'all'; S.ae = ''; S.gf = ''; S.sort = 'def';
+try{ const f = JSON.parse(store('fl_filters')||'null'); if(f){
+  if(['new','acc','ret','od','done','all'].includes(f.filter)) S.filter = f.filter;
+  if(['all','today','yday','week'].includes(f.dfilter)) S.dfilter = f.dfilter;
+  if(['def','new','old','upd'].includes(f.sort)) S.sort = f.sort;
+  if(typeof f.ae==='string') S.ae = f.ae; if(typeof f.gf==='string') S.gf = f.gf;
+} }catch(e){}
+function updateNotifBtn(){
+  const b = $('notifBtn'); if(!b) return;
+  if(!('Notification' in window)){ b.classList.add('hidden'); return; }
+  b.classList.remove('hidden');
+  const p = Notification.permission;
+  b.textContent = t(p==='granted' ? 'nf_on' : p==='denied' ? 'nf_block' : 'nf_off');
+  b.disabled = p !== 'default';
+}
+$('notifBtn').onclick = () => { try{ Notification.requestPermission().then(updateNotifBtn); }catch(e){} };
+function clearUnseen(){ if(S.unseen){ S.unseen = 0; document.title = t('doc_title'); } }
+window.addEventListener('focus', clearUnseen);
+document.addEventListener('visibilitychange', () => { if(!document.hidden){ clearUnseen(); if(S.me) refresh(true); } });
+function beep(){
+  try{
+    const ac = beep.ac || (beep.ac = new (window.AudioContext || window.webkitAudioContext)()); if(ac.state==='suspended') ac.resume();
+    [880, 1175].forEach((f,i) => {
+      const o = ac.createOscillator(), g = ac.createGain(), st = ac.currentTime + i*0.18;
+      o.frequency.value = f; o.connect(g); g.connect(ac.destination);
+      g.gain.setValueAtTime(0.15, st); g.gain.exponentialRampToValueAtTime(0.001, st + 0.16);
+      o.start(st); o.stop(st + 0.17);
+    });
+  }catch(e){}
+}
+// الكيسات المكتملة التي نبّهنا عنها (محفوظة بالمتصفح). أول تشغيل: نسجّل الموجود حالياً بدون إشعار.
+function checkDone(cases){
+  const done = cases.filter(c => !c.del && c.pub && kind(c)==='done');
+  const ids = done.map(c => String(c.id));
+  let seen = null; try{ seen = JSON.parse(store('fl_seen_done') || 'null'); }catch(e){}
+  if(!Array.isArray(seen)){ store('fl_seen_done', JSON.stringify(ids)); return; }
+  const set = new Set(seen);
+  const fresh = done.filter(c => !set.has(String(c.id)));
+  if(!fresh.length) return;
+  store('fl_seen_done', JSON.stringify(Array.from(new Set(seen.concat(ids))).filter(id => cases.some(c => String(c.id) === id))));
+  notifyDone(fresh);
+}
+function notifyDone(list){
+  const names = list.map(c => c.t + (c.by ? ' – ' + c.by : '')).join(t('sep'));
+  toast(t('done_n', list.length, names));
+  beep();
+  if(document.hidden || !document.hasFocus()){
+    S.unseen += list.length; document.title = '(' + S.unseen + ') ' + t('doc_title');
+  }
+  try{
+    if('Notification' in window && Notification.permission === 'granted'){
+      const n = new Notification(t('done_title'), { body: names, tag: 'fl-done', icon: '' });
+      n.onclick = () => { window.focus(); S.filter = 'done'; render(); n.close(); };
+    }
+  }catch(e){}
+}
+
+/* ---- الاتصال بالسيرفر ---- */
+function setOffline(f){ const b = $('offBar'); if(b) b.classList.toggle('hidden', !f); }
+window.addEventListener('online', () => { if(S.me) refresh(true); });
+async function api(body){
+  const payload = JSON.stringify(Object.assign({wt:S.wt, dev:S.dev}, body));
+  const safe = body.action==='login' || body.action==='pull' || (body.action==='sync' && !(body.cases && body.cases.length) && !body.purge && !body.actnames);
+  let res = null, failed = false;
+  for(let a = 0; a < (safe ? 2 : 1); a++){
+    const ac = new AbortController(), tm = setTimeout(() => ac.abort(), 25000);
+    try{ const r = await fetch(URL_API, { method:'POST', body:payload, signal:ac.signal }); res = await r.json(); failed = false; break; }
+    catch(e){ failed = true; }
+    finally{ clearTimeout(tm); }
+  }
+  setOffline(failed);
+  if(failed) throw new TypeError(t('e_conn'));
+  if(res.wipe){ store('fl_wt', null); S.wt = ''; }
+  if(!res.ok){ const e = new Error(res.msg || t('err')); e.auth = res.auth === false; throw e; }
+  if(res.tok){ S.tok = res.tok; store('fl_tok', res.tok); }
+  return res;
+}
+function mergeCases(res){
+  if(!res.cases) return;
+  res.cases.forEach(c => { const l = String(c.link||'').trim(); if(l && !/^https?:\/\//i.test(l)) c.link = /^www\./i.test(l) ? 'https://'+l : ''; });
+  const mp = new Map(res.full ? [] : S.cases.map(c => [String(c.id), c]));
+  res.cases.forEach(c => mp.set(String(c.id), c));
+  (res.gone || []).forEach(id => mp.delete(String(id)));
+  S.cases = Array.from(mp.values());
+  try{ checkDone(S.cases); }catch(e){}
+}
+function absorb(res){
+  mergeCases(res);
+  if(res.users) S.users = res.users;
+  render();
+  if(S.screen==='activity') renderAct();
+  renderReports();
+}
+function syncState(){ return { since:S.since, vk:S.vk }; }
+async function absorbAll(res){
+  if(res.full && res.next != null){            // السيرفر يرجّع الكيسات بصفحات (3000 صف)؛ نكمّل الباقي قبل العرض
+    let all = res.cases.slice(), nx = res.next;
+    while(nx != null){ const p = await api({action:'pull', page:nx}); all = all.concat(p.cases || []); nx = p.next; }
+    res = Object.assign({}, res, { cases: all }); delete res.next;
+  }
+  absorb(res);
+  if(res.t){ S.since = res.t; S.vk = res.vk || ''; }
+}
+async function refresh(quiet){
+  if(S.busy) return;
+  try{ await absorbAll(await api(Object.assign({action:'sync', cases:[]}, syncState()))); }
+  catch(e){ if(e.auth) return logout(); if(!quiet) toast(t('refresh_fail', e.message)); }
+}
+async function push(extra){
+  S.busy = true;
+  try{ const res = await api(Object.assign({action:'sync', cases:[]}, syncState(), extra)); await absorbAll(res); return res; }
+  finally{ S.busy = false; }
+}
+
+/* ---- الدخول ---- */
+function showLoginErr(){ $('loginErr').textContent = S.lerr ? (S.lerr.k ? t(S.lerr.k) : S.lerr.raw) : ''; }
+/* مولّد QR صغير (نسخة 1، مستوى تصحيح L، حتى 17 بايت) */
+function qrMatrix(txt){
+  const N = 21, d = Array.from(txt, c => c.charCodeAt(0) & 255);
+  if(d.length > 17) throw new Error('qr too long');
+  const b = [], put = (v,n) => { for(let i = n-1; i >= 0; i--) b.push((v >> i) & 1); };
+  put(4,4); put(d.length,8); d.forEach(x => put(x,8)); put(0, Math.min(4, 152 - b.length));
+  while(b.length % 8) b.push(0);
+  const cw = []; for(let i = 0; i < b.length; i += 8) cw.push(parseInt(b.slice(i,i+8).join(''), 2));
+  for(let p = 0xEC; cw.length < 19; p = p === 0xEC ? 0x11 : 0xEC) cw.push(p);
+  const ex = [], lg = []; let x = 1;
+  for(let i = 0; i < 255; i++){ ex[i] = x; lg[x] = i; x <<= 1; if(x & 256) x ^= 0x11D; }
+  const mul = (a,c) => a && c ? ex[(lg[a] + lg[c]) % 255] : 0;
+  let g = [1];
+  for(let i = 0; i < 7; i++){ const n = Array(g.length+1).fill(0); g.forEach((c,j) => { n[j] ^= c; n[j+1] ^= mul(c, ex[i]); }); g = n; }
+  const ec = Array(7).fill(0);
+  cw.forEach(c => { const f = c ^ ec[0]; ec.shift(); ec.push(0); if(f) g.slice(1).forEach((gc,j) => { ec[j] ^= mul(gc,f); }); });
+  const bits = []; cw.concat(ec).forEach(c => { for(let i = 7; i >= 0; i--) bits.push((c >> i) & 1); });
+  const m = Array.from({length:N}, () => Array(N).fill(null));
+  const set = (r,c,v) => { if(r >= 0 && r < N && c >= 0 && c < N) m[r][c] = v; };
+  const finder = (r,c) => { for(let i = -1; i <= 7; i++) for(let j = -1; j <= 7; j++){
+    const on = i >= 0 && i <= 6 && j >= 0 && j <= 6 && (i == 0 || i == 6 || j == 0 || j == 6 || (i >= 2 && i <= 4 && j >= 2 && j <= 4)); set(r+i, c+j, on); } };
+  finder(0,0); finder(0,N-7); finder(N-7,0);
+  for(let i = 8; i < N-8; i++){ set(6,i,i % 2 == 0); set(i,6,i % 2 == 0); }
+  m[N-8][8] = true;
+  for(let i = 0; i < 9; i++){ if(m[8][i] === null) m[8][i] = false; if(m[i][8] === null) m[i][8] = false; }
+  for(let i = 0; i < 8; i++){ if(m[8][N-1-i] === null) m[8][N-1-i] = false; if(m[N-1-i][8] === null) m[N-1-i][8] = false; }
+  let k = 0, up = true;
+  for(let c = N-1; c > 0; c -= 2){ if(c == 6) c--;
+    for(let t = 0; t < N; t++){ const r = up ? N-1-t : t;
+      for(let j = 0; j < 2; j++){ const cc = c - j;
+        if(m[r][cc] === null){ const bit = k < bits.length ? bits[k++] : 0; m[r][cc] = (r + cc) % 2 == 0 ? !bit : !!bit; } } }
+    up = !up; }
+  let f = 8 << 10; for(let i = 14; i >= 10; i--) if((f >> i) & 1) f ^= 0x537 << (i - 10);
+  const fmt = ((8 << 10) | f) ^ 0x5412, gb = i => ((fmt >> i) & 1) == 1;
+  for(let i = 0; i < 6; i++) m[i][8] = gb(i);
+  m[7][8] = gb(6); m[8][8] = gb(7); m[8][7] = gb(8);
+  for(let i = 9; i < 15; i++) m[8][14-i] = gb(i);
+  for(let i = 0; i < 8; i++) m[8][N-1-i] = gb(i);
+  for(let i = 8; i < 15; i++) m[N-15+i][8] = gb(i);
+  m[N-8][8] = true;
+  return m;
+}
+function qrSvg(txt){
+  const m = qrMatrix(txt), N = m.length, q = 3; let p = '';
+  m.forEach((row,r) => row.forEach((v,c) => { if(v) p += 'M' + (c+q) + ' ' + (r+q) + 'h1v1h-1z'; }));
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + (N+2*q) + ' ' + (N+2*q) + '" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path d="' + p + '" fill="#0B2545"/></svg>';
+}
+
+/* ---- دخول بربط الجهاز (QR): المتصفح ما يعرف كود الحساب أبداً ---- */
+const IDLE_MIN = 60;                      // خمول بالدقائق ثم يطلع تلقائياً
+let qrT = 0, qrGen = 0, idleT = 0;
+function loginErr(e){
+  const m = e.message || '';
+  S.lerr = e.k ? {k:e.k} : /Login failed/i.test(m) ? {k:'e_generic'} : /Too many attempts/i.test(m) ? {k:'e_busy'} : (e instanceof TypeError) ? {k:'e_conn'} : {raw:m};
+  showLoginErr();
+}
+async function login(){
+  const res = await api({action:'login'});
+  if(res.user.role !== 'admin'){ const e = new Error('not admin'); e.k = 'e_notadmin'; throw e; }
+  S.me = res.user; S.users = res.users || [];
+  $('login').classList.add('hidden'); $('app').classList.remove('hidden'); showScreen(S.screen);
+  $('who').textContent = res.user.name;
+  await refresh();
+  clearInterval(login.timer);
+  login.timer = setInterval(()=>refresh(true), 30000);       // حتى لو التبويب بالخلفية حتى توصل الإشعارات
+  armIdle();
+}
+function armIdle(){ clearTimeout(idleT); idleT = setTimeout(() => { if(S.me) logout(); }, IDLE_MIN*60000); }
+['click','keydown','pointerdown','scroll'].forEach(ev => document.addEventListener(ev, () => { if(S.me) armIdle(); }, {passive:true}));
+function logout(){
+  clearInterval(login.timer); clearTimeout(idleT);
+  ['fl_wt','fl_draft','fl_code','fl_tok'].forEach(k => store(k, null));
+  S.wt = ''; S.me = null; S.cases = []; S.since = 0; S.vk = '';
+  $('app').classList.add('hidden'); $('login').classList.remove('hidden');
+  qrStart();
+}
+async function qrStart(){
+  clearTimeout(qrT); const my = ++qrGen; S.lerr = null; showLoginErr();
+  const sec = Array.from(crypto.getRandomValues(new Uint8Array(24)), b => b.toString(16).padStart(2,'0')).join('');
+  const ua0 = navigator.userAgent, br = /Edg\//.test(ua0) ? 'Edge' : /Firefox\//.test(ua0) ? 'Firefox' : /Chrome\//.test(ua0) ? 'Chrome' : /Safari\//.test(ua0) ? 'Safari' : 'Browser';
+  const ua = ((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '') + ' · ' + br;
+  let r;
+  try{ r = await api({action:'qr_new', sec, ua}); }
+  catch(e){ if(my === qrGen){ $('qrSt').textContent = t('e_conn'); qrT = setTimeout(qrStart, 5000); } return; }
+  if(my !== qrGen) return;
+  $('qrBox').innerHTML = qrSvg('FL:' + r.id); $('qrCode').textContent = r.id.slice(0,4) + '-' + r.id.slice(4);
+  $('qrSt').textContent = t('qr_wait');
+  const t0 = Date.now();
+  const poll = async () => {
+    if(my !== qrGen || S.me) return;
+    if(Date.now() - t0 > (r.ttl || 120)*1000) return qrStart();
+    try{
+      const pr = await api({action:'qr_poll', id:r.id, sec});
+      if(my !== qrGen) return;
+      if(pr.st === 'ok'){ S.wt = pr.wt; store('fl_wt', pr.wt); try{ await login(); }catch(e){ S.wt = ''; store('fl_wt', null); loginErr(e); qrStart(); } return; }
+      if(pr.st === 'gone') return qrStart();
+    }catch(e){}
+    qrT = setTimeout(poll, 2000);
+  };
+  qrT = setTimeout(poll, 2000);
+}
+$('qrNew').addEventListener('click', qrStart);
+
+$('logoutBtn').onclick = logout;
+$('refreshBtn').onclick = async () => {
+  const b = $('refreshBtn'); if(b.classList.contains('loading')) return;
+  b.classList.add('loading'); b.innerHTML = esc(t('refreshing')) + '<span class="dots"><i></i><i></i><i></i></span>';
+  try{ await Promise.all([refresh(false), new Promise(r => setTimeout(r, 700))]); }
+  finally{ b.classList.remove('loading'); b.textContent = t('refresh'); }
+};
+
+/* ---- المحافظات والمهندسون ---- */
+const GOV_ALIAS = { nineveh:'mosul', ninawa:'mosul', 'نينوى':'mosul', tamim:'kirkuk', taamim:'kirkuk', tameem:'kirkuk', tamin:'kirkuk',
+  basrah:'basra', arbil:'erbil', dohuk:'duhok', sulaimaniyah:'sulaymaniyah', slemani:'sulaymaniyah', sulaymaniya:'sulaymaniyah',
+  wassit:'wasit', missan:'maysan', dhiqar:'dhi qar', 'thi qar':'dhi qar', saladin:'salah al-din', salahaddin:'salah al-din', 'salah al din':'salah al-din',
+  qadisiyah:'diwaniyah', qadisiyyah:'diwaniyah', babil:'babylon', karbala:'karbala', anbar:'anbar' };
+function normGov(g){ g = String(g||'').trim().toLowerCase().replace(/\s+/g,' '); return GOV_ALIAS[g] || g; }
+function engineers(){ return S.users.filter(u => u.role === 'engineer' && u.on); }
+function covering(gov){
+  const g = normGov(gov); if(!g) return [];
+  return engineers().filter(u => String(u.govs||'').split(',').some(x => normGov(x) === g));
+}
+function userName(id){ const u = S.users.find(x => String(x.id) === String(id)); return u ? u.name : '';}
+function firstGov(id){ const u = S.users.find(x => String(x.id) === String(id)); return String((u && u.govs) || '').split(',').map(x => x.trim()).filter(Boolean)[0] || ''; }
+
+/* ---- القسم: يُقرأ من الإيميل، وإذا مفقود يُشتق من رقم التذكرة (CMC أو Reopen) ---- */
+const DEPTS = ['Urgent','Sales','Marketing','VIP','CMC','Reopen','B2B','FCMC'];   // Urgent = وضع الطوارئ، يبقى بالإنكليزي بكل اللغات
+function normDept(v){
+  v = String(v||'').trim(); if(!v) return '';
+  const hit = DEPTS.find(d => d.toLowerCase() === v.toLowerCase()); if(hit) return hit;
+  return /cmc/i.test(v) ? 'CMC' : v;
+}
+function deriveDept(tk){ return /cmc/i.test(String(tk||'')) ? 'CMC' : 'Reopen'; }
+function deptOf(c){ return normDept(c.dept) || deriveDept(c.t); }
+function deptOptions(cur, blank){
+  const l = DEPTS.slice(); if(cur && !l.includes(cur)) l.push(cur);
+  return (blank === false ? '' : `<option value="">${esc(t('dept_auto'))}</option>`) + l.map(d => `<option value="${esc(d)}">${esc(d)}</option>`).join('');
+}
+function govSet(){
+  const gs = new Set(['Baghdad','Mosul','Kirkuk','Basra','Erbil','Sulaymaniyah','Duhok','Anbar','Babylon','Karbala','Najaf','Diwaniyah','Wasit','Maysan','Dhi Qar','Muthanna','Salah al-Din','Diyala']);
+  engineers().forEach(u => String(u.govs||'').split(',').map(x=>x.trim()).filter(Boolean).forEach(g=>gs.add(g)));
+  return [...gs];
+}
+function govOptions(cur, blank){
+  const gs = govSet(); if(cur && !gs.includes(cur)) gs.push(cur);
+  return (blank === false ? '' : `<option value="">${esc(t('sel_gov'))}</option>`) +
+    gs.map(g => `<option value="${esc(g)}">${esc(govLabel(g))}</option>`).join('');
+}
+function engOptionsRaw(){
+  return engineers().map(u => `<option value="${esc(u.id)}">${esc(u.name)}${u.govs ? ' — '+esc(govsLabel(u.govs)) : ''}</option>`).join('');
+}
+function fillEngControls(){
+  const sig = S.lang + '|' + S.users.map(u => [u.id,u.name,u.govs,u.on,u.role].join(',')).join(';');
+  if(fillEngControls.sig === sig) return; fillEngControls.sig = sig;
+  const gsel = $('f_gov'), asel = $('f_asg'), cg = gsel.value, ca = asel.value;
+  gsel.innerHTML = govOptions(cg); gsel.value = cg;
+  const dsel = $('f_dept'), cd = dsel.value; dsel.innerHTML = deptOptions(cd); dsel.value = cd;
+  asel.innerHTML = `<option value="">${esc(t('all_eng'))}</option>` + engOptionsRaw(); asel.value = ca;
+  $('pasteGov').innerHTML = `<option value="">${esc(t('bulk_gov'))}</option>` + govOptions('', false);
+  $('pasteAsg').innerHTML = `<option value="">${esc(t('bulk_eng'))}</option>` + engOptionsRaw();
+}
+function updateRoute(){
+  const el = $('route'), asg = $('f_asg').value, gov = $('f_gov').value;
+  if(asg){ el.className='hint ok'; el.textContent = t('route_only', userName(asg)); return; }
+  if(!gov.trim()){ el.className='hint'; el.textContent=''; return; }
+  const c = covering(gov);
+  if(c.length){ el.className='hint ok'; el.textContent = t('route_to', c.map(u=>u.name).join(t('sep'))) + (c.length>1 ? t('route_first') : ''); }
+  else { el.className='hint'; el.textContent = t('route_none'); }
+}
+$('f_gov').addEventListener('change', updateRoute);
+$('f_asg').addEventListener('change', () => {
+  const a = $('f_asg').value;
+  if(a && !$('f_gov').value){ const g = firstGov(a); if(g){ $('f_gov').innerHTML = govOptions(g); $('f_gov').value = g; } }
+  updateRoute();
+});
+
+/* ---- رقم التذكرة: إذا موجود كود CMC ينحذف كود CS ---- */
+function cleanTicket(v){
+  const parts = String(v||'').split(/[\s,;|\/]+/).filter(Boolean);
+  const cmc = parts.find(x => /^CMC/i.test(x));
+  if(cmc) return cmc;
+  return String(v||'').trim();
+}
+$('f_t').addEventListener('input', () => {
+  const v = $('f_t').value;
+  if(/CMC/i.test(v) && /CS/i.test(v.replace(/CMC/gi,''))) $('f_t').value = cleanTicket(v);
+});
+$('f_t').addEventListener('blur', () => { $('f_t').value = cleanTicket($('f_t').value); });
+
+/* ---- الأرقام داخل نص المشكلة (نصوص مخزّنة، تبقى عربية دائماً لأن تطبيق المهندس يقرأها) ---- */
+const MS_RE = /^رقم المشترك:\s*(.*)$/m, CB_RE = /^رقم الاتصال:\s*(.*)$/m;
+function splitIssue(c){
+  const iss = c.issue || '';
+  const ms = c.ms || (iss.match(MS_RE)||[])[1] || '';
+  const cb = c.cb || (iss.match(CB_RE)||[])[1] || '';
+  const rest = iss.split('\n').filter(l => !MS_RE.test(l) && !CB_RE.test(l) && !URG_RE.test(l)).join('\n');
+  return { ms: ms.trim(), cb: cb.trim(), rest };
+}
+
+const EG_RE = /^المحافظة \(الإيميل\):\s*(.*)$/m;
+const URG_LINE = '🚨 طارئ', URG_RE = /^🚨 طارئ\s*$/m;
+const isUrg = c => !!c && (normDept(c.dept) === 'Urgent' || URG_RE.test(c.issue || ''));
+function emailGov(c){ return c.egov || ((c.issue||'').match(EG_RE)||[])[1] || ''; }
+function issueNoEg(c){ return (c.issue||'').split('\n').filter(l => !EG_RE.test(l) && !URG_RE.test(l)).join('\n'); }
+
+/* ---- الكيسات ---- */
+const FIELDS = ['t','gov','addr'];
+function kind(c){
+  if(c.st === 'new') return 'new';
+  if(c.st === 'acc') return 'acc';
+  if(c.st === 'ret') return 'ret';
+  return 'done';
+}
+const isOd = c => c.st==='new' && c.ts && Date.now()-c.ts > 2*864e5;
+function engOf(c,id){ const u=S.users.find(x=>String(x.id)===String(id)); return !!u && (String(c.asg)===String(u.id) || c.by===u.name); }
+function retKey(c){ return c.id+'|'+(c.updated||0); }
+function retUnseen(){ let o=[]; try{o=JSON.parse(store('fl_seen_ret')||'[]');}catch(e){} return dispatched().filter(c=>kind(c)==='ret' && !o.includes(retKey(c))).length; }
+function markRet(){ store('fl_seen_ret', JSON.stringify(dispatched().filter(c=>kind(c)==='ret').map(retKey))); }
+function dispatched(){ return S.cases.filter(c => !c.del && c.pub && !S.pend.has(String(c.id))); }
+function fmt(ts){ if(!ts) return ''; const d=new Date(Number(ts)); const p=n=>String(n).padStart(2,'0'); return `${p(d.getDate())}/${p(d.getMonth()+1)} ${p(d.getHours())}:${p(d.getMinutes())}`; }
+
+function render(){
+  fillEngControls(); updateRoute();
+  const all = dispatched();
+  const counts = { all:all.length, new:0, acc:0, ret:0, done:0 };
+  all.forEach(c => counts[kind(c)]++);
+  const d0 = new Date(); d0.setHours(0,0,0,0); const T0 = d0.getTime();
+  const od = all.filter(isOd).length, un = retUnseen();
+  const doneToday = all.filter(c => kind(c)==='done' && (c.updated||0) >= T0).length;
+  if(S.filter==='ret') markRet();
+  $('boardN').textContent = counts.all;
+  const kp = [['new','new',counts.new,'k_new'],['acc','acc',counts.acc,'k_acc'],['ret','ret',counts.ret,'k_ret'],['od','od',od,'k_od'],['done','done',doneToday,'tab_done']];
+  $('kpis').innerHTML = kp.map(([k,f,n,l]) => `<button class="kpi s-${f==='od'?'ret':f} ${f==='od'?'k-od':''} ${(S.filter===f||(f==='od'&&S.filter==='od'))?'on':''}" type="button" aria-pressed="${S.filter===f}" data-f="${f}"><b>${n}</b><span>${f==='ret'&&un>0&&S.filter!=='ret'?'<i class="dot"></i>':''}${esc(t(l))}${k==='done'?' · '+esc(t('df_today')):''}</span></button>`).join('');
+    const nz = s => String(s||'').toLowerCase().replace(/[\u0660-\u0669]/g, d => d.charCodeAt(0)-0x0660).replace(/[\u06F0-\u06F9]/g, d => d.charCodeAt(0)-0x06F0)
+    .replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/[\u064B-\u0652]/g,'');
+  const q = nz(S.q.trim());
+  const match = c => !q || nz([c.t,deptOf(c),c.gov,govLabel(c.gov),c.ms,c.cb,c.addr,c.issue].join(' ')).includes(q);
+  const f = S.filter;
+  let rows = all.filter(c => (f==='all' || (f==='od' ? isOd(c) : f==='urg' ? (isUrg(c) && kind(c)!=='done') : kind(c)===f)) && match(c));
+  const since = { today:T0, yday:T0-864e5, week:Date.now()-7*864e5, all:0 }, until = { yday:T0 };
+  const dOf = c => c.updated || c.ts || 0;
+  const inRange = (c,k) => dOf(c) >= since[k] && dOf(c) < (until[k]||Infinity);
+  const dOk = c => inRange(c, S.dfilter);
+  const eOk = c => !S.ae || engOf(c, S.ae);
+  const gOk = c => !S.gf || normGov(c.gov) === normGov(S.gf);
+  const base = rows.slice();
+  const engList = S.gf ? covering(S.gf) : engineers();
+  if(S.ae && !engList.some(u => String(u.id) === String(S.ae))) S.ae = '';
+  $('dfil').innerHTML = ['all','today','yday','week'].map(k => `<option value="${k}">${esc(k==='all' ? t('all_dates') : t('df_'+k))} (${base.filter(c=>inRange(c,k)&&eOk(c)&&gOk(c)).length})</option>`).join('');
+  $('dfil').value = S.dfilter;
+  $('efil').innerHTML = [['',t('all_eng_f')],...engList.map(u=>[String(u.id),u.name])].map(([k,n]) => `<option value="${esc(k)}">${esc(n)} (${base.filter(c=>(!k||engOf(c,k))&&dOk(c)&&gOk(c)).length})</option>`).join('');
+  $('efil').value = S.ae;
+  const govs = [...new Set(base.map(c => c.gov).filter(Boolean))];
+  if(S.gf && !govs.some(g => normGov(g)===normGov(S.gf))) govs.push(S.gf);
+  $('gfil').innerHTML = `<option value="">${esc(t('all_gov'))}</option>` + govs.map(g => `<option value="${esc(g)}">${esc(govLabel(g))} (${base.filter(c=>normGov(c.gov)===normGov(g)&&dOk(c)&&eOk(c)).length})</option>`).join('');
+  $('gfil').value = S.gf;
+  $('sfil').innerHTML = ['def','new','old','upd'].map(k => `<option value="${k}">${esc(t('sort_'+k))}</option>`).join('');
+  $('sfil').value = S.sort;
+  rows = rows.filter(c => dOk(c) && eOk(c) && gOk(c));
+  const SORTS = { new:(a,b)=>(b.ts||0)-(a.ts||0), old:(a,b)=>(a.ts||0)-(b.ts||0), upd:(a,b)=>(b.updated||0)-(a.updated||0) };
+  if(S.sort !== 'def' && SORTS[S.sort]) rows.sort(SORTS[S.sort]);
+  else rows.sort((a,b) => f==='new' ? ((isOd(b)?1:0)-(isOd(a)?1:0)) || (isOd(a)?(a.ts||0)-(b.ts||0):(b.updated||0)-(a.updated||0)) : (b.updated||0)-(a.updated||0));
+  if(S.sort==='def'){ const U = c => isUrg(c) && kind(c)!=='done'; rows = [...rows.filter(U), ...rows.filter(c => !U(c))]; }
+  S.rows = rows;
+  const ob = (f==='new'||f==='od') && od ? `<div class="odb">⚠ ${esc(t('od_n', od))}</div>` : '';
+  $('list').innerHTML = rows.length ? ob + rows.map(rowHtml).join('') :
+    `<div class="empty">${esc(all.length ? t('empty_f') : t('empty_all'))}</div>`;
+  store('fl_filters', JSON.stringify({filter:S.filter, dfilter:S.dfilter, ae:S.ae, gf:S.gf, sort:S.sort}));
+}
+function dur(ms){
+  ms = Math.max(0, ms); const s = Math.floor(ms/1000), d = Math.floor(s/86400), h = Math.floor(s%86400/3600), m = Math.floor(s%3600/60), sc = s%60;
+  const u = S.lang==='ar' ? ['يوم','ساعة','دقيقة','ثانية'] : ['d','h','m','s'], p = [];
+  if(d) p.push(d+' '+u[0]);
+  if(d||h) p.push(h+' '+u[1]);
+  p.push(m+' '+u[2]);
+  if(!d) p.push(sc+' '+u[3]);
+  return p.join(' ');
+}
+function ageText(ts, end){ return end ? t('age_took', dur(end-ts)) : t('age_since', dur(Date.now()-ts)); }
+function tickAges(){ document.querySelectorAll('.age-v').forEach(el => { el.textContent = ageText(+el.dataset.ts, +el.dataset.end); }); }
+setInterval(tickAges, 1000);
+function rowHtml(c){
+  const k = kind(c);
+  const urg = isUrg(c) && k!=='done';
+  const sent = Number(c.ts) || 0, endT = k==='done' ? (Number(c.updated) || sent) : 0;
+  const ageLine = sent ? `<span class="mi age${isOd(c)?' late':''}"><bdi class="age-v" data-ts="${sent}" data-end="${endT}">${esc(ageText(sent, endT))}</bdi></span>` : '';
+  const sentLine = sent ? `<span class="mi">${esc(t('sent_at', fmt(sent)))}</span>` : '';
+  let who = '';
+  if(k==='new') who = c.asg ? t('w_to', userName(c.asg)) : t('w_engof', govLabel(c.gov));
+  else if(k==='acc') who = t('w_at', userName(c.asg) || c.by);
+  else if(k==='done') who = c.by ? t('w_done', c.by) : '';
+  const det = [['gov','d_gov'],['egov','eg_title'],['dept','n_dept'],['addr','d_addr'],['ms',null],['cb',null],['tech','n_tech'],['cell','n_cell'],['start','n_start'],['issue','d_issue'],['gps','d_gps'],['link','d_link'],['date','d_date'],['notes','d_notes'],['pub','d_pub']]
+    .filter(([f]) => c[f]).map(([f,l]) => `<dt>${esc(l ? t(l) : (f==='ms' ? 'Primary MSISDN' : 'Call Back'))}</dt><dd>${esc(f==='gov' ? govLabel(c[f]) : c[f])}</dd>`).join('');
+  const editable = k==='new' || k==='ret';
+  const odc = isOd(c);
+  const days = odc ? Math.floor((Date.now()-c.ts)/864e5) : 0;
+  const waNum = String(c.ms||'').replace(/^0/,'');
+  const quick = (waNum ? `<a class="btn small" target="_blank" rel="noopener" href="https://wa.me/964${esc(waNum)}">${esc(t('wa'))}</a>` : '') + (c.gps ? `<a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps?q=${encodeURIComponent(c.gps)}">${esc(t('map'))}</a>` : '');
+  const isOpen = S.open.has(String(c.id));
+  return `<article class="case s-${k}${odc?' od':''}${urg?' urgent':''}${isOpen?' open':''}" data-id="${esc(c.id)}" tabindex="0" role="button" aria-expanded="${isOpen}">
+    <div class="hd">
+      <span class="tk">${esc(c.t)}</span>
+      <span class="dp" dir="ltr" title="${esc(t('n_dept'))}">${esc(deptOf(c))}</span>${emailGov(c) ? `<span class="eg" dir="ltr" title="${esc(t('eg_title'))}">${esc(emailGov(c))}</span>` : ''}
+      <span class="sp"></span>
+      ${urg ? `<span class="ub">🚨 ${esc(t('k_urg'))}</span>` : ''}<span class="badge">${esc(t('k_'+k))}</span>
+    </div>
+    <div class="sub"><span class="gv">${esc(govLabel(c.gov))}</span>${(issueNoEg(c) || c.name) ? `<span>·</span><span class="ds">${esc(issueNoEg(c) || c.name)}</span>` : ''}</div>
+    <div class="meta">${ageLine}${who ? `<span class="mi">${esc(who)}</span>` : ''}${c.updated ? `<span class="mi">${esc(t('upd_at', fmt(c.updated)))}</span>` : ''}${sentLine}${odc ? `<span class="mi" style="color:var(--ret);font-weight:600">⚠ ${esc(t('k_od'))} – ${esc(t('od_ago',days))}</span>` : ''}</div>
+    ${k==='done' ? `<div class="acts" style="margin-top:10px"><button class="btn small" data-act="cpid">${esc(t('cp_id'))}</button><button class="btn small" data-act="cptbl">${esc(t('cp_tbl'))}</button></div>` : ''}
+    <div class="extra">
+      <dl class="kv">${det}</dl>
+      ${quick?`<div class="acts">${quick}</div>`:''}
+      ${k==='ret' && c.rn ? `<div class="reason">${esc(t('reason', c.rn))}</div>`:''}
+      ${editable ? `<div class="acts"><button class="btn small" data-act="edit">${esc(k==='ret' ? t('edit_resend') : t('edit'))}</button><button class="btn small danger" data-act="del">${esc(t('del'))}</button></div>`
+        : `<div class="who2" style="margin-top:10px">${k==='acc' ? esc(t('locked')) : ''}</div>${k==='acc' ? `<div class="acts"><button class="btn small" data-act="reclaim">${esc(t('reclaim'))}</button></div>` : ''}`}
+    </div>
+  </article>`;
+}
+$('kpis').addEventListener('click', e => { const b=e.target.closest('.kpi'); if(b){ const f = S.filter===b.dataset.f ? 'all' : b.dataset.f; S.filter=f; S.ae=''; S.gf=''; S.dfilter = f==='done' ? 'today' : 'all'; render(); }});
+$('gfil').addEventListener('change', e => { S.gf = e.target.value; render(); });
+$('sfil').addEventListener('change', e => { S.sort = e.target.value; render(); });
+$('fclr').addEventListener('click', () => { S.dfilter='all'; S.ae=''; S.gf=''; S.sort='def'; S.q=''; $('q').value=''; render(); });
+$('efil').addEventListener('change', e => { S.ae = e.target.value; render(); });
+$('dfil').addEventListener('change', e => { S.dfilter = e.target.value; render(); });
+let _qt; $('q').addEventListener('input', e => { S.q = e.target.value; clearTimeout(_qt); _qt = setTimeout(render, 200); });
+$('list').addEventListener('keydown', e => {
+  if((e.key==='Enter' || e.key===' ') && e.target.classList && e.target.classList.contains('case')){ e.preventDefault(); e.target.click(); }
+});
+$('list').addEventListener('click', e => {
+  const art = e.target.closest('.case'); if(!art) return;
+  const act = e.target.closest('[data-act]');
+  const c = S.cases.find(x => String(x.id) === art.dataset.id);
+  if(!act){ const o = art.classList.toggle('open'); art.setAttribute('aria-expanded', o); o ? S.open.add(art.dataset.id) : S.open.delete(art.dataset.id); return; }
+  if(act.dataset.act==='edit') startEdit(c);
+  if(act.dataset.act==='del') removeCase(c);
+  if(act.dataset.act==='cpid') copyTicket(c);
+  if(act.dataset.act==='cptbl') copyTable(c);
+  if(act.dataset.act==='reclaim') startReclaim(c);
+});
+
+$('csvBtn').onclick = () => {
+  const rows = S.rows || [], K = ['t','gov','addr','ms','cb','issue','st','asg','pub','by','updated','urg'];
+  const cell = v => { let s = String(v==null?'':v); if(/^[=+\-@\t\r]/.test(s)) s = "'" + s; else if(/^0\d{9,10}$/.test(s)) s = '\t' + s; return '"' + s.replace(/"/g,'""') + '"'; };
+  const csv = '\ufeff' + [K.join(','), ...rows.map(c => K.map(k => cell(k==='updated'&&c[k] ? new Date(Number(c[k])).toLocaleString('en-GB') : k==='asg' ? userName(c[k]) : k==='urg' ? (isUrg(c) ? 'URGENT' : '') : c[k])).join(','))].join('\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download = 'cases.csv'; a.click();
+};
+/* ---- نسخ الكيس المكتمل ---- */
+function issueText(c){ return splitIssue(c).rest.split('\n').filter(l => !EG_RE.test(l)).join('\n').trim(); }
+async function copyToClipboard(text, html){
+  try{
+    if(html && window.ClipboardItem && navigator.clipboard && navigator.clipboard.write){
+      await navigator.clipboard.write([new ClipboardItem({
+        'text/plain': new Blob([text], {type:'text/plain'}),
+        'text/html': new Blob([html], {type:'text/html'})
+      })]);
+      return true;
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){ await navigator.clipboard.writeText(text); return true; }
+  }catch(e){}
+  try{                                         // احتياط للمتصفحات/الصفحات غير الآمنة
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+    document.body.appendChild(ta); ta.select();
+    const ok = document.execCommand('copy'); ta.remove(); return ok;
+  }catch(e){ return false; }
+}
+async function copyTicket(c){
+  toast(t(await copyToClipboard(c.t || '') ? 'cp_done_id' : 'cp_fail'));
+}
+async function copyTable(c){
+  const cell = v => /[\t\n"]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;   // يبقى النص بخلية وحدة بالإكسل
+  const head = ['IssueID', 'Complainer issue', 'Link'];
+  const row = [c.t || '', issueText(c), c.link || ''];
+  const text = head.join('\t') + '\n' + row.map(cell).join('\t');
+  const B = 'border:1px solid #000;padding:1px 6px;text-align:center;font-family:Calibri,Arial,sans-serif;font-size:11pt;line-height:1.2;white-space:nowrap';
+  const th = v => `<td style="${B};background-color:#A9A4D8;color:#000;font-weight:bold">${v}</td>`;
+  const td = (v, link) => `<td style="${B}">${link && v ? `<a href="${esc(v)}" style="color:#0563C1;text-decoration:underline">${esc(v)}</a>` : esc(v).replace(/\n/g, '<br>')}</td>`;
+  const html = '<table style="border-collapse:collapse" border="1" cellspacing="0" cellpadding="0"><tr>' + head.map(th).join('') + '</tr><tr>' +
+    td(row[0]) + td(row[1]) + td(row[2], true) + '</tr></table>';
+  toast(t(await copyToClipboard(text, html) ? 'cp_done_tbl' : 'cp_fail'));
+}
+
+/* ---- إرسال / تعديل ---- */
+function formTexts(){
+  const c = S.editing ? S.cases.find(x => String(x.id) === String(S.editing)) : null;
+  $('formTitle').textContent = S.editing ? t('edit_case') : t('new_case');
+  $('sendBtn').textContent = S.editing ? (c && c.st==='ret' ? t('save_resend') : t('save_edit')) : t('send_eng');
+  if(S.editing && c) $('editBanner').innerHTML = c.st==='ret' && c.rn ? esc(t('banner_ret', c.rn)) : esc(t('banner_edit'));
+}
+function resetForm(){
+  S.editing = null; $('caseForm').reset(); if($('formDlg').open) $('formDlg').close();
+  $('editBanner').classList.add('hidden'); $('cancelEdit').classList.add('hidden');
+  formTexts(); updateRoute();
+}
+function startEdit(c){
+  S.editing = c.id;
+  FIELDS.forEach(f => { if(f==='gov') $('f_gov').innerHTML = govOptions(c.gov); $('f_'+f).value = c[f] || ''; });
+  const dv = isUrg(c) ? 'Urgent' : normDept(c.dept); $('f_dept').innerHTML = deptOptions(dv); $('f_dept').value = dv;
+  const sp = splitIssue(c); $('f_ms').value = sp.ms; $('f_cb').value = sp.cb; $('f_issue').value = sp.rest;
+  $('f_asg').value = c.asg || '';
+  formTexts();
+  $('editBanner').classList.remove('hidden'); $('cancelEdit').classList.remove('hidden');
+  updateRoute(); if(!$('formDlg').open) $('formDlg').showModal(); $('f_t').focus();
+}
+$('cancelEdit').onclick = resetForm;
+$('formX').onclick = resetForm;
+$('formDlg').addEventListener('close', () => { if(S.editing) resetForm(); });
+const DRAFT_IDS = ['f_t','f_gov','f_dept','f_addr','f_ms','f_cb','f_issue','f_asg'];
+function saveDraft(){ if(S.editing) return; const d = {}; DRAFT_IDS.forEach(i => d[i] = $(i).value);
+  store('fl_draft', (d.f_t || d.f_addr || d.f_issue || d.f_ms) ? JSON.stringify(d) : null); }
+function loadDraft(){ let d = null; try{ d = JSON.parse(store('fl_draft')||'null'); }catch(e){} if(!d) return;
+  DRAFT_IDS.forEach(i => { $(i).value = d[i] || ''; }); updateRoute(); }
+$('caseForm').addEventListener('input', saveDraft); $('caseForm').addEventListener('change', saveDraft);
+$('newBtn').onclick = () => { resetForm(); $('formDlg').showModal(); loadDraft(); $('f_t').focus(); };
+
+$('caseForm').addEventListener('submit', async ev => {
+  ev.preventDefault();
+  const btn = $('sendBtn'); btn.disabled = true;
+  try{
+    const now = Date.now();
+    let c;
+    if(S.editing){
+      await refresh(true);                                   // تأكد إن المهندس ما قبله بهالأثناء
+      const ex = S.cases.find(x => String(x.id) === String(S.editing));
+      if(!ex || (ex.st!=='new' && ex.st!=='ret')){ toast(t('accepted_while')); resetForm(); return; }
+      c = Object.assign({}, ex);
+    } else {
+      c = { id:'w'+now.toString(36)+Math.random().toString(36).slice(2,6), ts:now };
+      ['gps','date','link','cs','ce','ls','le','notes','by'].forEach(k => c[k] = '');
+    }
+    FIELDS.forEach(f => c[f] = $('f_'+f).value.trim());
+    c.t = cleanTicket(c.t);
+    c.dept = normDept($('f_dept').value) || deriveDept(c.t);
+    c.ms = cleanPhone($('f_ms').value) || $('f_ms').value.trim(); c.cb = cleanPhone($('f_cb').value) || $('f_cb').value.trim();
+    if([c.ms, c.cb].some(p => p && !/^07[3-9]\d{8}$/.test(p)) && !confirm(t('phone_bad'))) return;
+    c.issue = $('f_issue').value.trim();
+    if(c.dept === 'Urgent') c.issue = URG_LINE + (c.issue ? '\n' + c.issue : '');
+    c.st = 'new'; c.rn = ''; c.asg = $('f_asg').value; c.updated = now;
+    if(!c.pub) c.pub = S.me.name;
+    const dupe = !S.editing && S.cases.some(x => !x.del && String(x.t).toUpperCase() === c.t.toUpperCase());
+    if(dupe && !confirm(t('dupe_confirm'))) return;
+    const wasEditing = !!S.editing;
+    await push({cases:[c]});
+    if(!wasEditing) store('fl_draft', null);
+    toast(wasEditing ? t('saved') : t('sent'));
+    S.filter = 'new'; resetForm(); render();
+  }catch(e){
+    if(e.auth) return logout();
+    toast(t('send_fail', e.message));
+  }finally{ btn.disabled = false; }
+});
+
+async function removeCase(c){
+  try{
+    await refresh(true);
+    const ex = S.cases.find(x => String(x.id) === String(c.id));
+    if(!ex || (ex.st!=='new' && ex.st!=='ret')){ toast(t('del_locked')); return; }
+    const id = String(c.id);
+    if(S.editing === c.id) resetForm();
+    S.pend.add(id); render();
+    const timer = setTimeout(async () => {
+      try{ const r = await push({purge:[c.id]}); toast(t(r && r.blocked && r.blocked.length ? 'purge_blocked' : 'deleted')); }
+      catch(e){ if(e.auth) return logout(); toast(t('del_fail', e.message)); }
+      finally{ S.pend.delete(id); render(); }
+    }, 8000);
+    toast(t('del_pending', c.t), { label:t('undo'), fn(){ clearTimeout(timer); S.pend.delete(id); render(); } });
+  }catch(e){ toast(t('del_fail', e.message)); }
+}
+
+/* ---- لصق من الإيميل ---- */
+const PV = { items: [], msg: null };
+// المشكلة تبقى فارغة (المكتب يكتبها بنفسه)؛ المحافظة والقسم والتقنية والخلية ووقت البدء لها أعمدة خاصة
+function pvIssue(i){ return (i.urg || normDept(i.dept) === 'Urgent') ? URG_LINE : ''; }
+/* ---- رقم موبايل صالح: 10 أو 11 خانة فقط (يرفض IMSI وأي رقم آخر) ---- */
+function cleanPhone(v){
+  const d = String(v||'')
+    .replace(/[\u0660-\u0669]/g, c => c.charCodeAt(0) - 0x0660)
+    .replace(/[\u06F0-\u06F9]/g, c => c.charCodeAt(0) - 0x06F0)
+    .replace(/[\s\-().+]/g, '')
+    .replace(/^(00)?964(?=\d{10}$)/, '');
+  if(!/^\d{10,11}$/.test(d)) return '';
+  return d.length === 10 ? '0' + d : d;      // نضيف 0 في البداية إذا الرقم 10 خانات
+}
+/* ---- أسماء المحافظات المعروفة (للتمييز بينها وبين القسم عند لصق بدون عنوان) ---- */
+const govKey = x => String(x||'').toLowerCase().replace(/[^a-z]/g,'');
+const KNOWN_GOV = new Set(['baghdad','mosul','nineveh','ninawa','kirkuk','tamim','taamim','tameem','tamin','basra','basrah','erbil','arbil','sulaymaniyah','sulaimaniyah','slemani','duhok','dohuk','anbar','babylon','babil','karbala','najaf','diwaniyah','qadisiyah','wasit','maysan','missan','dhiqar','thiqar','muthanna','salahaldin','salahuddin','saladin','diyala']);
+function parseEmail(text){
+  const rows = text.replace(/\r/g,'').split('\n').map(l => l.split('\t').map(x => x.trim().replace(/^"|"$/g,''))).filter(r => r.some(x => x));
+  if(!rows.length) return [];
+  const low = rows[0].map(h => h.toLowerCase());
+  const hasHead = low.some(h => /governorate|msisdn|address|remedy/.test(h)) && !rows[0].some(x => /^CS\d{6,}$/i.test(x));
+  const col = re => hasHead ? low.findIndex(h => re.test(h)) : -1;
+  const ix = { ref:col(/remedy|^ref/), gov:col(/governorate/), addr:col(/address/), ms:col(/msisdn/), cb:col(/call ?back/),
+               tech:col(/technology/), cell:col(/cell/), dept:col(/department/), start:col(/start/) };
+  const body = hasHead ? rows.slice(1) : rows;
+  return body.map(r => {
+    const get = i => i >= 0 ? (r[i] || '') : '';
+    let tk = r.find(x => /^CMC\w+$/i.test(x)) || r.find(x => /^CS\d{6,}$/i.test(x)) || get(ix.ref);
+    tk = cleanTicket(tk);
+    let gov = get(ix.gov), addr = get(ix.addr), ms = cleanPhone(get(ix.ms)), cb = cleanPhone(get(ix.cb));
+    if(!hasHead){
+      const DEPT_RE = /direct|indirect|sales|marketing|b2b|enterprise|retail|consumer|corporate|care|wholesale|vip|reopen|cmc/i;
+      gov = r.find(x => KNOWN_GOV.has(govKey(x))) ||
+            r.find(x => /^[A-Za-z][A-Za-z .\-]{2,20}$/.test(x) && !DEPT_RE.test(x) && !/south|north|middle|data|voice|ref|^\d/i.test(x)) || '';
+      const ar = r.filter(x => /[\u0600-\u06FF]/.test(x)); addr = (ar.length ? ar : r.filter(x => !/^CS\d/i.test(x) && x !== gov)).sort((a,b) => b.length - a.length)[0] || '';
+      const ph = r.map(cleanPhone).filter(Boolean); ms = ph[0] || ''; cb = ph[1] || '';
+    }
+    const dupe = S.cases.some(c => !c.del && String(c.t).toUpperCase() === String(tk).toUpperCase());
+    return { t:tk, gov:'', egov:gov, asg:'', addr, name:'', ms, cb, dept:normDept(hasHead ? get(ix.dept) : (r.find(x => /^(direct|indirect|marketing|b2b|enterprise|retail|consumer|corporate|care|wholesale)/i.test(x) || /^(vip|reopen|cmc|fcmc|sales)$/i.test(x)) || '')) || deriveDept(tk), tech:get(ix.tech), cell:get(ix.cell), start:get(ix.start), dupe, urg:false, sel: !dupe && !!tk };
+  }).filter(i => i.t || i.addr).map((i,n,a) => { if(i.t && a.findIndex(x => String(x.t).toUpperCase() === i.t.toUpperCase()) < n){ i.dupe = true; i.sel = false; } return i; });
+}
+function pvRoute(i){
+  if(i.dupe) return ['bad', t('c_dupe'), 'r-dup'];
+  if(!i.gov && !i.asg) return ['bad', t('c_noasg'), 'r-dup'];
+  if(i.asg) return ['ok', t('c_toeng', userName(i.asg)), 'r-ok'];
+  const c = covering(i.gov);
+  return c.length ? ['ok', t('c_goveng', c.map(u=>u.name).join(t('sep'))), 'r-ok'] : ['warn', t('c_noeng'), 'r-none'];
+}
+function renderPv(){
+  const it = PV.items, box = $('pvList');
+  if(!it.length){
+    box.innerHTML = `<div class="pv-empty">${esc(t('pv_empty'))}</div>`;
+    $('pvTools').classList.add('hidden'); $('pvSum').textContent = ''; $('pvWarn').textContent = '';
+    $('pasteSend').disabled = true; $('pasteSend').textContent = t('send'); return;
+  }
+  const engOpts = `<option value="">${esc(t('all_eng'))}</option>` + engOptionsRaw();
+  box.innerHTML = it.map((i,n) => {
+    const [cls,txt,rc] = pvRoute(i);
+    const nums = [['Primary MSISDN',i.ms,1],['Call Back',i.cb,1],[t('n_tech'),i.tech],[t('n_cell'),i.cell],[t('n_start'),i.start]]
+      .filter(x => x[1]).map(([l,v,ltr]) => `<span><b>${esc(l)}</b><bdi${ltr?' dir="ltr"':''}>${esc(v)}</bdi></span>`).join('');
+    return `<article class="pc ${rc} ${i.sel?'':'off'}">
+      <div class="pc-top">
+        <input type="checkbox" data-n="${n}" ${i.sel?'checked':''} aria-label="${esc(t('pv_check'))}">
+        <span class="pc-tk">${esc(i.t) || '—'}</span>${i.egov ? `<span class="eg" dir="ltr" title="${esc(t('eg_title'))}">${esc(i.egov)}</span>` : ''}<span class="dp" dir="ltr" title="${esc(t('n_dept'))}">${esc(i.dept)}</span>
+        <span class="chip ${cls}">${esc(txt)}</span>
+      </div>
+      <div class="pc-fields">
+        <div><label>${esc(t('f_gov'))}</label><select data-g="${n}" class="${i.sel && !i.gov && !i.asg ? 'miss' : ''}">${govOptions(i.gov)}</select></div>
+        <div><label>${esc(t('f_eng'))}</label><select data-s="${n}">${engOpts}</select></div>
+        <div><label>${esc(t('n_dept'))}</label><select data-dp="${n}">${deptOptions(i.dept, false)}</select></div>
+        <div class="pc-addr"><label>${esc(t('f_addr'))}</label><input type="text" data-a="${n}" value="${esc(i.addr)}"></div>
+      </div>
+      ${nums ? `<div class="pc-nums">${nums}</div>` : ''}
+    </article>`;
+  }).join('');
+  box.querySelectorAll('select[data-g]').forEach(el => { el.value = PV.items[el.dataset.g].gov; });
+  box.querySelectorAll('select[data-s]').forEach(el => { el.value = PV.items[el.dataset.s].asg; });
+  box.querySelectorAll('select[data-dp]').forEach(el => { el.value = PV.items[el.dataset.dp].dept; });
+  const n = it.filter(i => i.sel).length, d = it.filter(i => i.dupe).length, u = it.filter(i => i.sel && !i.gov && !i.asg).length;
+  $('pvSum').textContent = t('pv_sum', it.length, n) + (d ? t('pv_dup', d) : '');
+  $('pvWarn').textContent = u ? t('pv_warn', u) : '';
+  $('pvTools').classList.remove('hidden');
+  $('pasteSend').disabled = !n; $('pasteSend').textContent = n ? t('pv_send', n) : t('send');
+}
+function setPasteMsg(cls, key, arg){ PV.msg = key ? {cls, key, arg} : null; showPasteMsg(); }
+function showPasteMsg(){ const m = $('pasteMsg'); m.className = 'hint' + (PV.msg && PV.msg.cls ? ' '+PV.msg.cls : ''); m.textContent = PV.msg ? t(PV.msg.key, PV.msg.arg) : ''; }
+function analyze(){
+  PV.items = parseEmail($('pasteTxt').value);
+  if($('pasteTxt').value.trim() && !PV.items.length) setPasteMsg('bad', 'p_fail');
+  else setPasteMsg('', PV.items.length ? 'p_found' : '', PV.items.length);
+  renderPv();
+}
+$('pasteBtn').onclick = () => { $('pasteTxt').value=''; PV.items=[]; setPasteMsg('', ''); renderPv(); $('pasteDlg').showModal(); $('pasteTxt').focus(); };
+$('pasteClose').onclick = () => $('pasteDlg').close();
+$('pasteTxt').addEventListener('input', analyze);
+$('pasteGov').addEventListener('change', e => { const v = e.target.value; if(!v) return; PV.items.forEach(i => { if(i.sel) i.gov = v; }); e.target.value = ''; renderPv(); });
+$('pasteAsg').addEventListener('change', e => { const v = e.target.value; if(!v) return; PV.items.forEach(i => { if(i.sel){ i.asg = v; if(!i.gov) i.gov = firstGov(v); } }); e.target.value = ''; renderPv(); });
+$('pvList').addEventListener('change', e => {
+  const d = e.target.dataset;
+  if(d.n != null){ PV.items[d.n].sel = e.target.checked; renderPv(); }
+  else if(d.g != null){ PV.items[d.g].gov = e.target.value; renderPv(); }
+  else if(d.s != null){ const i = PV.items[d.s]; i.asg = e.target.value; if(i.asg && !i.gov) i.gov = firstGov(i.asg); renderPv(); }
+  else if(d.dp != null){ PV.items[d.dp].dept = e.target.value; renderPv(); }
+  else if(d.u != null){ PV.items[d.u].urg = e.target.checked; renderPv(); }
+  else if(d.a != null){ PV.items[d.a].addr = e.target.value.trim(); }
+});
+$('pvAll').onclick = () => { PV.items.forEach(i => i.sel = !i.dupe && !!i.t); renderPv(); };
+$('pvNone').onclick = () => { PV.items.forEach(i => i.sel = false); renderPv(); };
+$('pasteX').onclick = () => $('pasteDlg').close();
+$('pasteSend').onclick = async () => {
+  const sel = PV.items.filter(i => i.sel);
+  if(sel.some(i => !i.gov && !i.asg)){ toast(t('p_unassigned')); return; }
+  const now = Date.now(), btn = $('pasteSend'); btn.disabled = true;
+  try{
+    const cases = sel.map((i,n) => {
+      const c = { id:'w'+now.toString(36)+n+Math.random().toString(36).slice(2,5), ts:now, t:i.t, gov:i.gov || firstGov(i.asg), addr:i.addr, name:'', ms:i.ms||'', cb:i.cb||'', issue:pvIssue(i),
+        egov:i.egov||'', dept:i.dept||'', tech:i.tech||'', cell:i.cell||'', start:i.start||'',
+        st:'new', asg:i.asg || '', rn:'', pub:S.me.name, updated:now };
+      ['gps','date','link','cs','ce','ls','le','notes','by'].forEach(k => c[k] = '');
+      return c;
+    });
+    await push({cases});
+    toast(t('p_sent', cases.length));
+    S.filter='new'; render(); $('pasteDlg').close();
+  }catch(e){ if(e.auth) return logout(); toast(t('send_fail', e.message)); btn.disabled = false; }
+};
+
+/* ---- الاكتفتي: شغل كل مهندس بصيغة الجدول ---- */
+const ACT_HEAD = [['DT team Name','b'],['Owner','b'],['City','b'],['Visit date','b'],['Handled ticket number / no task','y'],['Visit details','y'],['Activity Type [ Complaint/ Global/ ... ]','y'],['Visit start time','r'],['Visit end time','r'],['Visit duration','r'],['Delay justification','r'],['Start time inside complainer location','r'],['End time inside complainer location','r']];
+const ACT_OWNER = 'IPT', ACT_TYPE = 'Complaint', MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const CITY_MAP = { wasit:'Wassit', maysan:'Missan' };
+function todayStr(){ const d=new Date(), p=n=>String(n).padStart(2,'0'); return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
+function tparse(v){
+  if(v==null || v==='') return null;
+  const s = String(v).trim(); if(!s) return null;
+  if(/^\d{11,}$/.test(s)){ const d = new Date(Number(s)); return { abs:+d, m:d.getHours()*60+d.getMinutes() }; }
+  const m = s.match(/(\d{1,2}):(\d{2})(?::\d{2})?\s*([AaPp][Mm])?/);
+  if(!m) return { raw:s };
+  let h = +m[1]; const mi = +m[2];
+  if(m[3]) h = h % 12 + (/p/i.test(m[3]) ? 12 : 0);
+  return { m:h*60+mi };
+}
+function tfmt(p){ if(!p) return ''; if(p.raw) return p.raw; const h = Math.floor(p.m/60), mi = p.m%60; return (h%12||12)+':'+String(mi).padStart(2,'0')+' '+(h<12?'AM':'PM'); }
+function tdur(a,b){
+  if(!a || !b || a.raw || b.raw) return '';
+  let d;
+  if(a.abs && b.abs) d = (b.abs-a.abs)/36e5;
+  else { d = (b.m-a.m)/60; if(d<0) d += 24; }
+  return Math.max(0,d).toFixed(2);
+}
+function mgrMe(){ return S.users.find(x => String(x.id) === String(S.me && S.me.id)) || S.me || {}; }
+function mgrGovList(){ return String(mgrMe().govs||'').split(',').map(x=>x.trim()).filter(Boolean); }
+function actRowFor(u, c, dayMs){
+  const d = new Date(dayMs), p = n => String(n).padStart(2,'0'), dt = p(d.getDate())+'-'+MON[d.getMonth()];
+  const city = c ? c.gov : firstGov(u.id);
+  const base = [u.act || u.name, ACT_OWNER, CITY_MAP[normGov(city)] || city, dt];
+  if(!c) return { no:true, v: base.concat(['no task','','','','','0.00','','','']) };
+  const vs = tparse(c.cs), ve = tparse(c.ce), cs = tparse(c.ls), ce = tparse(c.le);
+  return { no:false, v: base.concat([c.t||'', c.notes||'', ACT_TYPE, tfmt(vs), tfmt(ve), tdur(vs,ve), '', tfmt(cs), tfmt(ce)]) };
+}
+function actData(){
+  const mg = mgrGovList().map(normGov);
+  const v = $('actDate').value || todayStr(), [y,mo,da] = v.split('-').map(Number);
+  const a = new Date(y,mo-1,da).getTime(), b = a + 864e5;
+  const engs = engineers().filter(u => !mg.length || String(u.govs||'').split(',').some(g => mg.includes(normGov(g))));
+  const cases = S.cases.filter(c => !c.del && (kind(c)==='acc' || kind(c)==='done') && (c.updated||0) >= a && (c.updated||0) < b && (!mg.length || !c.gov || mg.includes(normGov(c.gov))));
+  return engs.map(u => {
+    const mine = cases.filter(c => c.by ? c.by === u.name : String(c.asg) === String(u.id)).sort((x,z) => (x.updated||0)-(z.updated||0));
+    return { u, rows: mine.length ? mine.map(c => actRowFor(u,c,a)) : [actRowFor(u,null,a)], n: mine.length };
+  });
+}
+const ACT_COL = { b:'background:#8EA9DB;color:#000', y:'background:#FFFF00;color:#000', r:'background:#FF0000;color:#fff' };
+function actTableHtml(list){
+  const body = list.map(e => e.rows.map(r => '<tr>' + r.v.map((x,i) => `<td${r.no && i===4 ? ' class="nt"' : ''}>${esc(x)}</td>`).join('') + '</tr>').join('')).join('');
+  return `<table class="act-t">${body}</table>`;
+}
+function renderAct(){
+  if(!$('actDate').value) $('actDate').value = todayStr();
+  const list = actData(); S.actList = list;
+  const mg = mgrGovList();
+  $('actGovs').textContent = t('act_govs', mg.length ? govsLabel(mg.join(',')) : t('act_all_govs'));
+  $('actAll').disabled = !list.length; $('actXlsAll').disabled = !list.length; $('actMail').disabled = !list.length;
+  $('actBody').innerHTML = list.length ? list.map(e =>
+    `<section class="act-sec"><div class="act-head"><b>${esc(e.u.name)}</b>${e.u.act ? `<span class="chip">${esc(e.u.act)}</span>` : ''}<span class="chip">${esc(t('act_n', e.n))}</span><span class="sp"></span><button class="btn small" type="button" data-eid="${esc(e.u.id)}">✎ ${esc(t('act_name_btn'))}</button><button class="btn small" type="button" data-uid="${esc(e.u.id)}">${esc(t('act_one'))}</button><button class="btn small" type="button" data-xid="${esc(e.u.id)}">${esc(t('act_xls_one'))}</button></div><div class="act-wrap">${actTableHtml([e])}</div></section>`
+  ).join('') : `<div class="pv-empty">${esc(t('act_none'))}</div>`;
+}
+async function copyAct(list, msg){
+  const cell = v => /[\t\n"]/.test(v) ? '"' + String(v).replace(/"/g,'""') + '"' : v;
+  const text = list.map(e => e.rows.map(r => r.v.map(cell).join('\t')).join('\n')).join('\n');
+  const B = 'border:1px solid #000;padding:1px 6px;text-align:center;font-family:Calibri,Arial,sans-serif;font-size:11pt;line-height:1.2;white-space:nowrap';
+  const html = '<table dir="ltr" style="direction:ltr;border-collapse:collapse" border="1" cellspacing="0" cellpadding="0">' +
+    list.map(e => e.rows.map(r => '<tr>' + r.v.map(x => `<td style="${B}">${esc(x)}</td>`).join('') + '</tr>').join('')).join('') + '</table>';
+  toast(await copyToClipboard(text, html) ? msg : t('cp_fail'));
+}
+/* ---- الشاشات (Navigation) ----
+   لإضافة شاشة جديدة مستقبلاً:
+   1) أضف <section class="screen hidden" id="screen-XXX"> داخل <main>
+   2) أضف مفتاح nav_XXX بالعربي والإنجليزي بقسم I18N
+   3) سجّلها بالمصفوفة SCREENS تحت (show تنادى كل ما تنفتح الشاشة) */
+const SCREENS = [
+  { id:'cases',    label:'nav_cases',    show(){ render(); } },
+  { id:'activity', label:'nav_activity', show(){ if(!$('actDate').value) $('actDate').value = todayStr(); renderAct(); } },
+  { id:'reports', label:'nav_reports', show(){ renderReports(); } }
+];
+S.screen = store('fl_screen') || 'cases';
+function renderNav(){
+  $('nav').innerHTML = SCREENS.map(sc => `<button type="button" data-sc="${sc.id}" aria-pressed="${S.screen===sc.id}">${esc(t(sc.label))}</button>`).join('');
+}
+function showScreen(id){
+  if(!SCREENS.some(x => x.id === id)) id = SCREENS[0].id;
+  S.screen = id; store('fl_screen', id);
+  SCREENS.forEach(sc => $('screen-'+sc.id).classList.toggle('hidden', sc.id !== id));
+  renderNav();
+  SCREENS.find(x => x.id === id).show();
+}
+$('nav').addEventListener('click', e => { const b = e.target.closest('[data-sc]'); if(b){ showScreen(b.dataset.sc); refresh(true); } });
+$('actDate').addEventListener('change', renderAct);
+$('rpDays').addEventListener('change', renderReports); $('rpGov').addEventListener('change', renderReports); $('rpEng').addEventListener('change', renderReports);
+/* ---- سحب / إعادة إسناد كيس مقبول ---- */
+function startReclaim(c){
+  $('rcInfo').textContent = c.t + ' — ' + t('w_at', userName(c.asg) || c.by);
+  const cur = String(c.asg);
+  $('rcAsg').innerHTML = `<option value="">${esc(t('rc_gov'))}</option>` + engineers().filter(u => String(u.id) !== cur)
+    .map(u => `<option value="${esc(u.id)}">${esc(u.name)}${u.govs ? ' — ' + esc(govsLabel(u.govs)) : ''}</option>`).join('');
+  S.rc = c.id; $('rcDlg').showModal();
+}
+$('rcX').onclick = $('rcCancel').onclick = () => $('rcDlg').close();
+$('rcOk').onclick = async () => {
+  const id = S.rc, btn = $('rcOk'); btn.disabled = true;
+  try{
+    await refresh(true);
+    const ex = S.cases.find(x => String(x.id) === String(id));
+    if(!ex || ex.st !== 'acc'){ toast(t('rc_gone')); $('rcDlg').close(); return; }
+    const r = await push({ reclaim:[{ id:id, asg:$('rcAsg').value }] });
+    toast(t(r.rcBlocked && r.rcBlocked.length ? 'rc_fail' : 'rc_done'));
+    $('rcDlg').close();
+  }catch(e){ if(e.auth) return logout(); toast(t('send_fail', e.message)); }
+  finally{ btn.disabled = false; }
+};
+/* ---- شاشة التقارير ---- */
+function durS(ms){
+  const mi = Math.round(ms/6e4), d = Math.floor(mi/1440), h = Math.floor(mi%1440/60), ar = S.lang==='ar';
+  return d ? d + (ar?' يوم ':'d ') + h + (ar?' س':'h') : h ? h + (ar?' س ':'h ') + (mi%60) + (ar?' د':'m') : mi + (ar?' د':'m');
+}
+function renderReports(){
+  if(S.screen !== 'reports') return;
+  const from = Date.now() - (+$('rpDays').value || 30) * 864e5;
+  const base = dispatched(), who = c => c.by || userName(c.asg);
+  const fill = (el, vals, all) => { const cur = el.value; el.innerHTML = `<option value="">${esc(all)}</option>` + vals.map(([v,l]) => `<option value="${esc(v)}">${esc(l)}</option>`).join(''); el.value = cur; };
+  fill($('rpGov'), [...new Set(base.map(c => c.gov).filter(Boolean))].map(g => [g, govLabel(g)]), t('rp_allgov'));
+  fill($('rpEng'), [...new Set(base.map(who).filter(Boolean))].sort().map(n => [n, n]), t('rp_alleng'));
+  const gv = $('rpGov').value, ev = $('rpEng').value;
+  const rows = base.filter(c => (c.ts||0) >= from && (!gv || c.gov === gv) && (!ev || who(c) === ev));
+  const agg = keyFn => {
+    const mp = new Map();
+    rows.forEach(c => {
+      const k = keyFn(c); if(!k) return;
+      const a = mp.get(k) || { n:0, done:0, open:0, ret:0, od:0, tot:0 }, kd = kind(c);
+      a.n++;
+      if(kd==='done'){ a.done++; a.tot += Math.max(0, (c.updated || c.ts) - c.ts); }
+      else if(kd==='ret') a.ret++; else a.open++;
+      if(isOd(c)) a.od++;
+      mp.set(k, a);
+    });
+    return Array.from(mp.entries()).sort((x,y) => y[1].n - x[1].n);
+  };
+  const avg = a => a.done ? durS(a.tot / a.done) : '—';
+  const tbl = (title, list) => `<h3 class="rp-h3">${esc(title)}</h3><div class="act-wrap" style="direction:inherit"><table class="rp-t"><tr>` +
+    ['rp_name','rp_sent','rp_done','rp_open','rp_ret','rp_od','rp_avg'].map(k => `<th>${esc(t(k))}</th>`).join('') + '</tr>' +
+    list.map(([k,a]) => `<tr><td>${esc(k)}</td><td>${a.n}</td><td>${a.done}</td><td>${a.open}</td><td>${a.ret}</td><td>${a.od}</td><td>${esc(avg(a))}</td></tr>`).join('') + '</table></div>';
+  const all = agg(() => 'x').map(e => e[1])[0] || { n:0, done:0, open:0, ret:0, od:0, tot:0 };
+  const kp = [[all.n,'rp_sent'],[all.done,'rp_done'],[all.open,'rp_open'],[all.ret,'rp_ret'],[all.od,'rp_od']]
+    .map(([v,l]) => `<div class="kpi" style="cursor:default"><b>${v}</b><span>${esc(t(l))}</span></div>`).join('') +
+    `<div class="kpi" style="cursor:default"><b style="font-size:20px">${esc(avg(all))}</b><span>${esc(t('rp_avg'))}</span></div>`;
+  $('rpBody').innerHTML = rows.length
+    ? `<div class="rp-kpis">${kp}</div>` + tbl(t('rp_eng'), agg(c => c.by || userName(c.asg))) + tbl(t('rp_gov'), agg(c => govLabel(c.gov))) + `<div class="hint">${esc(t('rp_note'))}</div>`
+    : `<div class="pv-empty">${esc(t('rp_none'))}</div>`;
+}
+/* ---- تصدير xlsx حقيقي (بدون مكتبات خارجية) ---- */
+const CRC_T = (() => { const t = []; for(let n=0;n<256;n++){ let c=n; for(let k=0;k<8;k++) c = c&1 ? 0xEDB88320^(c>>>1) : c>>>1; t[n]=c>>>0; } return t; })();
+function crc32(u){ let c = -1; for(let i=0;i<u.length;i++) c = CRC_T[(c^u[i])&255] ^ (c>>>8); return (c^-1)>>>0; }
+function zipStore(files){
+  const enc = new TextEncoder(), parts = [], cen = []; let off = 0;
+  files.forEach(f => {
+    const nm = enc.encode(f.name), d = enc.encode(f.text), crc = crc32(d);
+    const lh = new DataView(new ArrayBuffer(30));
+    lh.setUint32(0,0x04034b50,true); lh.setUint16(4,20,true); lh.setUint16(6,0x0800,true); lh.setUint16(8,0,true);
+    lh.setUint16(10,0,true); lh.setUint16(12,33,true); lh.setUint32(14,crc,true); lh.setUint32(18,d.length,true); lh.setUint32(22,d.length,true);
+    lh.setUint16(26,nm.length,true); lh.setUint16(28,0,true);
+    parts.push(new Uint8Array(lh.buffer), nm, d);
+    const ch = new DataView(new ArrayBuffer(46));
+    ch.setUint32(0,0x02014b50,true); ch.setUint16(4,20,true); ch.setUint16(6,20,true); ch.setUint16(8,0x0800,true); ch.setUint16(10,0,true);
+    ch.setUint16(12,0,true); ch.setUint16(14,33,true); ch.setUint32(16,crc,true); ch.setUint32(20,d.length,true); ch.setUint32(24,d.length,true);
+    ch.setUint16(28,nm.length,true); ch.setUint32(42,off,true);
+    cen.push(new Uint8Array(ch.buffer), nm);
+    off += 30 + nm.length + d.length;
+  });
+  const csz = cen.reduce((a,x) => a + x.length, 0);
+  const end = new DataView(new ArrayBuffer(22));
+  end.setUint32(0,0x06054b50,true); end.setUint16(8,files.length,true); end.setUint16(10,files.length,true); end.setUint32(12,csz,true); end.setUint32(16,off,true);
+  return new Blob([...parts, ...cen, new Uint8Array(end.buffer)], { type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+}
+function exportAct(list, fname, asBlob){
+  const x = v => String(v==null?'':v).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const col = i => String.fromCharCode(65+i), HS = { b:2, y:3, r:4 };
+  const cell = (v,i,r,st) => `<c r="${col(i)}${r}" s="${st}" t="inlineStr"><is><t xml:space="preserve">${x(v)}</t></is></c>`;
+  let r = 1, rows = `<row r="1" ht="45" customHeight="1">` + ACT_HEAD.map(([h,g],i) => cell(h,i,1,HS[g])).join('') + '</row>';
+  list.forEach(e => e.rows.forEach(rw => { r++; rows += `<row r="${r}">` + rw.v.map((v,i) => cell(v,i,r,1)).join('') + '</row>'; }));
+  const widths = [24,8,12,12,30,20,22,14,14,12,18,22,22];
+  const NS = 'xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"';
+  const files = [
+    { name:'[Content_Types].xml', text:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>' },
+    { name:'_rels/.rels', text:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>' },
+    { name:'xl/workbook.xml', text:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook ${NS} xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Activity" sheetId="1" r:id="rId1"/></sheets></workbook>` },
+    { name:'xl/_rels/workbook.xml.rels', text:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>' },
+    { name:'xl/styles.xml', text:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet ${NS}><fonts count="3"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FF000000"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font></fonts><fills count="5"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF8EA9DB"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFFFFF00"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFFF0000"/></patternFill></fill></fills><borders count="2"><border><left/><right/><top/><bottom/><diagonal/></border><border><left style="thin"><color auto="1"/></left><right style="thin"><color auto="1"/></right><top style="thin"><color auto="1"/></top><bottom style="thin"><color auto="1"/></bottom><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="5"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf><xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf><xf numFmtId="0" fontId="1" fillId="3" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf><xf numFmtId="0" fontId="2" fillId="4" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf></cellXfs></styleSheet>` },
+    { name:'xl/worksheets/sheet1.xml', text:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet ${NS}><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><cols>${widths.map((w,i) => `<col min="${i+1}" max="${i+1}" width="${w}" customWidth="1"/>`).join('')}</cols><sheetData>${rows}</sheetData></worksheet>` }
+  ];
+  const blob = zipStore(files);
+  if(asBlob) return blob;
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fname; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+const actDay = () => $('actDate').value || todayStr();
+$('actEmail').value = store('fl_act_email') || '';
+$('actEmail').addEventListener('input', () => store('fl_act_email', $('actEmail').value.trim()));
+function joinEn(a){ return a.length < 3 ? a.join(' and ') : a.slice(0,-1).join(', ') + ', and ' + a[a.length-1]; }
+function actGovText(){
+  const g = mgrGovList().map(x => CITY_MAP[normGov(x)] || x);
+  return joinEn(g.length ? g : [...new Set((S.actList||[]).flatMap(e => e.rows.map(r => r.v[2])).filter(Boolean))]);
+}
+function actDateText(){ const [y,m,d] = actDay().split('-').map(Number); return String(d).padStart(2,'0') + '-' + MON[m-1] + '-' + y; }
+function b64(u8){ let s = ''; for(let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(s).replace(/.{76}/g, '$&\r\n'); }
+$('actMail').onclick = async () => {
+  const em = $('actEmail').value.trim();
+  if(!/^[^\s@]+@[^\s@]+$/.test(em)){ toast(t('act_email_need')); $('actEmail').focus(); return; }
+  if(!S.actList || !S.actList.length) return;
+  const btn = $('actMail'); btn.disabled = true;
+  try{
+    const fname = 'Activity_' + actDay() + '.xlsx';
+    const xl = new Uint8Array(await exportAct(S.actList, fname, true).arrayBuffer());
+    const tag = '<a href="mailto:' + esc(em) + '" style="background-color:#dce6f5;color:#0f6cbd;text-decoration:none;border-radius:3px;padding:0 3px">@' + esc(em) + '</a>';
+    const html = '<html><body style="font-family:Calibri,Arial,sans-serif;font-size:11pt"><p>Dear ' + tag + ',</p><p>Please find the attached file for the activity dated ' + esc(actDateText()) + ' covering ' + esc(actGovText()) + '.</p></body></html>';
+    const bd = 'FLb' + Date.now().toString(36);
+    const eml = ['X-Unsent: 1', 'To: ' + em, 'Subject: ' + fname, 'MIME-Version: 1.0', 'Content-Type: multipart/mixed; boundary="' + bd + '"', '',
+      '--' + bd, 'Content-Type: text/html; charset="utf-8"', 'Content-Transfer-Encoding: base64', '', b64(new TextEncoder().encode(html)),
+      '--' + bd, 'Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; name="' + fname + '"', 'Content-Transfer-Encoding: base64', 'Content-Disposition: attachment; filename="' + fname + '"', '', b64(xl),
+      '--' + bd + '--', ''].join('\r\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([eml], { type:'message/rfc822' })); a.download = 'Activity_' + actDay() + '.eml'; a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    toast(t('act_mail_hint'));
+  }finally{ btn.disabled = false; }
+};
+$('actXlsAll').onclick = () => { if(S.actList && S.actList.length) exportAct(S.actList, 'Activity_' + actDay() + '.xlsx'); };
+$('actAll').onclick = () => { if(S.actList && S.actList.length) copyAct(S.actList, t('act_copied_all')); };
+async function editActName(u){
+  const v = prompt(t('act_name_prompt', u.name), u.act || '');
+  if(v === null) return;
+  const val = v.trim();
+  try{
+    await push({ actnames: { [u.id]: val } });
+    const nu = S.users.find(x => String(x.id) === String(u.id));
+    toast(t(nu && (nu.act || '') === val ? 'act_name_saved' : 'act_name_nosave'));
+  }catch(e){ if(e.auth) return logout(); toast(t('send_fail', e.message)); }
+}
+$('actBody').addEventListener('click', e => {
+  const b = e.target.closest('[data-uid],[data-xid],[data-eid]'); if(!b) return;
+  const id = b.dataset.uid || b.dataset.xid || b.dataset.eid;
+  const en = (S.actList||[]).find(x => String(x.u.id) === id);
+  if(!en) return;
+  if(b.dataset.eid){ editActName(en.u); return; }
+  if(b.dataset.xid) exportAct([en], 'Activity_' + en.u.name.replace(/[\\/:*?"<>|]/g,'').trim() + '_' + actDay() + '.xlsx');
+  else copyAct([en], t('act_copied_one', en.u.name));
+});
+
+/* ---- بدء التشغيل ---- */
+(function init(){
+  applyLang();
+  let d = store('fl_dev');
+  if(!d){ d = 'web-'+Math.random().toString(36).slice(2,10)+Date.now().toString(36); store('fl_dev', d); }
+  S.dev = d;
+  S.wt = store('fl_wt') || '';
+  if(S.wt) login().catch(() => { S.wt = ''; store('fl_wt', null); qrStart(); }); else qrStart();
+})();
+</script>
+</body>
+</html>

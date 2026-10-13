@@ -777,9 +777,10 @@ function userName(id){ const u = S.users.find(x => String(x.id) === String(id));
 function firstGov(id){ const u = S.users.find(x => String(x.id) === String(id)); return String((u && u.govs) || '').split(',').map(x => x.trim()).filter(Boolean)[0] || ''; }
 
 /* ---- القسم: يُقرأ من الإيميل، وإذا مفقود يُشتق من رقم التذكرة (CMC أو Reopen) ---- */
-const DEPTS = ['Urgent','Sales','Marketing','VIP','CMC','Reopen','B2B','FCMC'];   // Urgent = وضع الطوارئ، يبقى بالإنكليزي بكل اللغات
+const DEPTS = ['Urgent','Sales','Marketing','VIP','CMC','Reopen','Reopen - need dt','B2B','FCMC'];   // Urgent = وضع الطوارئ، يبقى بالإنكليزي بكل اللغات
 function normDept(v){
   v = String(v||'').trim(); if(!v) return '';
+  if(/need[\s_\-.]*dt/i.test(v)) return 'Reopen - need dt';
   const hit = DEPTS.find(d => d.toLowerCase() === v.toLowerCase()); if(hit) return hit;
   return /cmc/i.test(v) ? 'CMC' : v;
 }
@@ -1159,7 +1160,7 @@ function parseEmail(text){
       const ph = r.map(cleanPhone).filter(Boolean); ms = ph[0] || ''; cb = ph[1] || '';
     }
     const dupe = S.cases.some(c => !c.del && String(c.t).toUpperCase() === String(tk).toUpperCase());
-    return { t:tk, gov:'', egov:gov, asg:'', addr, name:'', ms, cb, dept:normDept(hasHead ? get(ix.dept) : (r.find(x => /^(direct|indirect|marketing|b2b|enterprise|retail|consumer|corporate|care|wholesale)/i.test(x) || /^(vip|reopen|cmc|fcmc|sales)$/i.test(x)) || '')) || deriveDept(tk), tech:get(ix.tech), cell:get(ix.cell), start:get(ix.start), dupe, urg:false, sel: !dupe && !!tk };
+    return { t:tk, gov:'', egov:gov, asg:'', addr, name:'', ms, cb, dept:normDept(hasHead ? get(ix.dept) : (r.find(x => /^(direct|indirect|marketing|b2b|enterprise|retail|consumer|corporate|care|wholesale)/i.test(x) || /^(vip|reopen|cmc|fcmc|sales)$/i.test(x) || /need[\s_\-.]*dt/i.test(x)) || '')) || deriveDept(tk), tech:get(ix.tech), cell:get(ix.cell), start:get(ix.start), dupe, urg:false, sel: !dupe && !!tk };
   }).filter(i => i.t || i.addr).map((i,n,a) => { if(i.t && a.findIndex(x => String(x.t).toUpperCase() === i.t.toUpperCase()) < n){ i.dupe = true; i.sel = false; } return i; });
 }
 function pvRoute(i){
